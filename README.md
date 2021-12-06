@@ -1,1 +1,0 @@
-# ticket-box-clone-client
