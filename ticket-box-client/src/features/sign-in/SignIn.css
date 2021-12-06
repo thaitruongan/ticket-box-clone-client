@@ -1,0 +1,157 @@
+.sign-in-page {
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  background-color: #2dc275;
+  height: 100px;
+  color: white;
+  font-weight: bold;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+.header button {
+  background: none;
+  border: none;
+  color: white;
+  margin: auto 10px;
+  cursor: pointer;
+}
+
+.header p {
+  margin: auto 10px;
+}
+
+.sign-in-form {
+  margin: 24px auto auto;
+  background-color: white;
+  max-width: 360px;
+  padding: 16px;
+  text-align: left;
+  border-radius: 8px;
+}
+
+span {
+  font-family: Raleway, sans-serif;
+}
+
+.input-phone-number {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-family: ProximaNova, sans-serif;
+}
+
+.input-phone-number div {
+  background-color: #e6e6e6;
+  height: 50px;
+  width: 60px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.check-rule {
+  margin-top: 10px;
+  display: flex;
+}
+
+.check-rule p {
+  font-family: Raleway, sans-serif;
+  font-size: 12px;
+}
+
+.check-rule a {
+  text-decoration: none;
+  color: #2dc275;
+  font-weight: bold;
+}
+
+.check-rule a:active {
+  text-decoration: none;
+  color: #2dc275;
+}
+
+.check-rule a:visited {
+  text-decoration: none;
+  color: #2dc275;
+}
+
+.check-rule .check {
+  content: "";
+  margin: auto 10px;
+  border-radius: 5px;
+  border: 0.5px #e6e6e6 solid;
+}
+
+/* this is bottom */
+
+.bottom {
+  display: block;
+  justify-content: center;
+}
+
+.bottom .next-button {
+  background-color: #2dc275;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 140px;
+}
+
+.bottom .next-button:active {
+  background-color: #128c4d;
+}
+
+.bottom .or {
+  position: relative;
+  border-top: 1px solid rgb(230, 235, 245);
+  margin: 16px 0px;
+}
+
+.bottom span {
+  font-family: Raleway, sans-serif;
+  color: #828ba0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0px 16px;
+  top: -10px;
+  background: rgb(255, 255, 255);
+  margin: unset !important;
+}
+
+.bottom .login-api {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+}
+
+.bottom .login-api div {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #e6ebf5 !important;
+  background-color: white;
+  height: 40px;
+  border-radius: 20px;
+  width: 45%;
+}
+
+.bottom .login-api img {
+  margin: auto 0;
+  height: 30px;
+  width: auto;
+}
+
+.bottom .login-api div:active {
+  background-color: #e6e6e6;
+}
