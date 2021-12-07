@@ -1,0 +1,9 @@
+.banner {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  width: 100vh;
+  margin-left: 25rem;
+}
