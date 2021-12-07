@@ -1,12 +1,13 @@
 import './App.css';
-import ImportOtp from './features/sign-in/importOTP/ImportOtp';
-import SignIn from './features/sign-in/SignIn';
-import SignUp from './features/sign-up/SignUp';
+import FilmDetail from './features/film-detail/FilmDetail';
+// import ImportOtp from './features/sign-in/importOTP/ImportOtp';
+// import SignIn from './features/sign-in/SignIn';
+//import Profile from './features/profile/Profile';
 
 function App() {
   return (
     <div className="App">
-      <SignIn/>
+      <FilmDetail/>
     </div>
   );
 }

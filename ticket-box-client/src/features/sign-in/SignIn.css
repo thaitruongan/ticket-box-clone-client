@@ -5,33 +5,79 @@
 
 .header {
   background-color: #2dc275;
-  height: 100px;
+  height: 124px;
+}
+
+.header .white-space {
+  height: 60px;
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  align-items: center;
   color: white;
+}
+
+.header .content {
+  max-width: 360px;
+  margin: auto;
+  position: relative;
+}
+
+.header .close-tag {
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  top: 30px;
+  position: absolute;
+}
+
+.content .close {
+  cursor: pointer;
+  z-index: 2;
+}
+
+.content .bot-header {
+  height: 64px;
+  position: relative;
+  margin: auto 0 0 0;
+}
+
+.content .bot-header .logo-white {
+  margin-left: 0px;
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+}
+
+.content .bot-header span {
+  margin-top: 24px;
+  position: absolute;
+  bottom: 20px;
+  left: 76px;
+  font-style: normal;
   font-weight: bold;
   font-size: 28px;
-  display: flex;
-  justify-content: center;
-}
-
-.header button {
-  background: none;
-  border: none;
   color: white;
-  margin: auto 10px;
-  cursor: pointer;
+  line-height: 32px;
 }
 
-.header p {
-  margin: auto 10px;
+.content .bot-header .cute-dog {
+  position: absolute;
+  right: 20px;
 }
+
+/* sign in form */
 
 .sign-in-form {
-  margin: 24px auto auto;
+  margin: 20px auto;
   background-color: white;
   max-width: 360px;
   padding: 16px;
   text-align: left;
   border-radius: 8px;
+  border: 1px #e6ebf5 solid;
 }
 
 span {
@@ -80,10 +126,20 @@ span {
 }
 
 .check-rule .check {
-  content: "";
+  height: 15px;
+  width: 15px;
   margin: auto 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 0.5px #e6e6e6 solid;
+  cursor: pointer;
+}
+
+.check-rule .check .active {
+  background-color: #2dc275;
+  height: 15px;
+  width: 15px;
+  border-radius: 8px;
+  justify-content: center;
 }
 
 /* this is bottom */
@@ -91,6 +147,7 @@ span {
 .bottom {
   display: block;
   justify-content: center;
+  margin-top: 0;
 }
 
 .bottom .next-button {
@@ -146,9 +203,9 @@ span {
   width: 45%;
 }
 
-.bottom .login-api img {
+.bottom .login-api .facebook,
+.gmail {
   margin: auto 0;
-  height: 30px;
   width: auto;
 }
 

@@ -55,15 +55,31 @@ span {
   line-height: 24px;
   width: 48px;
   height: 48px;
-  margin-right: 4px;
+  margin: 0 0 0 4px;
   border-radius: 4px;
   outline: none;
   background-color: #e6e6e6;
   caret-color: #2dc275;
+  -webkit-appearance: none;
 }
 
-.bottom {
-  margin-top: 100px;
+.input-otp input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.space {
+  padding: 4px 14px;
+  display: block;
+  height: 52px;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgb(238, 79, 20);
+  text-align: center;
+}
+
+.question {
+  margin-top: 50px;
   font-weight: 300;
 }
 
