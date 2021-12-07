@@ -4,10 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-<<<<<<< HEAD
     "@reduxjs/toolkit": "^1.6.2",
-=======
->>>>>>> 32c5818959dbe9adc77fbb3d8807d875237a91ad
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -17,16 +14,11 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.3",
     "react-dom": "^17.0.2",
-<<<<<<< HEAD
     "react-elastic-carousel": "^0.11.5",
     "react-scripts": "^4.0.3",
     "web-vitals": "^1.0.1",
-    "yarn": "^1.22.17"
-=======
-    "react-router-dom": "^6.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
->>>>>>> 32c5818959dbe9adc77fbb3d8807d875237a91ad
+    "yarn": "^1.22.17",
+    "react-router-dom": "^6.0.2"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
