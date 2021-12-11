@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './FilmDetail.css';
 import { ReactComponent as Pause} from '../../assets/svg/pause.svg';
-import { ReactComponent as TurnBack} from '../../assets/svg/<.svg';
+import { ReactComponent as TurnBack} from '../../assets/svg/fall-back.svg';
 import PopupTrailer from "../../commons/popupTrailer/PopupTrailer";
 
 const FilmDetail = () => {

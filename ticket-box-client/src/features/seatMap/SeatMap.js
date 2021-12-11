@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PaymentButton from "../../commons/paymentButton/PaymentButton";
 import SeatRow from "../../commons/seat/SeatRow";
-import AppHeader from "../../components/header/Header";
 import './SeatMap.css';
 
 const SeatMap = () => {
@@ -16,7 +15,7 @@ const SeatMap = () => {
             "_id": "61b42ef5403cc5cad4bc792e",
             "seatId": "61b2d0135b2065af8e65c4f9",
             "showtimeId": "61b42ef5403cc5cad4bc792b",
-            "status": "free",
+            "status": "hold",
             "userId": null,
             "row": "A",
             "column": 1,
@@ -249,7 +248,6 @@ const SeatMap = () => {
 
     return (
         <div className="sc-17x1kk6-2">
-            <AppHeader/>
             <main className="SeatMap">
                 <div className="seat-map-container">
                     <div className="tbox-container">
