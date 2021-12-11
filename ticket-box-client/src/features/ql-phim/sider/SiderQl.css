@@ -1,0 +1,18 @@
+.sider-ql {
+  background-color: rgb(245, 247, 252);
+}
+.menu-ql-color {
+  background-color: rgb(245, 247, 252);
+}
+
+.logo-sider {
+  height: 76px;
+  background-color: white;
+  border-bottom: 2px solid rgb(230, 235, 245);
+  border-right: 2px solid rgb(230, 235, 245);
+}
+.logo-sider h2 {
+  color: #2dc275;
+  text-align: center;
+  padding-top: 1.2rem;
+}

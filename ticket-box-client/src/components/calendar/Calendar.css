@@ -1,0 +1,21 @@
+.detail__listOfDay {
+    margin-top: 2rem;
+    margin-left: 1rem;
+    width: 55rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.detail__listOfDay--item {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    min-width: 70px;
+    cursor: pointer;
+    opacity: .7;
+    transition: all .5s;
+}

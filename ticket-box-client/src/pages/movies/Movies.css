@@ -1,0 +1,4 @@
+@import "~antd/dist/antd.css";
+.content {
+  background-color: rgb(255, 255, 255);
+}

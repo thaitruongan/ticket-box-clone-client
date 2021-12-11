@@ -15,7 +15,7 @@ const AppHeader = () => {
         </div>
         <div className="search-bar">
           <div className="child">
-            <Search />
+            <Search className="search" />
             <input type="text" placeholder="Tìm kiếm" />
           </div>
         </div>
@@ -30,7 +30,7 @@ const AppHeader = () => {
           </a>
         </div>
         <div className="login">
-          <a href="/">Đăng nhập | Đăng ký</a>
+          <a href="/login">Đăng nhập | Đăng ký</a>
         </div>
       </div>
     </div>

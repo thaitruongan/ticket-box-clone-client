@@ -1,0 +1,34 @@
+.ve {
+  background-color: white;
+  width: 25rem;
+  padding: 2rem;
+}
+
+.poster {
+  display: flex;
+}
+
+.poster img {
+  width: 6rem;
+  height: 8rem;
+  border-radius: 5%;
+}
+.loai-va-gia {
+  display: flex;
+}
+.loai-va-gia .gia-ve {
+  margin-left: 10rem;
+}
+
+.gach-ngang {
+  position: absolute;
+  width: 22rem;
+  height: 1px;
+  background: rgb(84, 85, 88);
+  border-radius: 80px;
+  margin-top: 2rem;
+}
+
+.button-thanh-toan {
+  width: 21rem;
+}

@@ -1,0 +1,63 @@
+.name-card {
+  width: 50rem;
+  margin-left: 30rem;
+  margin-bottom: 1rem;
+  margin-top: -6rem;
+}
+.name-row {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-between;
+}
+.name-row::before,
+.name-row::after {
+  position: absolute;
+  height: 2px;
+  background: rgb(42, 45, 52);
+  border-radius: 80px;
+  bottom: 4px;
+  content: "";
+  display: block;
+  width: 40px;
+}
+.name-row::before {
+  right: -48px;
+  margin-right: -5rem;
+}
+.name-row::after {
+  left: -48px;
+  margin-left: 1rem;
+}
+.name-left {
+  align-self: flex-end;
+}
+.name-center {
+  margin-top: 3rem;
+  margin-left: 1rem;
+}
+.gach-chan {
+  width: 33.8rem;
+  position: absolute;
+  height: 2px;
+  background: rgb(42, 45, 52);
+  border-radius: 80px;
+  bottom: 4px;
+  margin-left: 1rem;
+}
+.name-center h2 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 40px;
+  color: rgb(45, 194, 117);
+  margin-bottom: 8px;
+  align-self: flex-end;
+  margin-right: -140px;
+  margin-left: -1rem;
+}
+.name-right {
+  margin-top: 1rem;
+  margin-left: 2rem;
+}

@@ -1,0 +1,52 @@
+.card {
+  width: 60rem;
+  height: auto;
+  margin-left: 15rem;
+}
+.card-movies_cover::before {
+  content: "";
+  display: block;
+}
+.card-movies_cover img {
+  width: 15rem;
+  height: 20rem;
+}
+.bnt-img {
+  position: absolute;
+}
+.bnt-xem {
+  background: transparent;
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+}
+.xemchitiet {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.bnt-mua {
+  z-index: 1;
+  margin-bottom: 16px;
+  width: calc(100% - 48px);
+  height: 40px; 
+}
+.muave {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+}

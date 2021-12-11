@@ -1,0 +1,13 @@
+.un-login-ui {
+  display: flex;
+  align-items: center;
+}
+.un-login-ui a {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: rgb(42, 45, 52);
+}

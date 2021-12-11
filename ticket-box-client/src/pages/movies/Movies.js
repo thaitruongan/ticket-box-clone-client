@@ -1,19 +1,20 @@
-import "./Home.css";
-import "antd/dist/antd.css";
+import React from "react";
 import { Layout } from "antd";
-import AppHeader from "../components/header/Header";
-import AppNav from "../components/nav/Nav";
-import AppBanner from "../components/banner/Banner";
+import AppHeader from "../../components/header/Header";
+import AppNav from "../../components/nav/Nav";
+import AppBanner from "../../components/banner/Banner";
+import ListMovies from "../../features/list-movies/ListMovies";
+import "./Movies.css";
 
 const { Header, Sider, Content } = Layout;
 
-function Home() {
+const Movies = () => {
   return (
     <Layout className="mainLayout">
       <Header className="header">
         <AppHeader />
       </Header>
-      <Layout>
+      <Layout className="nav">
         <Sider
           style={{
             top: "76px",
@@ -25,13 +26,13 @@ function Home() {
         >
           <AppNav />
         </Sider>
-      </Layout>
-      <Layout>
-        <AppBanner />
-        <Content>Content</Content>
+        <Content className="content">
+          <AppBanner />
+          <ListMovies />
+        </Content>
       </Layout>
     </Layout>
   );
-}
+};
 
-export default Home;
+export default Movies;

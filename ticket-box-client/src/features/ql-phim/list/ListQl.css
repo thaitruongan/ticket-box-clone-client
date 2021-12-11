@@ -1,0 +1,32 @@
+.content-ql {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-top: 2rem;
+}
+.list-ql {
+  background-color: white;
+}
+.search-list {
+  display: flex;
+}
+.search-list-img {
+  padding-top: 4px;
+}
+.input-color {
+  background-color: white;
+  border: none;
+  width: 25rem;
+}
+.ngay-cong-chieu {
+  display: flex;
+  margin-left: 3rem;
+}
+.ngay-cong-chieu h4 {
+  padding-top: 3px;
+}
+.ngay-cong-chieu .date-picker-cong-chieu {
+  margin-left: 1rem;
+}

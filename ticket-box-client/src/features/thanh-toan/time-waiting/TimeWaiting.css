@@ -1,0 +1,7 @@
+.top__right {
+  display: flex;
+  justify-content: end;
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+}

@@ -1,0 +1,22 @@
+.title-user {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 12px;
+  margin-top: 8px;
+}
+
+.img-user {
+  margin-right: 8px;
+}
+
+.title-user h2,
+.title-user .img-user {
+  text-align: center;
+}
+
+.title-user h2 {
+    margin-bottom: -0.01pt;
+}

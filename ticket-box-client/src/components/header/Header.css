@@ -1,9 +1,9 @@
 .header {
   display: flex;
   align-items: center;
+  position: fixed;
   z-index: 10;
   width: 100%;
-  position: fixed;
   height: 76px;
   background-color: rgb(255, 255, 255);
   border-bottom: 2px solid rgb(230, 235, 245);
@@ -48,9 +48,9 @@
   width: 100%;
   background: rgb(245, 247, 252);
 }
-.child Search {
+.child .search {
   position: absolute;
-  left: 8px;
+  margin-left: 5px;
 }
 .search-bar input {
   color: rgb(42, 45, 52);
@@ -58,11 +58,11 @@
   line-height: 24px;
   font-size: 16px;
   height: 44px;
-  width: 100%;
+  width: 25rem;
   padding: 12px 36px;
   outline: none;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 5px;
   caret-color: rgb(45, 194, 117);
   box-shadow: none;
 }
