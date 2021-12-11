@@ -1,0 +1,30 @@
+.seat {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  display: flex;
+  border: 2px solid aqua;
+  border-radius: 5px;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .seat {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (min-width: 768px) {
+  .seat:not(:last-child) {
+    margin-right: 4px;
+  }
+}
+
+.seat:not(:last-child) {
+  margin-right: 4px;
+}
+
+.seat span {
+  margin: auto 0;
+}

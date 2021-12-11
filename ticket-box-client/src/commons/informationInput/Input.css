@@ -8,6 +8,7 @@ input {
   border: none;
   outline: none;
   font-size: 14px;
+  position: static !important;
 }
 
 input:focus {

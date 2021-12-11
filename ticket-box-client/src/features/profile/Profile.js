@@ -35,7 +35,7 @@ const Profile = () => {
                     </div>
                 </div>
 
-                <div className="phone-number">
+                <div className="phonenumber">
                 <span>Số điện thoại: </span>
                     <div className="phone-input">
                         <input name="name" className="phone" disabled placeholder="Vd: 0123456789" type="text" maxLength="100" />

@@ -38,6 +38,7 @@ span {
   font-weight: bold;
   line-height: 20px;
   font-size: 14px !important;
+  align-items: center;
 }
 
 .input-otp {

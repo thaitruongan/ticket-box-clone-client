@@ -48,7 +48,7 @@
 .form-profile .avatar .file-upload .camera,
 input {
   position: absolute;
-  bottom: -10px;
+  bottom: 20px;
   right: 90px;
   cursor: pointer;
 }
@@ -60,7 +60,7 @@ input {
 }
 
 .form-profile .user-name,
-.phone-number,
+.phonenumber,
 .user-email,
 .user-birth,
 .user-sex {
@@ -72,7 +72,7 @@ input {
 }
 
 .form-profile .user-name,
-.phone-number,
+.phonenumber,
 .user-email,
 .user-birth,
 .user-sex span {
