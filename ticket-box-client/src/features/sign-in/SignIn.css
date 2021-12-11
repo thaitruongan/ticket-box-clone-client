@@ -3,12 +3,12 @@
   width: 100%;
 }
 
-.header {
+.header-login {
   background-color: #2dc275;
   height: 124px;
 }
 
-.header .white-space {
+.header-login .white-space {
   height: 60px;
   display: flex;
   -webkit-box-pack: end;
@@ -18,13 +18,13 @@
   color: white;
 }
 
-.header .content {
+.header-login .content {
   max-width: 360px;
   margin: auto;
   position: relative;
 }
 
-.header .close-tag {
+.header-login .close-tag {
   display: flex;
   width: 100%;
   -webkit-box-pack: justify;
