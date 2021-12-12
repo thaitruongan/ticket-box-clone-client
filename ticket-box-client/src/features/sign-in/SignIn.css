@@ -19,6 +19,7 @@
 }
 
 .header-login .content {
+  background-color: transparent;
   max-width: 360px;
   margin: auto;
   position: relative;

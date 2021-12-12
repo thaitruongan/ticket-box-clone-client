@@ -42,7 +42,7 @@ const Calendar = (props) => {
   const ulRef = useRef(null);
   const dayList = useMemo(
     () => generateDaysArray(new Date(startDay), new Date(endDay)),
-    []
+    [endDay, startDay]
   );
 
   const handleSelectDay = (e, dateString) => {

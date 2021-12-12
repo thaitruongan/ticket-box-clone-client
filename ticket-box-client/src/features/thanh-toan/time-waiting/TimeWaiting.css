@@ -1,6 +1,6 @@
 .top__right {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   color: red;
   font-size: 25px;
   font-weight: bold;
