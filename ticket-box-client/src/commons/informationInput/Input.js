@@ -5,7 +5,7 @@ const Input = (props) => {
     const {placeholder, maxLength} = props;
 
     return (
-        <input placeholder={placeholder} pattern="[0-9]" maxLength={maxLength} ></input>
+        <input className="Input" placeholder={placeholder} pattern="[0-9]" maxLength={maxLength} ></input>
     )
 }
 

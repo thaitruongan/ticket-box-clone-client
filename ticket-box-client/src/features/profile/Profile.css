@@ -46,7 +46,7 @@
 }
 
 .form-profile .avatar .file-upload .camera,
-input {
+.input-profile {
   position: absolute;
   bottom: 20px;
   right: 90px;
@@ -59,7 +59,7 @@ input {
   opacity: 0;
 }
 
-.form-profile .user-name,
+.form-profile .user-name-profile,
 .phonenumber,
 .user-email,
 .user-birth,
@@ -69,9 +69,10 @@ input {
   margin-top: 8px;
   height: 84px;
   width: 100%;
+  margin-left: 0;
 }
 
-.form-profile .user-name,
+.form-profile .user-name-profile,
 .phonenumber,
 .user-email,
 .user-birth,

@@ -6,29 +6,41 @@ import {
   ShopOutlined,
   VideoCameraOutlined,
   CalendarOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 
-const SiderQl = () => {
+const SiderQl = (props) => {
+  const {onHandleChangeSwitchNum} = props;
+
+  const onClickHandle = n => {
+    if(onHandleChangeSwitchNum){
+      onHandleChangeSwitchNum(n);
+    }
+  };
+
   return (
     <>
       <div className="logo-sider">
         <h2>Admin</h2>
       </div>
-      <Menu defaultSelectedKeys={["1"]} mode="inline" className="menu-ql-color">
-        <Menu.Item key="1" icon={<HomeOutlined />}>
+      <Menu defaultSelectedKeys={["0"]} mode="inline" className="menu-ql-color">
+        <Menu.Item key="0" icon={<HomeOutlined />} onClick={() => onClickHandle(0)} >
           Tổng Quan
         </Menu.Item>
+        <Menu.Item key="1" icon={<UserOutlined/>} onClick={() => onClickHandle(1)} >
+          Người dùng
+        </Menu.Item>
         <SubMenu key="sub1" icon={<ShopOutlined />} title="Rạp">
-          <Menu.Item key="2">Quản lý rạp</Menu.Item>
+          <Menu.Item key="2" onClick={() => onClickHandle(2)} >Quản lý rạp</Menu.Item>
         </SubMenu>
         <SubMenu key="sub2" icon={<VideoCameraOutlined />} title="Phim">
-          <Menu.Item key="3">Danh sách</Menu.Item>
-          <Menu.Item key="4">Tên phim</Menu.Item>
+          <Menu.Item key="3" onClick={() => onClickHandle(3)} >Danh sách</Menu.Item>
+          <Menu.Item key="4" onClick={() => onClickHandle(4)} >Tên phim</Menu.Item>
         </SubMenu>
         <SubMenu key="sub3" icon={<CalendarOutlined />} title="Xuất Chiếu">
-          <Menu.Item key="5">Quản lý xuất chiếu</Menu.Item>
+          <Menu.Item key="5" onClick={() => onClickHandle(5)} >Quản lý xuất chiếu</Menu.Item>
         </SubMenu>
       </Menu>
     </>

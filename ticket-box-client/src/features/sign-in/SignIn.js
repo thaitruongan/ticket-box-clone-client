@@ -25,14 +25,14 @@ const SignIn = () => {
           <div className="white-space"></div>
           <div className="bot-header">
             <LogoWhite className="logo-white" />
-            <span>Xin chào!</span>
+            <span className="sosip">Xin chào!</span>
             <CuteDog className="cute-dog" />
           </div>
         </div>
       </div>
 
       <div className="sign-in-form">
-        <span>Vui lòng nhập số điện thoại: </span>
+        <span className="sosip">Vui lòng nhập số điện thoại: </span>
         <div className="input-phone-number">
           <div>
             <p>+84</p>
@@ -56,7 +56,7 @@ const SignIn = () => {
         <div className="bottom">
           <button className="next-button">Tiếp tục</button>
           <div className="or">
-            <span>Hoặc</span>
+            <span className="sosip">Hoặc</span>
           </div>
           <div className="login-api">
             <div>

@@ -24,35 +24,35 @@ const Profile = () => {
                     <img src={Avatar} alt="avatar.png"/>
                     <div className="file-upload">
                         <Camera className="camera" />
-                        <input type="file" accept="image/*" ></input>
+                        <input className="input-profile" type="file" accept="image/*" ></input>
                     </div>
                 </div>
 
-                <div className="user-name">
+                <div className="user-name-profile">
                     <span>Họ và tên: </span>
                     <div className="name-input">
-                        <input name="name" className="name" placeholder="Họ và tên" type="text" maxLength="100" />
+                        <input name="name" className="input-profile name" placeholder="Họ và tên" type="text" maxLength="100" />
                     </div>
                 </div>
 
                 <div className="phonenumber">
                 <span>Số điện thoại: </span>
                     <div className="phone-input">
-                        <input name="name" className="phone" disabled placeholder="Vd: 0123456789" type="text" maxLength="100" />
+                        <input name="phone-number" className="input-profile phone" disabled placeholder="Vd: 0123456789" type="text" maxLength="100" />
                     </div>
                 </div>
 
                 <div className="user-email">
                 <span>Email nhận vé: </span>
                     <div className="mail-input">
-                        <input name="name" className="mail" placeholder="Vd: nguyenvana@gmail.com" type="text" maxLength="100" />
+                        <input name="mail" className="input-profile mail" placeholder="Vd: nguyenvana@gmail.com" type="text" maxLength="100" />
                     </div>
                 </div>
 
                 <div className="user-birth">
                 <span>Ngày tháng năm sinh: </span>
                     <div className="birth-input">
-                        <DatePicker className="birth" defaultValue={moment('01/01/2015', dateFormatList[0])} format={dateFormatList} />
+                        <DatePicker className="input-profile birth" defaultValue={moment('01/01/2015', dateFormatList[0])} format={dateFormatList} />
                     </div>
                 </div>
 
