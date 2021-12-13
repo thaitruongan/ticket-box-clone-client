@@ -136,7 +136,7 @@ const FilmDetail = () => {
                         <div className="dash-vertical"></div>
                     </div>
                 </div>
-                <PopupTrailer trigger={popup} link={detail.trailer} onClickClosePopup={handlePopup} />
+                <PopupTrailer trigger={popup} link={detail.trailer} movieName={detail.name} onClickClosePopup={handlePopup} />
             </div>
         )
     }

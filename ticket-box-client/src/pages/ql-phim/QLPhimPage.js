@@ -5,6 +5,7 @@ import AddFilm from "../../features/ql-phim/add-film/AddFilm";
 
 import { Layout } from "antd";
 import UserManager from "../../features/userManager/UserManager";
+import EventManager from "../../features/eventManager/EventManager";
 
 const { Header, Content, Sider } = Layout;
 
@@ -16,7 +17,6 @@ const QLPhimPage = () => {
   };
 
   const handleChangeSwitchNum = n => {
-    console.log(switchNum);
     setSwitchNum(n);
   };
 
@@ -32,7 +32,7 @@ const QLPhimPage = () => {
         return <AddFilm />
       case 4:
         return
-      case 5:
+      case 5: <EventManager />
         return
     
       default:
