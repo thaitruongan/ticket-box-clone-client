@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import HeaderQl from "../../features/ql-phim/header/HeaderQl";
 import SiderQl from "../../features/ql-phim/sider/SiderQl";
-import ListQl from "../../features/ql-phim/list/ListQl";
+import AddFilm from "../../features/ql-phim/add-film/AddFilm";
 
 import { Layout } from "antd";
-
-
 const { Header, Content, Sider } = Layout;
 
-const QLPhimPage = () => {
-  const [collapsed, setCollapsed] = useState(false);
+export const QLAddPhimPage = () => {
+    const [collapsed, setCollapsed] = useState(false);
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
   };
@@ -29,12 +27,10 @@ const QLPhimPage = () => {
             <HeaderQl />
           </Header>
           <Content style={{ margin: "0 16px" }}>
-            <ListQl />
+            <AddFilm />
           </Content>
         </Layout>
       </Layout>
     </div>
   );
-};
-
-export default QLPhimPage;
+}

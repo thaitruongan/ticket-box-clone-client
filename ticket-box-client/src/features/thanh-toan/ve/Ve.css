@@ -1,7 +1,9 @@
 .ve {
-  background-color: white;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(230, 235, 245);
+  border-radius: 8px;
+  padding: 24px;
   width: 25rem;
-  padding: 2rem;
 }
 
 .poster {
@@ -31,4 +33,5 @@
 
 .button-thanh-toan {
   width: 21rem;
+  color: rgb(255, 255, 255);
 }

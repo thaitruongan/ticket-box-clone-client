@@ -12,8 +12,8 @@ function callback(key) {
 const Buy = () => {
   return (
     <div className="buy">
-      <Row>
-        <div className="info">
+      <div className="title-buy">
+        <div className="info-title-buy">
           <div className="name-movies">
             <h2>THE DEVIL BELOW</h2>
           </div>
@@ -28,7 +28,7 @@ const Buy = () => {
             <Calendar />
           </div>
         </div>
-      </Row>
+      </div>
       <Row>
         <Col className="rap">
           <div className="rap-chieu">
@@ -74,39 +74,6 @@ const Buy = () => {
             </Panel>
           </Collapse>
 
-          <Collapse
-            defaultActiveKey={["1"]}
-            onChange={callback}
-            className="collapse"
-          >
-            <Panel header="BHD Star 3.2" key="1">
-              <div className="thoi-gian">
-                <div className="loai-phim">
-                  <h2>2D</h2>
-                </div>
-                <div className="gio">
-                  <a href="/thanhtoan">12:50</a>
-                </div>
-              </div>
-            </Panel>
-          </Collapse>
-
-          <Collapse
-            defaultActiveKey={["1"]}
-            onChange={callback}
-            className="collapse"
-          >
-            <Panel header="BHD Star 3.2" key="1">
-              <div className="thoi-gian">
-                <div className="loai-phim">
-                  <h2>2D</h2>
-                </div>
-                <div className="gio">
-                  <a href="/thanhtoan">12:50</a>
-                </div>
-              </div>
-            </Panel>
-          </Collapse>
         </Col>
       </Row>
     </div>

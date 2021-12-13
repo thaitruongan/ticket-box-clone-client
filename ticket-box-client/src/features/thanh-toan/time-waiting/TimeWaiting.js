@@ -22,11 +22,10 @@ const TimeWaiting = () => {
   };
   const handleCompleted = () => {
     Swal.fire({
-      title: "Hết giờ",
-      text: "bạn có muốn đặt vé lại!",
-      icon: "warning",
+      title: "Thông báo",
+      text: "Thời gian thực hiện giao dịch đã hết. Vui lòng thực hiện lại",
       showCancelButton: true,
-      confirmButtonText: "Đồng ý!",
+      confirmButtonText: "Đã hiểu",
       cancelButtonText: "Hủy",
     }).then((res) => {
       if (res.value) {

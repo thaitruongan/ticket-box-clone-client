@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { Layout } from "antd";
 import AppHeader from "../../components/header/Header";
@@ -10,6 +11,10 @@ import NameCard from "../../features/card-movies/NameCard";
 const { Header, Sider, Content } = Layout;
 
 function Home() {
+  const navigate = useNavigate();
+  const OnClick = () => {
+    navigate("/movies");
+  };
   return (
     <Layout className="mainLayout">
       <Header className="header">
@@ -27,10 +32,19 @@ function Home() {
         >
           <AppNav />
         </Sider>
-        <Content className="content">
-          <AppBanner />
-          <NameCard />
-          <CardMovies />
+        <Content className="main-home">
+          <div className="container-home">
+            <div className="content-home">
+              <AppBanner />
+              <NameCard />
+              <CardMovies />
+              <div className="bnt-them-home">
+                <button onClick={OnClick} className="xem-them large primary">
+                  Xem thêm
+                </button>
+              </div>
+            </div>
+          </div>
         </Content>
       </Layout>
     </Layout>

@@ -4,10 +4,11 @@
   margin-top: 6rem;
   background-color: rgb(255, 255, 255);
 }
-.info {
-  margin-top: 1rem;
-  margin-left: 1rem;
+.info-title-buy {
+  padding-top: 1rem;
+  padding-left: 1rem;
 }
+
 .rap {
   margin-top: 1rem;
   flex: 0 0 33.3333%;

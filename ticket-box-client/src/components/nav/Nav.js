@@ -39,7 +39,7 @@ const AppNav = () => {
               Nhạc sống
             </Menu.Item>
           </a>
-          <a href="/admin">
+          <a href="/">
             <Menu.Item key="4" icon={<img src={sankhau} alt="sankhau" />}>
               Sân khấu - Nghệ thuật
             </Menu.Item>

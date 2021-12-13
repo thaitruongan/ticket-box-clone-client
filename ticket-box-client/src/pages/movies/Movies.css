@@ -1,4 +1,13 @@
 @import "~antd/dist/antd.css";
-.content {
-  background-color: rgb(255, 255, 255);
+.main-movies {
+  margin-top: 92px;
+  margin-left: 254px;
+  margin-bottom: 24px;
+}
+.container-movies {
+  max-width: 936px;
+  box-sizing: border-box;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
