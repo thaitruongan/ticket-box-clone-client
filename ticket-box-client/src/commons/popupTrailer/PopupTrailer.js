@@ -2,7 +2,7 @@ import React from "react";
 import './PopupTrailer.css';
 
 const PopupTrailer = (props) => {
-    const {trigger, link, onClickClosePopup} = props
+    const {trigger, link, movieName, onClickClosePopup} = props
 
     const handleClosePopup = () => {
         if (onClickClosePopup) {
@@ -14,7 +14,8 @@ const PopupTrailer = (props) => {
         <div className="PopupTrailer" onClick={() => handleClosePopup()}>
             <div className="popup-trailer-container" >
                 <iframe
-                className="video trailer" 
+                className="video trailer"
+                title={movieName}
                 width="560"
                 height="349"
                 allowFullScreen

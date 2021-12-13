@@ -1,0 +1,185 @@
+.user-manager-container {
+  height: 95%;
+  width: 100%;
+  margin: auto 0;
+  background-color: #ffffff;
+  border: 2px #f0f0f0 solid;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.user-manager-container .user-info-manager,
+.user-list-manager {
+  box-sizing: border-box;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+}
+
+.user-manager-container .user-info-manager {
+  height: 60%;
+}
+
+.user-manager-container .user-info-manager .uiam {
+  height: 200px;
+  width: 25%;
+  border: #000000 1px solid;
+  margin-right: 10px;
+}
+
+.user-manager-container .user-info-manager .usfmf {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 5px;
+  height: 100%;
+  width: 75%;
+}
+
+.user-manager-container .user-info-manager .usfmf .usfmfrow,
+.usfmfrow2,
+.usfmfrow3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.user-manager-container .user-info-manager .usfmf .uinm,
+.uipnm,
+.uigmm,
+.usbm {
+  width: 90%;
+  margin: 0;
+}
+
+.umsjw {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: rgb(42, 45, 52);
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+.ipom {
+  border: none;
+  border-radius: 0px;
+  background-color: #f0f0f0 !important;
+  height: 44px;
+}
+
+/* this is list manager */
+
+.user-manager-container .user-list-manager {
+  height: 40%;
+  flex-direction: column;
+  border: #000000 1px solid;
+  overflow-y: scroll;
+}
+
+.user-list-manager .user-element-manager {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  background-color: #f0f0f0;
+  margin-bottom: 2px;
+  border-radius: 10px;
+}
+
+.user-list-manager .user-element-manager .usm-dt,
+.usm-mdt,
+.usm-pndt,
+.usm-gmdt,
+.usm-bdt,
+.usm-sdt {
+  margin: auto 20px auto 0;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.user-list-manager .user-element-manager .usm-dt {
+  height: 50px;
+  width: auto;
+}
+
+.user-list-manager .user-element-manager .usm-mdt {
+  width: 25%;
+}
+
+.user-list-manager .user-element-manager .usm-pndt {
+  width: 10%;
+}
+
+.user-list-manager .user-element-manager .usm-gmdt {
+  width: 25%;
+}
+
+.user-list-manager .user-element-manager .usm-bdt {
+  width: 13%;
+}
+
+.user-list-manager .user-element-manager .usm-sdt {
+  width: 5%;
+}
+
+/* this is btn handle */
+.btn-handle-container {
+  position: absolute;
+  top: 400px;
+  height: 40px;
+  width: 200px;
+  display: flex;
+}
+.btn-handle-container .btnhca,
+.btnhcu,
+.btnhcr,
+.btnhcs {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+  height: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 50px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.btn-handle-container .btnhca {
+  background-color: #2dc275;
+}
+
+.btn-handle-container .btnhca:hover {
+  background-color: #218f56;
+}
+
+.btn-handle-container .btnhcu {
+  background-color: #7573fa;
+}
+
+.btn-handle-container .btnhcu:hover {
+  background-color: #5d5bc7;
+}
+
+.btn-handle-container .btnhcr {
+  background-color: #fd6968;
+}
+
+.btn-handle-container .btnhcr:hover {
+  background-color: #c95553;
+}
+
+.btn-handle-container .btnhcs {
+  background-color: #5dbfe3;
+}
+
+.btn-handle-container .btnhcs:hover {
+  background-color: #4894b0;
+}

@@ -6,7 +6,9 @@ import Movies from "./pages/movies/Movies";
 import Buy from "./pages/buy/Buy";
 import ThanhToan from "./pages/thanh-toan/ThanhToan";
 import QLPhimPage from "./pages/ql-phim/QLPhimPage";
-import { QLAddPhimPage } from "./pages/ql-phim/QLAddPhimPage";
+
+import Profile from "./features/profile/Profile";
+import FilmDetail from "./features/film-detail/FilmDetail";
 
 function App() {
   return (
@@ -14,11 +16,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<SignIn />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/detail-movies" element={<FilmDetail />} />
         <Route path="/buy" element={<Buy />} />
         <Route path="/thanhtoan" element={<ThanhToan />} />
         <Route path="/admin" element={<QLPhimPage />} />
-        <Route path="/add-phim" element={<QLAddPhimPage />} />
       </Routes>
     </Router>
   );

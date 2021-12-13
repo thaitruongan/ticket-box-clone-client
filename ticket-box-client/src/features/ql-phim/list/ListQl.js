@@ -6,6 +6,7 @@ import moment from "moment";
 import "./ListQl.css";
 
 const ListQl = () => {
+  
   const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
   const columns = [
     {
@@ -69,7 +70,7 @@ const ListQl = () => {
         <h2>Danh Sách Phim</h2>
         <div className="button-add-film">
           <Button
-            href="/add-phim"
+            onClick=''
             type="primary"
             shape="round"
             icon={<VideoCameraAddOutlined />}

@@ -52,7 +52,7 @@
   left: 20px;
 }
 
-.content .bot-header span {
+.content .bot-header .sosip {
   margin-top: 24px;
   position: absolute;
   bottom: 20px;
@@ -62,6 +62,7 @@
   font-size: 28px;
   color: white;
   line-height: 32px;
+  font-family: Raleway, sans-serif;
 }
 
 .content .bot-header .cute-dog {
@@ -79,10 +80,6 @@
   text-align: left;
   border-radius: 8px;
   border: 1px #e6ebf5 solid;
-}
-
-span {
-  font-family: Raleway, sans-serif;
 }
 
 .input-phone-number {

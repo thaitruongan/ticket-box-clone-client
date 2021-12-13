@@ -127,7 +127,7 @@
   display: flex;
   flex-direction: column;
   -webkit-box-pack: justify;
-  justify-content: start;
+  justify-content: flex-start;
   text-align: left;
 }
 
