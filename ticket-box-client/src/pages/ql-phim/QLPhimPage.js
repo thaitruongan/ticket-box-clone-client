@@ -32,8 +32,10 @@ const QLPhimPage = () => {
         return <AddFilm />
       case 4:
         return
-      case 5: <EventManager />
-        return
+      case 5: 
+        return <EventManager />
+      case 6: 
+        return 
     
       default:
         return
