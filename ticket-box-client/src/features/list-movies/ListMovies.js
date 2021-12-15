@@ -24,10 +24,6 @@ const ListMovies = () => {
     return `${H} giờ ${M} phút`
   }
 
-  const handleClickListCardMovie = (cln) => {
-    
-  }
-
   useEffect(() => {
     fetchMovieList();
   }, [])
@@ -38,7 +34,7 @@ const ListMovies = () => {
 
         {listMovie.map(movie => {
           return (
-            <div className="list-style-card">
+            <div key={movie._id} className="list-style-card">
               <div className="list-card-movies">
                 <a onClick={e => {
                   if(e.target.className === "list-muave"){
@@ -50,8 +46,7 @@ const ListMovies = () => {
                 >
                   <div className="list-card-movies_cover">
                     <picture>
-                      <source srcSet={`/image/${movie.image}`} type="image/webp" />
-                      <img src={`/image/${movie.image}`} alt={movie.name} />
+                      <img src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`} alt={movie.name} />
                     </picture>
                   </div>
                   <div className="list-card-movies_body">

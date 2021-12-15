@@ -8,10 +8,13 @@ import { ReactComponent as GmailIcon } from "../../assets/svg/gmail.svg";
 import { ReactComponent as CloseOutlined } from "../../assets/svg/x.svg";
 import { ReactComponent as LogoWhite } from "../../assets/svg/logo-white.svg";
 import UserAPI from "../../api/userAPI";
+import { useNavigate } from "react-router";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("")
   const [check, setCheck] = useState(true);
+  const [isLoading, setIsLoading] = useState(false)
 
   const hanldeCheckRules = () => {
     setCheck(!check);
@@ -22,7 +25,7 @@ const SignIn = () => {
   }
 
   const handleStyleButton = () => {
-    if (phoneNumber.length === 10 && check) {
+    if (phoneNumber.length === 10 && check && !isLoading) {
       return {backgroundColor: "#2dc275", pointerEvents: ""}
     }else{
       return {backgroundColor: "#E6EBF5", pointerEvents: ""}
@@ -31,10 +34,14 @@ const SignIn = () => {
 
   const handleSignInPhoneNumber = async () => {
     if (phoneNumber.length === 10 && check) {
-      console.log("waiting for result")
       try {
+        setIsLoading(true);
         const response = await UserAPI.SignInByPhone(phoneNumber);
-        console.log(response);
+        if (response.message === "success!") {
+          setIsLoading(false);
+          navigate("/login/import-otp", {state: phoneNumber})
+        }
+
       } catch (error) {
         console.log(error)
       }
