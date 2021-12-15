@@ -328,7 +328,6 @@ const SeatMap = () => {
             setCountdown(5);
             setSelectedList([]);
             setTotal(0);
-          //do some thing with ListServer
         }
     }
 
