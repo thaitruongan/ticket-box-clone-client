@@ -8,6 +8,7 @@ import ThanhToan from "./pages/thanh-toan/ThanhToan";
 import QLPhimPage from "./pages/ql-phim/QLPhimPage";
 import Profile from "./features/profile/Profile";
 import FilmDetail from "./features/film-detail/FilmDetail";
+import SeatMap from "./features/seatMap/SeatMap";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/movies" element={<Movies />} />
         <Route path="/detail-movies" element={<FilmDetail />} />
         <Route path="/buy" element={<Buy />} />
+        <Route path="/select-seat" element={<SeatMap />} />
         <Route path="/thanhtoan" element={<ThanhToan />} />
         <Route path="/admin" element={<QLPhimPage />} />
       </Routes>
