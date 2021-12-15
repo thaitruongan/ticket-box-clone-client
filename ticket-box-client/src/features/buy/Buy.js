@@ -9,18 +9,28 @@ function callback(key) {
   console.log(key);
 }
 
-const Buy = () => {
+const Buy = (props) => {
+  const {movieDetail} = props;
+  console.log(movieDetail);
+
+  const handleRuningTime = (time) => {
+    const H = Math.floor(time / 60);
+    const M = time % 60;
+
+    return `${H} giờ ${M} phút`
+  }
+  
   return (
     <div className="buy">
       <div className="title-buy">
         <div className="info-title-buy">
           <div className="name-movies">
-            <h2>THE DEVIL BELOW</h2>
+            <h2>{movieDetail.name}</h2>
           </div>
           <div className="xuat-chieu">
-            <span>C18</span>
+            <span>{movieDetail.label}</span>
             <span> | </span>
-            <span>1 giờ 28 phút</span>
+            <span>{handleRuningTime(movieDetail.runningTime)}</span>
           </div>
         </div>
         <div className="lich-chieu">

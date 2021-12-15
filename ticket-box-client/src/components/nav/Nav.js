@@ -105,7 +105,7 @@ const AppNav = () => {
             </Menu.Item>
           </a>
           <a href="/">
-            <Menu.Item key="16" icon={<img src={about} alt="about" />}>
+            <Menu.Item key="17" icon={<img src={about} alt="about" />}>
               Về chúng tôi
             </Menu.Item>
           </a>
