@@ -1,8 +1,8 @@
 .name-card {
   width: 50rem;
-  margin-left: 30rem;
   margin-bottom: 1rem;
   margin-top: -6rem;
+  text-align: center
 }
 .name-row {
   display: inline-flex;

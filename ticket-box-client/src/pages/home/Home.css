@@ -1,5 +1,77 @@
 @import "~antd/dist/antd.css";
-.content {
-  background-color: rgb(255, 255, 255);
+.main-home {
+  margin-top: 92px;
+  margin-left: 254px;
+  margin-bottom: 24px;
 }
 
+.container-home {
+  max-width: 936px;
+  box-sizing: border-box;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-home {
+  margin: 0px auto;
+  display: flex;
+  min-height: 100%;
+  padding: 16px;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+}
+.bnt-them-home {
+  width: 100%;
+  text-align: center;
+  margin: 24px 0px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+}
+.bnt-them-home::before {
+  left: 0px;
+  margin-right: 50px;
+}
+.bnt-them-home::after {
+  right: 0px;
+  margin-left: 50px;
+}
+.bnt-them-home::before,
+.bnt-them-home::after {
+  content: "";
+  display: block;
+  background: rgb(230, 235, 245);
+  height: 2px;
+  width: 100%;
+}
+.bnt-them-home button {
+  max-width: 178px;
+  margin: auto;
+  text-transform: capitalize;
+}
+.xem-them.primary {
+  background: rgb(45, 194, 117);
+  color: rgb(255, 255, 255);
+}
+.xem-them.large {
+  border-radius: 20px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  min-width: 88px;
+  padding: 0px 24px;
+}
+.xem-them {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+}

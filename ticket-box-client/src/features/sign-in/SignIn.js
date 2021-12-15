@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GoogleLogin from "react-google-login";
 import "./SignIn.css";
 import { CheckOutlined } from "@ant-design/icons";
 import Input from "../../commons/informationInput/Input";
@@ -13,6 +14,9 @@ const SignIn = () => {
 
   const hanldeCheckRules = () => {
     setCheck(!check);
+  };
+  const responseGoogle = (response) => {
+    console.log(response);
   };
 
   return (
@@ -63,7 +67,21 @@ const SignIn = () => {
               <FacebookIcon className="facebook" />
             </div>
             <div>
-              <GmailIcon className="gmail" />
+              <GoogleLogin
+                clientId="408075301782-j39rulkr2te17lttl2fp29pigqq1u3qt.apps.googleusercontent.com"
+                //buttonText="Login"
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    <GmailIcon className="gmail" />
+                  </button>
+                )}
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
             </div>
           </div>
         </div>

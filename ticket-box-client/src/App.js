@@ -6,6 +6,7 @@ import Movies from "./pages/movies/Movies";
 import Buy from "./pages/buy/Buy";
 import ThanhToan from "./pages/thanh-toan/ThanhToan";
 import QLPhimPage from "./pages/ql-phim/QLPhimPage";
+
 import Profile from "./features/profile/Profile";
 import FilmDetail from "./features/film-detail/FilmDetail";
 import SeatMap from "./features/seatMap/SeatMap";

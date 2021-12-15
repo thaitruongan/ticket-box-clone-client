@@ -26,9 +26,13 @@ const Movies = () => {
         >
           <AppNav />
         </Sider>
-        <Content className="content">
-          <AppBanner />
-          <ListMovies />
+        <Content className="main-movies">
+          <div className="container-movies">
+            <div className="content-movies">
+              <AppBanner />
+              <ListMovies />
+            </div>
+          </div>
         </Content>
       </Layout>
     </Layout>

@@ -1,33 +1,36 @@
 .title-user {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 12px;
-    margin-top: 8px;
-  }
-  
-  .img-user {
-    margin-right: 8px;
-  }
-  
-  .title-user h2,
-  .title-user .img-user {
-    text-align: center;
-  }
-  
-  .title-user h2 {
-      margin-bottom: -0.01pt;
-  }
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 12px;
+  margin-top: 8px;
+}
 
-  .radio-thanh-toan {
-      background-color: white;
-      width: 20.7rem;
-      height: 3rem;
-      margin-top: 0.3rem;
-      padding-top: 0.9rem;
-      padding-left: 1rem;
-      border-radius: 3%;
-      border: silver 0.1px solid;
-  }
+.img-user {
+  margin-right: 8px;
+}
+
+.title-user h2,
+.title-user .img-user {
+  text-align: center;
+}
+
+.title-user h2 {
+  margin-bottom: -0.01pt;
+}
+
+.radio__item {
+  margin-bottom: 10px;
+  padding: 24px 16px;
+  height: 3rem;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(230, 235, 245);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}

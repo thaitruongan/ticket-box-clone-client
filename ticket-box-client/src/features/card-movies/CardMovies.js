@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 const CardMovies = () => {
   const navigate = useNavigate();
   const onClick = () => {
-    navigate('/buy');
+    navigate("/buy");
   };
   return (
     <div className="card">
-      <Row gutter={70}>
+      <Row gutter={20}>
         <Col className="gutter-row" span={6}>
-          <div className="style">
+          <div className="style-card">
             <div className="card-movies">
               <div className="card-movies_cover">
                 <img
@@ -32,13 +32,14 @@ const CardMovies = () => {
               </div>
               <div className="card-movies_body">
                 <div className="title">
-                  <h3>MORBIUS</h3>
+                  <h4>MORBIUS</h4>
                 </div>
                 <div className="description">
                   <h6>MORBIUS</h6>
                 </div>
                 <div className="info">
-                  <p>P | 1 giờ 40 phút</p>
+                  <span>P</span>
+                  <span>1 giờ 40 phút</span>
                 </div>
               </div>
             </div>
@@ -57,19 +58,22 @@ const CardMovies = () => {
                     <button className="xemchitiet">Xem chi tiết</button>
                   </div>
                   <div className="btn-mua">
-                    <button className="muave">Mua vé</button>
+                    <button onClick={onClick} className="muave">
+                      Mua vé
+                    </button>
                   </div>
                 </div>
               </div>
               <div className="card-movies_body">
                 <div className="title">
-                  <h3>THỎ PETTER 2</h3>
+                  <h4>THỎ PETTER 2</h4>
                 </div>
                 <div className="description">
                   <h6>THỎ PETTER 2</h6>
                 </div>
                 <div className="info">
-                  <p>P | 1 gio 40 phut</p>
+                  <span>P</span>
+                  <span>1 giờ 40 phút</span>
                 </div>
               </div>
             </div>
@@ -88,19 +92,22 @@ const CardMovies = () => {
                     <button className="xemchitiet">Xem chi tiết</button>
                   </div>
                   <div className="btn-mua">
-                    <button className="muave">Mua vé</button>
+                    <button onClick={onClick} className="muave">
+                      Mua vé
+                    </button>
                   </div>
                 </div>
               </div>
               <div className="card-movies_body">
                 <div className="title">
-                  <h3>ENCATO: VÙNG ĐẤT THẦN KỲ</h3>
+                  <h4>ENCATO: VÙNG ĐẤT THẦN KỲ</h4>
                 </div>
                 <div className="description">
                   <h6>ENCATO: VÙNG ĐẤT THẦN KỲ</h6>
                 </div>
                 <div className="info">
-                  <p>P | 1 gio 40 phut</p>
+                  <span>P</span>
+                  <span>1 giờ 40 phút</span>
                 </div>
               </div>
             </div>
@@ -119,19 +126,22 @@ const CardMovies = () => {
                     <button className="xemchitiet">Xem chi tiết</button>
                   </div>
                   <div className="btn-mua">
-                    <button className="muave">Mua vé</button>
+                    <button onClick={onClick} className="muave">
+                      Mua vé
+                    </button>
                   </div>
                 </div>
               </div>
               <div className="card-movies_body">
                 <div className="title">
-                  <h3>SUICIDE FOREST VILLAGES: THỤ HẢI - RỪNG TỬ KHÍ</h3>
+                  <h4>SUICIDE FOREST VILLAGES: THỤ HẢI - RỪNG TỬ KHÍ</h4>
                 </div>
                 <div className="description">
                   <h6>SUICIDE FOREST VILLAGES: THỤ HẢI - RỪNG TỬ KHÍ</h6>
                 </div>
                 <div className="info">
-                  <p>P | 1 gio 40 phut</p>
+                  <span>P</span>
+                  <span>1 giờ 40 phút</span>
                 </div>
               </div>
             </div>
