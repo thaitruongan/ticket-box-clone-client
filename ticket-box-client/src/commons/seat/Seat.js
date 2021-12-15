@@ -3,7 +3,7 @@ import './Seat.css';
 
 const Seat = (props) => {
     const {element, onClick, selectedList, selectedListServer} = props;
-    const isVip = element.seat[0].isVip;
+    const isVip = element.isVip;
     const isFree = element.status;
     let className = "";
     let className2 = "";
@@ -34,7 +34,7 @@ const Seat = (props) => {
 
     return(
         <div className={`seat ${className} ${className2}`} onClick={() => handleClick(element)}>
-            <span>{element.seat[0].column}</span>
+            <span>{element.column}</span>
         </div>
     )
 }

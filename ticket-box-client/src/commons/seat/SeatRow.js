@@ -12,7 +12,7 @@ const SeatRow = (props) => {
 
     return(
         <div className="seatRow">
-            {elements.map(element => (<Seat key={element.seat[0].column} element={element} onClick={hanldeClickOnSeat} selectedList={selectedList} selectedListServer={selectedListServer} />))}
+            {elements.map(element => (<Seat key={element.column} element={element} onClick={hanldeClickOnSeat} selectedList={selectedList} selectedListServer={selectedListServer} />))}
         </div>
     )
 }
