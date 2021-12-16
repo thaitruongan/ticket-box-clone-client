@@ -90,6 +90,65 @@
   margin-left: 1rem;
   margin-right: 1rem;
 }
+.right .user-login-box {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  height: 72px;
+}
+
+.user-login-box .user-login {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.user-login-box .user-login:hover {
+  background-color: #f0f0f0;
+}
+
+.user-login .avatar-user-header {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.user-login .popover-user-option {
+  box-shadow: rgb(42 45 52 / 16%) 0px 4px 20px;
+  border-radius: 8px;
+  z-index: 1;
+  background: #ffffff;
+  width: 324px;
+}
+
+.popover-user-option .header-option {
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 5px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(42, 45, 52);
+}
+
+.popover-user-option .header-option:hover {
+  background-color: #f0f0f0;
+}
 
 .login {
   display: flex;

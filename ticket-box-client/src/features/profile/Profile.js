@@ -5,10 +5,15 @@ import {ReactComponent as Camera} from "../../assets/svg/camera.svg";
 import Avatar from "../../assets/avatar.png";
 import { DatePicker, Radio, Button } from 'antd';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../app/userSlice';
+import { useNavigate } from 'react-router';
 
 const Profile = () => {
+    const navigate = useNavigate()
     const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
-    const [sex, setSex] = React.useState('');
+    const currentUser = useSelector(selectCurrentUser);
+    const [sex, setSex] = React.useState(currentUser.sex);
 
     const onSelectSexButton = e => {
         console.log(e.target.value);
@@ -19,9 +24,9 @@ const Profile = () => {
         <div className="profile">
             <div className="space"></div>
             <div className="form-profile">
-                <CloseOutlined className="close" />
+                <CloseOutlined className="close" onClick={() => navigate("/")} />
                 <div className="avatar">
-                    <img src={Avatar} alt="avatar.png"/>
+                    <img src={`https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`} alt="avatar.png"/>
                     <div className="file-upload">
                         <Camera className="camera" />
                         <input className="input-profile" type="file" accept="image/*" ></input>
@@ -31,28 +36,28 @@ const Profile = () => {
                 <div className="user-name-profile">
                     <span>Họ và tên: </span>
                     <div className="name-input">
-                        <input name="name" className="input-profile name" placeholder="Họ và tên" type="text" maxLength="100" />
+                        <input name="name" className="input-profile name" value={currentUser.name} placeholder="Họ và tên" type="text" maxLength="100" />
                     </div>
                 </div>
 
                 <div className="phonenumber">
                 <span>Số điện thoại: </span>
                     <div className="phone-input">
-                        <input name="phone-number" className="input-profile phone" disabled placeholder="Vd: 0123456789" type="text" maxLength="100" />
+                        <input name="phone-number" className="input-profile phone" value={currentUser.phoneNumber} disabled placeholder="Vd: 0123456789" type="text" maxLength="100" />
                     </div>
                 </div>
 
                 <div className="user-email">
                 <span>Email nhận vé: </span>
                     <div className="mail-input">
-                        <input name="mail" className="input-profile mail" placeholder="Vd: nguyenvana@gmail.com" type="text" maxLength="100" />
+                        <input name="mail" className="input-profile mail" value={currentUser.email} placeholder="Vd: nguyenvana@gmail.com" type="text" maxLength="100" />
                     </div>
                 </div>
 
                 <div className="user-birth">
                 <span>Ngày tháng năm sinh: </span>
                     <div className="birth-input">
-                        <DatePicker className="input-profile birth" defaultValue={moment('01/01/2015', dateFormatList[0])} format={dateFormatList} />
+                        <DatePicker className="input-profile birth" defaultValue={moment(currentUser.birth, dateFormatList[0])} format={dateFormatList} />
                     </div>
                 </div>
 
@@ -68,7 +73,7 @@ const Profile = () => {
                 </div>
 
                 <div className="finish-button">
-                    <Button type="primary" className="finish">Hoàn thành</Button>
+                    <Button type="primary" className="fnbp">Hoàn thành</Button>
                 </div>
             </div>
         </div>

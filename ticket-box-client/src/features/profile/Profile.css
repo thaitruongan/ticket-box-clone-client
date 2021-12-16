@@ -48,7 +48,7 @@
 .form-profile .avatar .file-upload .camera,
 .input-profile {
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   right: 90px;
   cursor: pointer;
 }
@@ -150,7 +150,7 @@
   font-weight: normal;
 }
 
-.form-profile .finish-button .finish {
+.form-profile .finish-button .fnbp {
   background-color: #2dc275;
   cursor: pointer;
   border-radius: 20px;
@@ -163,7 +163,10 @@
   -webkit-box-pack: center;
   justify-content: center;
   border: none;
-  color: rgb(255, 255, 255);
   width: 100%;
   outline: none;
+}
+
+.form-profile .finish-button .fnbp span {
+  color: #ffffff;
 }

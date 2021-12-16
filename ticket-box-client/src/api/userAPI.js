@@ -8,9 +8,17 @@ const UserAPI = {
         })
     },
 
+    getAll: (token) => {
+        const url = 'user';
+        return axiosClient.get(url, {
+            headers: {
+                'content-type': 'application/json',
+                'tbtoken': token
+            },
+        })
+    },
+
     ImportOTP: (phone, otp) => {
-        console.log(otp);
-        console.log(phone);
         const url = 'user/otp';
         return axiosClient.post(url, {
             "phoneNumber": `${phone}`,

@@ -11,7 +11,6 @@ const ListMovies = () => {
     try {
       const response = await MovieAPI.getAll();
       setListMovie(response.data);
-      console.log(response.data)
     } catch (error) {
       console.log(error)
     }

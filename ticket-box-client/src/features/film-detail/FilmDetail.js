@@ -110,7 +110,9 @@ const FilmDetail = () => {
                     <div className="FilmDetail">
                         <div className="film-detail">
                             <div className="avatar-film">
-                                <img className="avatar" src={detail.avatar} alt={detail.name} />
+                                <picture>
+                                    <img className="avatar" src={`https://ticket-box-clone.herokuapp.com/image/${detail.image}`} alt={detail.name} />
+                                </picture>
                                 <button className="button-buy-ticket" onClick={() => handlePropsNavigate()} >Mua vé</button>
                             </div>
                             <div className="detail">

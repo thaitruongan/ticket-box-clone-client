@@ -14,7 +14,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("")
   const [check, setCheck] = useState(true);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const hanldeCheckRules = () => {
     setCheck(!check);
@@ -41,11 +41,11 @@ const SignIn = () => {
           setIsLoading(false);
           navigate("/login/import-otp", {state: phoneNumber})
         }
-
       } catch (error) {
+        setIsLoading(false);
+        navigate("/login/import-otp", {state: phoneNumber})
         console.log(error)
       }
-    }else{
     }
   }
 

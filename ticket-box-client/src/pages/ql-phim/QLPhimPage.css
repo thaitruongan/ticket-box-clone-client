@@ -1,2 +1,13 @@
+.mngp-nlgi {
+  width: 100%;
+  text-align: center;
+}
 
+.mngp-nlgi h2 {
+  color: brown;
+}
 
+.btn-mngp-nlgi span {
+  color: aliceblue;
+  font-weight: bold;
+}

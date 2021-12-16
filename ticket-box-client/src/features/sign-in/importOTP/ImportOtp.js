@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import './ImportOtp.css';
 import {LeftOutlined} from '@ant-design/icons'
 import UserAPI from "../../../api/userAPI";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addCurrentUser } from "../../../app/userSlice";
 
 const ImportOtp = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const stateNavigate = useLocation();
+    const phoneNumber = stateNavigate.state;
     const [check, setCheck] = useState(false)
     const [count, setCount] = useState(0);
     const [otp, setOtp] = useState("");
-    const [countdown, setCcountdown] = useState(3);
+    const [countDROtp, setCountDROtp] = useState(30);
+    const [isCountDROtp, setIsCountDROtp] = useState(false);
 
     const autoTab = e => {
-        console.log(e.target.value)
         setOtp(`${otp}${e.target.value}`);
         if (count < 3) {
             if (e.target.value.length === e.target.maxLength) {
@@ -25,38 +30,71 @@ const ImportOtp = () => {
         }
     }
 
+    if (isCountDROtp) {
+        if (countDROtp > 0) {
+            setTimeout(() => setCountDROtp(countDROtp - 1), 1000);
+        }
+    }
+
+    if(countDROtp === 0){
+        setIsCountDROtp(false);
+        setCountDROtp(30);
+    }
+
+    const handleCountDROtp = () => {
+        if (Math.floor(countDROtp / 10) > 0 ) {
+            return `00:${countDROtp}`
+        } else {            
+            return `00:0${countDROtp}`
+        }
+    }
+
     useEffect(() => {
         document.getElementById("0").focus();
     },[]);
 
-    useEffect( () => {        
+    useEffect( () => {
         if (otp.length === 4) {
-            const sendOtp = async () => {            
-                console.log('OTP');
+            const importOTP = async () => {
                 setCheck(true);
                 try {
-                    const response = await UserAPI.ImportOTP(stateNavigate.state, otp);
-                    console.log(response);
+                    const response = await UserAPI.ImportOTP(phoneNumber, otp);
+                    if (response.message === "success!") {                        
+                        dispatch(addCurrentUser(response));
+                        setCount(0);
+                        setCheck(false);
+                        document.getElementById("0").focus();
+                        document.getElementById('0').value = '';
+                        document.getElementById('1').value = '';
+                        document.getElementById('2').value = '';
+                        document.getElementById('3').value = '';
+                        setOtp("");
+                        if (response.version === 0) {
+                            navigate("/profile")
+                        } else {                            
+                            navigate("/")
+                        }
+                    }
                 } catch (error) {
-                    alert("Wrong OTP");
                     console.log(error)
+                    alert("Nhập sai OTP")
+                    setCount(0);
+                    setCheck(false);
+                    document.getElementById("0").focus();
+                    document.getElementById('0').value = '';
+                    document.getElementById('1').value = '';
+                    document.getElementById('2').value = '';
+                    document.getElementById('3').value = '';
+                    setOtp("");
                 }
-    
-                setCount(0)
-                setOtp("");
-                document.getElementById("0").focus();
-                document.getElementById('0').value = '';
-                document.getElementById('1').value = '';
-                document.getElementById('2').value = '';
-                document.getElementById('3').value = '';
-            }
-            sendOtp();
+            }        
+            importOTP();
         }
-    }, [otp]);
+    }, [phoneNumber, otp, dispatch, navigate]);
 
     return (
         <div className="import-otp">
-            <div className="back"><LeftOutlined /></div>
+            <div className="back" onClick={() => navigate("/login")}><LeftOutlined/></div>
             <span className="top">Nhập 4 chữ số được gửi đến:</span>
             <span className="phone-number">+84836450670</span>
             <div className="input-otp">
@@ -67,8 +105,11 @@ const ImportOtp = () => {
             </div>
             <span className="space"></span>
             <span className="question">Không nhận được OTP??</span>
-            <div className="resend-otp"><span>Gửi lại OTP</span></div>
-            <button className="next-button">Tiếp tục</button>
+            <div className="resend-otp" style={{pointerEvents: isCountDROtp ? "none" : ""}} onClick={async () => {
+                    setIsCountDROtp(true);
+                    await UserAPI.SignInByPhone(phoneNumber);
+                }} ><span style={{color: isCountDROtp ? "grey" : "#2dc275"}} >{isCountDROtp ? handleCountDROtp() : "Gửi lại OTP"}</span></div>
+            <button className="next-button" style={{backgroundColor: check ? "#2dc275" : "#e6ebf5", pointerEvents: check ? "none" : "" }} >Tiếp tục</button>
         </div>
     )
 }

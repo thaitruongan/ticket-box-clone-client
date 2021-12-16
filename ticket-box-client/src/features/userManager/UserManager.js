@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './UserManager.css';
-import Avatar from "../../assets/avatar.png";
-import { DatePicker, Radio, Button } from 'antd';
+import { DatePicker, Radio } from 'antd';
 import moment from 'moment';
+import { useSelector } from "react-redux";
+import { selectCurrentUser, selectToken } from "../../app/userSlice";
+import UserAPI from "../../api/userAPI";
 
 const UserManager = () => {
+    const token = useSelector(selectToken);
+    const currentUser = useSelector(selectCurrentUser);
     const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
     const [userSelected, setUserSelected] = useState({});
     const [activeId, setActiveId] = useState('');
+    const [listUSer, setListUser] = useState([]);
+    console.log(currentUser);
 
     const handleSelectUser = (u) => {
         setUserSelected(u)
-        setActiveId(u.id)
+        setActiveId(u._id)
     }
 
     const handleSelectStyle = (u) => {
         if (userSelected) {
-            if (activeId !== u.id) {
+            if (activeId !== u._id) {
                 return {backgroundColor: '#f0f0f0', color: '#000000'}
             } else {
                 return {backgroundColor: '#2DC275', color: '#ffffff', fontWeight: 'bold'}
@@ -32,66 +38,29 @@ const UserManager = () => {
         }
     }
 
-    const userData = [
-        {
-            id: '1',
-            avatar: Avatar,
-            name: 'Trinh Thanh Tung',
-            phone: '0123456789',
-            birth: '10/10/1999',
-            mail: 'trinhthanhtung1010@gmail.com',
-            isActiveMail: true,
-            sex: 'male',
-        },
-        {
-            id: '2',
-            avatar: Avatar,
-            name: 'Thai truong an',
-            phone: '0302856789',
-            birth: '31/12/1999',
-            mail: 'thaitruongan@gmail.com',
-            isActiveMail: true,
-            sex: 'male',
-        },
-        {
-            id: '3',
-            avatar: Avatar,
-            name: 'Truong Nam',
-            phone: '0120194789',
-            birth: '07/05/1999',
-            mail: 'pntn@gmail.com',
-            isActiveMail: true,
-            sex: 'male',
-        },
-        {
-            id: '4',
-            avatar: Avatar,
-            name: 'Phan Long Ho',
-            phone: '0123947851',
-            birth: '01/11/1999',
-            mail: 'phalongho@gmail.com',
-            isActiveMail: true,
-            sex: 'male',
-        },
-        {
-            id: '5',
-            avatar: Avatar,
-            name: 'Kim Huong',
-            phone: '0123463017',
-            birth: '10/10/1999',
-            mail: 'tranthikimhuong@gmail.com',
-            isActiveMail: false,
-            sex: 'female',
-        },
-    ];
+    // const checkDisabled = (val) => {
+    //     if (val) {
+    //         return
+    //     } else {
+    //         return 'disabled'
+    //     }
+    // }
 
-    const checkDisabled = (val) => {
-        if (val) {
-            return
-        } else {
-            return 'disabled'
+    useEffect(() => {
+      const fetchAllUser = async () => {
+        try {
+          const response = await UserAPI.getAll(token);
+          if (response.message === "successfully!") {
+              console.log(response.data)
+            setListUser(response.data);
+          }
+        } catch (error) {
+          console.log(error)
         }
-    }
+      }
+  
+      fetchAllUser();
+    },[token])
 
     return (
         <div className="user-manager-container">
@@ -118,7 +87,7 @@ const UserManager = () => {
                         <div className="uipnm">
                             <span className="umsjw">Số điện thoại: </span>
                             <div className="uipnm-input">
-                                <input name="phone" className="uipnm ipom" value={userSelected.phone}  placeholder="Vd: 0123456789" type="text" maxLength="100" />
+                                <input name="phone" className="uipnm ipom" value={userSelected.phoneNumber}  placeholder="Vd: 0123456789" type="text" maxLength="100" />
                             </div>
                         </div>
                     </div>
@@ -127,7 +96,7 @@ const UserManager = () => {
                         <div className="uigmm">
                             <span className="umsjw">Email nhận vé: </span>
                             <div className="uigmm-input">
-                                <input name="mail" className="uigmm ipom" value={userSelected.mail}  placeholder="Vd: nguyenvana@gmail.com" type="text" maxLength="100" />
+                                <input name="mail" className="uigmm ipom" value={userSelected.email}  placeholder="Vd: nguyenvana@gmail.com" type="text" maxLength="100" />
                             </div>
                         </div>
 
@@ -155,13 +124,13 @@ const UserManager = () => {
             </div>
 
             <div className="user-list-manager">
-                {userData.map((user) => {
+                {listUSer.map((user) => {
                     return (                                
                         <div className="user-element-manager" key={user.id} style={handleSelectStyle(user)} onClick={() => handleSelectUser(user)} >
-                            <img className="usm-dt" src={user.avatar} alt={user.name} />
+                            <img className="usm-dt" src={ user.google.id ? user.avatar : `https://ticket-box-clone.herokuapp.com/image/${user.avatar}`} alt={user.name} />
                             <div className="usm-mdt">{user.name}</div>
-                            <div className="usm-pndt">{user.phone}</div>
-                            <div className="usm-gmdt">{user.mail}</div>
+                            <div className="usm-pndt">{user.phoneNumber}</div>
+                            <div className="usm-gmdt">{user.email}</div>
                             <div className="usm-bdt">{user.birth}</div>
                             <div className="usm-sdt">{user.sex}</div>
                         </div>
