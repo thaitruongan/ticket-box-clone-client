@@ -1,0 +1,21 @@
+.banner-movie {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  width: 600vh;
+  max-width: calc(100%);
+  margin-top: -3rem;
+}
+
+.item-banner-movie-img img {
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.carousel {
+  background-color: hsla(80, 61%, 63%, 0.377);
+  height: 420px;
+}

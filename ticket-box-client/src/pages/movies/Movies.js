@@ -2,7 +2,7 @@ import React from "react";
 import { Layout } from "antd";
 import AppHeader from "../../components/header/Header";
 import AppNav from "../../components/nav/Nav";
-import AppBanner from "../../components/banner/Banner";
+import AppBannerMovie from "../../components/banner-movie/BannerMovie";
 import ListMovies from "../../features/list-movies/ListMovies";
 import "./Movies.css";
 
@@ -29,7 +29,7 @@ const Movies = () => {
         <Content className="main-movies">
           <div className="container-movies">
             <div className="content-movies">
-              <AppBanner />
+              <AppBannerMovie />
               <ListMovies />
             </div>
           </div>

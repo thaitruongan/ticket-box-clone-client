@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./CardMovies.css";
 import { Row, Col } from "antd";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CardMovies = () => {
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
+    const response = await axios.get(
+      "https://ticket-box-clone.herokuapp.com/api/movie"
+    );
+    setMovies(response.data.data);
+  };
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   const navigate = useNavigate();
   const onClick = () => {
     navigate("/buy");
@@ -11,41 +23,42 @@ const CardMovies = () => {
   return (
     <div className="card">
       <Row gutter={20}>
-        <Col className="gutter-row" span={6}>
-          <div className="style-card">
-            <div className="card-movies">
-              <div className="card-movies_cover">
-                <img
-                  alt="example"
-                  src="https://images.tkbcdn.com/2/420/600/poster/8106969d-51a6-11ec-8fb8-0242ac110002@webp"
-                />
-                <div className="bnt-img">
-                  <div className="bnt-xem">
-                    <button className="xemchitiet">Xem chi tiết</button>
+        {movies.map((item) => {
+          return (
+            <Col className="gutter-row" span={6}>
+              <div className="style-card">
+                <div className="card-movies">
+                  <div className="card-movies_cover">
+                    <img alt={item.name} src={item.image} />
+                    <div className="bnt-img">
+                      <div className="bnt-xem">
+                        <button className="xemchitiet">Xem chi tiết</button>
+                      </div>
+                      <div className="btn-mua">
+                        <button onClick={onClick} className="muave">
+                          Mua vé
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="btn-mua">
-                    <button onClick={onClick} className="muave">
-                      Mua vé
-                    </button>
+                  <div className="card-movies_body">
+                    <div className="title">
+                      <h4>{item.name}</h4>
+                    </div>
+                    <div className="description">
+                      <h6>{item.name}</h6>
+                    </div>
+                    <div className="info">
+                      <span>{item.label}</span>
+                      <span>1 giờ 40 phút</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="card-movies_body">
-                <div className="title">
-                  <h4>MORBIUS</h4>
-                </div>
-                <div className="description">
-                  <h6>MORBIUS</h6>
-                </div>
-                <div className="info">
-                  <span>P</span>
-                  <span>1 giờ 40 phút</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Col>
-        <Col className="gutter-row" span={6}>
+            </Col>
+          );
+        })}
+        {/* <Col className="gutter-row" span={6}>
           <div className="style">
             <div className="card-movies">
               <div className="card-movies_cover">
@@ -146,7 +159,7 @@ const CardMovies = () => {
               </div>
             </div>
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </div>
   );

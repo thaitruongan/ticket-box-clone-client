@@ -18,7 +18,7 @@ function App() {
         <Route path="/login" element={<SignIn />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/detail-movies" element={<FilmDetail />} />
+        <Route path="/movie/:_id" element={<FilmDetail />} />
         <Route path="/buy" element={<Buy />} />
         <Route path="/thanhtoan" element={<ThanhToan />} />
         <Route path="/admin" element={<QLPhimPage />} />
