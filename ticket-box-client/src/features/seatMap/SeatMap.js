@@ -19,8 +19,11 @@ const SeatMap = () => {
   const [idSocket, setIdSocket] = useState();
   const [socket, setSocket] = useState(null);
   const [data, setData] = useState([]);
-  const seatRows = [];
+  const [flag, setFlag] = useState(1);
 
+  const seatRows = [];
+  const showtimeId = "61bac6745fe160c9f808b2db";
+  const userId = "61b9df5505764aa4e182379a";
   let format = new Intl.NumberFormat("vi-Vn", {
     style: "currency",
     currency: "VND",
@@ -29,7 +32,10 @@ const SeatMap = () => {
   const handleSelected = (tic) => {
     if (selectedList.find((tick) => tick._id === tic._id)) {
       setSelectedList([...selectedList.filter((tick) => tick._id !== tic._id)]);
-      socket.emit("cancel-ticket", tic._id);
+      socket.emit("cancel-ticket", {
+        ticketId: tic._id,
+        showtimeId: showtimeId,
+      });
       if (tic.isVip) {
         setTotal(total - 50000);
       } else {
@@ -37,9 +43,13 @@ const SeatMap = () => {
       }
     } else {
       setIsCountdown(true);
-      setCountdown(5);
+      setCountdown(10);
       setSelectedList([...selectedList, tic]);
-      socket.emit("pick-new-ticket", { id: socket.id, ticket: tic._id });
+      socket.emit("pick-new-ticket", {
+        ticketId: tic._id,
+        userId: userId,
+        showtimeId: showtimeId,
+      });
       if (tic.isVip) {
         setTotal(total + 50000);
       } else {
@@ -72,26 +82,17 @@ const SeatMap = () => {
       setTimeout(() => setCountdown(countdown - 1), 1000);
     } else {
       const newList = selectedList;
-      socket.emit("id", selectedList);
+      socket.emit("Timeout", { showtimeId: showtimeId });
       setIsCountdown(false);
-      setCountdown(5);
       setSelectedList([]);
       setTotal(0);
     }
   }
 
   useEffect(() => {
-    setSocket(io("ws://localhost:8000"));
+    // setSocket(io("ws://localhost:5000"));
+    setSocket(io("https://ticket-box-clone.herokuapp.com/"));
   }, []);
-
-  useEffect(() => {
-    if (socket !== null) {
-      socket.on("get-data", (data) => {
-        console.log("get data");
-        setData(data);
-      });
-    }
-  });
 
   for (let i = 0; i < data.length; i++) {
     if (!seatRows.find((element) => element === data[i].row)) {
@@ -104,8 +105,19 @@ const SeatMap = () => {
       socket.on("welcome", (message) => {
         setIdSocket(message);
       });
+
+      socket.on("get-data", (data) => {
+        console.log("get data");
+        setData(data);
+      });
+
+      socket.emit("get-data", { id: showtimeId });
     }
   }, [socket]);
+
+  if (socket !== null && flag === 1) {
+    setFlag(0);
+  }
 
   return (
     <div className="sc-17x1kk6-2">

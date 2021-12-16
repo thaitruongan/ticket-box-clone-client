@@ -12,7 +12,10 @@ const Seat = (props) => {
   let className2 = "";
 
   const handleClick = (tic) => {
-    if (onClick && tic && isFree === "free") {
+    if (
+      (onClick && tic && isFree === "free") ||
+      (onClick && tic && isFree === idSocket)
+    ) {
       onClick(tic);
     }
   };
