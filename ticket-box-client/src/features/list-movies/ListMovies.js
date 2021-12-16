@@ -34,7 +34,7 @@ const ListMovies = () => {
           return (
             <div key={movie._id} className="list-style-card">
               <div className="list-card-movies">
-                <a
+                <div
                   onClick={(e) => {
                     if (e.target.className === "list-muave") {
                       navigate("/buy", { state: movie });
@@ -76,7 +76,7 @@ const ListMovies = () => {
                   >
                     Mua vé
                   </button>
-                </a>
+                </div>
               </div>
             </div>
           );

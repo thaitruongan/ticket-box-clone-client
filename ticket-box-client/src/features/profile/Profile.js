@@ -2,7 +2,6 @@ import React from 'react';
 import './Profile.css'
 import {ReactComponent as CloseOutlined} from "../../assets/svg/x.svg";
 import {ReactComponent as Camera} from "../../assets/svg/camera.svg";
-import Avatar from "../../assets/avatar.png";
 import { DatePicker, Radio, Button } from 'antd';
 import moment from 'moment';
 import { useSelector } from 'react-redux';

@@ -46,7 +46,7 @@ const AppBannerMovie = () => {
             <div className="item-banner">
               <Item key={movie._id} className="item-banner-movie-img">
                 <div className="banner-movies_cover">
-                  <a
+                  <div
                     onClick={(e) => {
                       if (e.target.className === "muave-banner") {
                         navigate("/buy", { state: movie });
@@ -61,7 +61,7 @@ const AppBannerMovie = () => {
                         alt={movie.name}
                       />
                     </picture>
-                  </a>
+                  </div>
                 </div>
                 <div className="banner-movies_info">
                   <div className="banner-title">
@@ -73,7 +73,7 @@ const AppBannerMovie = () => {
                   </div>
                   <div className="banner-description">
                     <h6>{movie.description}</h6>
-                    <a
+                    <div className="bnt-bnds"
                       onClick={(e) => {
                         if (e.target.className === "muave-banner") {
                           navigate("/buy", { state: movie });
@@ -83,7 +83,7 @@ const AppBannerMovie = () => {
                       }}
                     >
                       Xem thêm
-                    </a>
+                    </div>
                   </div>
                   <div className="button-banner">
                     <button

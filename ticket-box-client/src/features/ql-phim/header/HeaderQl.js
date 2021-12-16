@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../../../images/logo.png";
-import avt from "../../../images/avatar.png";
 import "./HeaderQl.css";
 import { Popover } from 'antd';
 import { ReactComponent as Setting } from "../../../assets/svg/setting.svg";

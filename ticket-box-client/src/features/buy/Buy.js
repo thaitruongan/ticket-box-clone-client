@@ -23,7 +23,6 @@ const Buy = (props) => {
   }, []);
 
   const { movieDetail } = props;
-  console.log(movieDetail);
 
   const handleRuningTime = (time) => {
     const H = Math.floor(time / 60);

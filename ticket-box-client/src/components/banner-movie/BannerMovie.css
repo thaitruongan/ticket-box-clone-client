@@ -40,7 +40,7 @@
   align-items: center;
   color: rgb(96, 103, 120);
 }
-.banner-time span{
+.banner-time span {
   font-size: 15px;
   color: #ffffff;
 }
@@ -49,12 +49,11 @@
   padding: 0px 8px;
 }
 
-
-.banner-description h6{
+.banner-description h6 {
   font-size: 13px;
   color: grey;
 }
-.banner-description a {
+.banner-description .bnt-bnds {
   color: rgb(45, 194, 117);
   height: 40px;
   font-weight: bold;

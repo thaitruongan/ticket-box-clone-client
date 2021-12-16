@@ -41,7 +41,6 @@ const FilmDetail = () => {
 
     const viewPort = useViewport();
     const isMobile = viewPort.width <= 770;
-    const fixScreen = viewPort.width <= 560;
 
     if(isMobile){
         return (

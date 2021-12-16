@@ -34,7 +34,7 @@ const CardMovies = () => {
       <Row gutter={20}>
         {movies.map((movie) => {
           return (
-            <Col className="gutter-row" span={6}>
+            <Col key={movie._id} className="gutter-row" span={6}>
               <div className="style-card">
                 <div className="card-movies">
                   <div className="card-movies_cover">

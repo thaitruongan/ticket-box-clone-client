@@ -31,7 +31,7 @@ const AppBanner = () => {
         {banner.map((item) => {
           return (
             <Item className="item-banner-img">
-              <a
+              <div
                 onClick={() => {
                   navigate("/detail-movies", { state: item });
                 }}
@@ -42,7 +42,7 @@ const AppBanner = () => {
                     alt={item.name}
                   />
                 </picture>
-              </a>
+              </div>
             </Item>
           );
         })}

@@ -19,7 +19,6 @@ import tochuc from "../../images/tochuc.png";
 import dieukhoan from "../../images/dieukhoan.png";
 import about from "../../images/about.png";
 import "./Nav.css";
-import { useNavigate } from "react-router";
 
 const AppNav = () => {
   const navigate = useNavigate();
@@ -34,91 +33,91 @@ const AppNav = () => {
     <div className="container">
       <div className="nav">
         <Menu className="nav-color" defaultSelectedKeys={["1"]}>
-          <a onClick={homepage}>
-            <Menu.Item key="1" icon={<img src={home} alt="home" />}>
+          
+            <Menu.Item key="1" onClick={homepage} icon={<img src={home} alt="home" />}>
               Trang chủ
             </Menu.Item>
-          </a>
-          <a onClick={moviespage}>
-            <Menu.Item key="2" icon={<img src={phim} alt="phim" />}>
+          
+          
+            <Menu.Item key="2" onClick={moviespage} icon={<img src={phim} alt="phim" />}>
               Phim ảnh
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="3" icon={<img src={nhac} alt="nhac" />}>
+          
+          
+            <Menu.Item key="3" onClick={homepage} icon={<img src={nhac} alt="nhac" />}>
               Nhạc sống
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="4" icon={<img src={sankhau} alt="sankhau" />}>
+          
+          
+            <Menu.Item key="4" onClick={homepage} icon={<img src={sankhau} alt="sankhau" />}>
               Sân khấu - Nghệ thuật
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="5" icon={<img src={night} alt="night" />}>
+          
+          
+            <Menu.Item key="5" onClick={homepage} icon={<img src={night} alt="night" />}>
               Nightlife
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="6" icon={<img src={hoithao} alt="hoithao" />}>
+          
+          
+            <Menu.Item key="6" onClick={homepage} icon={<img src={hoithao} alt="hoithao" />}>
               Hội thảo - Cộng đồng
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="7" icon={<img src={khoahoc} alt="khoahoc" />}>
+          
+          
+            <Menu.Item key="7" onClick={homepage} icon={<img src={khoahoc} alt="khoahoc" />}>
               Khoá học
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="8" icon={<img src={dulich} alt="dulich" />}>
+          
+          
+            <Menu.Item key="8" onClick={homepage} icon={<img src={dulich} alt="dulich" />}>
               Tham quan - Du lịch
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="9" icon={<img src={thethao} alt="thethao" />}>
+          
+          
+            <Menu.Item key="9" onClick={homepage} icon={<img src={thethao} alt="thethao" />}>
               Thể thao
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="10" icon={<img src={skhcm} alt="skhcm" />}>
+          
+          
+            <Menu.Item key="10" onClick={homepage} icon={<img src={skhcm} alt="skhcm" />}>
               Sự kiện tại TP. Hồ Chí Minh
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="11" icon={<img src={skhn} alt="skhn" />}>
+          
+          
+            <Menu.Item key="11" onClick={homepage} icon={<img src={skhn} alt="skhn" />}>
               Sự kiện tại Hà Nội
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="12" icon={<img src={blog} alt="blog" />}>
+          
+          
+            <Menu.Item key="12" onClick={homepage} icon={<img src={blog} alt="blog" />}>
               Blog
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="13" icon={<img src={tochuc} alt="tochuc" />}>
+          
+          
+            <Menu.Item key="13" onClick={homepage} icon={<img src={tochuc} alt="tochuc" />}>
               Dành cho nhà tổ chức
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="14" icon={<img src={lienhe} alt="lienhe" />}>
+          
+          
+            <Menu.Item key="14" onClick={homepage} icon={<img src={lienhe} alt="lienhe" />}>
               Liên hệ
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="15" icon={<img src={cauhoi} alt="cauhoi" />}>
+          
+          
+            <Menu.Item key="15" onClick={homepage} icon={<img src={cauhoi} alt="cauhoi" />}>
               Câu hỏi thường gặp
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="16" icon={<img src={dieukhoan} alt="dieukhoan" />}>
+          
+          
+            <Menu.Item key="16" onClick={homepage} icon={<img src={dieukhoan} alt="dieukhoan" />}>
               Điều khoản sử dụng
             </Menu.Item>
-          </a>
-          <a onClick={homepage}>
-            <Menu.Item key="17" icon={<img src={about} alt="about" />}>
+          
+          
+            <Menu.Item key="17" onClick={homepage} icon={<img src={about} alt="about" />}>
               Về chúng tôi
             </Menu.Item>
-          </a>
+          
         </Menu>
       </div>
     </div>

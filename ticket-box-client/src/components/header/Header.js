@@ -4,7 +4,6 @@ import logo from "../../images/logo.png";
 import { ReactComponent as Ve } from "../../images/ve.svg";
 import { ReactComponent as Search } from "../../images/search.svg";
 import "./Header.css";
-import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { selectCurrentUser, selectToken } from "../../app/userSlice";
 import { Popover } from 'antd';
@@ -59,7 +58,7 @@ const AppHeader = () => {
     }else{
       return (
         <div className="login">
-          <a onClick={() => {navigate("/login")}} >Đăng nhập | Đăng ký</a>
+          <div className="swblbnua" onClick={() => {navigate("/login")}} >Đăng nhập | Đăng ký</div>
         </div>
       )
     }
@@ -72,9 +71,9 @@ const AppHeader = () => {
     <div className="header">
       <div className="left">
         <div className="logo">
-          <a onClick={homepage}>
+          <div className="hdlgf" onClick={homepage}>
             <img src={logo} alt="logo" />
-          </a>
+          </div>
         </div>
         <div className="search-bar">
           <div className="child">
@@ -88,9 +87,9 @@ const AppHeader = () => {
           <button>Tạo sự kiện</button>
         </div>
         <div className="src-img">
-          <a onClick={homepage}>
+          <div onClick={homepage}>
             <Ve />
-          </a>
+          </div>
         </div>
         {handleToken()}
       </div>

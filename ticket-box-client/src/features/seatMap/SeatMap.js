@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import PaymentButton from "../../commons/paymentButton/PaymentButton";
 import SeatRow from "../../commons/seat/SeatRow";
 import "./SeatMap.css";
-import socketIOClient from "socket.io-client";
 import AppHeader from "../../components/header/Header";
 import { io } from "socket.io-client";
 
