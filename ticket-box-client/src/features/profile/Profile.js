@@ -25,7 +25,7 @@ const Profile = () => {
             <div className="form-profile">
                 <CloseOutlined className="close" onClick={() => navigate("/")} />
                 <div className="avatar">
-                    <img src={`https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`} alt="avatar.png"/>
+                    <img src={currentUser.google.id ? currentUser.avatar : `https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`} alt="avatar.png"/>
                     <div className="file-upload">
                         <Camera className="camera" />
                         <input className="input-profile" type="file" accept="image/*" ></input>

@@ -12,6 +12,7 @@ function callback(key) {
 
 const Buy = (props) => {
   const [showTime, setShowTime] = useState([]);
+  const { movieDetail } = props;
 
   const fetchShowTime = async () => {
     const response = await ShowTimeAPI.getAll();
@@ -21,8 +22,6 @@ const Buy = (props) => {
   useEffect(() => {
     fetchShowTime();
   }, []);
-
-  const { movieDetail } = props;
 
   const handleRuningTime = (time) => {
     const H = Math.floor(time / 60);

@@ -55,7 +55,7 @@ const HeaderQl = () => {
       <div className="right">
         <div className="user-login-box">
           <Popover className="user-login" content={popContent} >
-            <img className="avatar-user-header" src={`https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`} alt={currentUser.name} />
+            <img className="avatar-user-header" src={currentUser.google.id ? currentUser.avatar : `https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`} alt={currentUser.name} />
             {currentUser.name}            
           </Popover>
         </div>

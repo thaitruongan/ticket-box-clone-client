@@ -39,11 +39,11 @@ const SignIn = () => {
         const response = await UserAPI.SignInByPhone(phoneNumber);
         if (response.message === "success!") {
           setIsLoading(false);
-          navigate("/login/import-otp", {state: phoneNumber})
+          navigate("import-otp", {state: phoneNumber})
         }
       } catch (error) {
         setIsLoading(false);
-        navigate("/login/import-otp", {state: phoneNumber})
+        navigate("import-otp", {state: phoneNumber})
         console.log(error)
       }
     }
@@ -57,7 +57,7 @@ const SignIn = () => {
     <div className="sign-in-page">
       <div className="header-login">
         <div className="content">
-          <div className="close-tag">
+          <div className="close-tag" onClick={() => navigate("/")} >
             <CloseOutlined className="close" />
           </div>
           <div className="white-space"></div>
