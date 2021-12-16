@@ -4,12 +4,14 @@
   align-items: center;
   justify-content: center;
   height: 80vh;
-  width: 100vh;
-  max-width: calc(100% - 180px);
+  width: 400vh;
+  max-width: calc(100% - 60px);
   margin: auto;
+  margin-top: -5.5rem;
 }
 
-.item-banner-img img {
-  height: 250px;
+.image-banner img {
+  height: 300px;
   width: 100%;
+  border-radius: 10px;
 }

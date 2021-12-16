@@ -1,0 +1,112 @@
+.banner-movie {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  width: 600vh;
+  max-width: calc(100%);
+  margin-top: -3rem;
+}
+.banner-movies_cover {
+  width: 60%;
+  margin-right: 3rem;
+}
+
+.banner-movies_cover img {
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+}
+.banner-movies_info {
+  padding-right: 3rem;
+}
+.carousel {
+  background-color: hsla(77, 6%, 45%, 0.39);
+  height: 420px;
+}
+.banner-title h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #ffffff;
+}
+.banner-time {
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  padding-top: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: rgb(96, 103, 120);
+}
+.banner-time span{
+  font-size: 15px;
+  color: #ffffff;
+}
+.banner-time span:not(:last-child)::after {
+  content: "|";
+  padding: 0px 8px;
+}
+
+
+.banner-description h6{
+  font-size: 13px;
+  color: grey;
+}
+.banner-description a {
+  color: rgb(45, 194, 117);
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  min-width: 88px;
+}
+
+.button-banner {
+  margin-top: 5rem;
+  display: flex;
+  white-space: nowrap;
+}
+
+.button-banner .button-play-trailer,
+.button-muave-banner {
+  text-transform: none;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 25%;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 20px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  min-width: 88px;
+  padding: 0px 24px;
+}
+
+.button-banner .button-play-trailer {
+  margin-left: 1rem;
+  background: transparent;
+  color: #2dc275;
+  border: 1px solid #2dc275;
+}
+
+.button-banner .button-muave-banner {
+  background: #2dc275;
+  color: #ffffff;
+}
+
+.button-banner .button-play-trailer:hover {
+  color: #229459;
+  border: 1px solid #229459;
+}
+
+.button-banner .button-muave-banner:hover {
+  background: #229459;
+}

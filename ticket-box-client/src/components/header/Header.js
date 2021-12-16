@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { ReactComponent as Ve } from "../../images/ve.svg";
 import { ReactComponent as Search } from "../../images/search.svg";
@@ -64,11 +65,14 @@ const AppHeader = () => {
     }
   }
 
+  const homepage = () => {
+    navigate("/");
+  };
   return (
     <div className="header">
       <div className="left">
         <div className="logo">
-          <a href="/">
+          <a onClick={homepage}>
             <img src={logo} alt="logo" />
           </a>
         </div>
@@ -84,7 +88,7 @@ const AppHeader = () => {
           <button>Tạo sự kiện</button>
         </div>
         <div className="src-img">
-          <a href="/">
+          <a onClick={homepage}>
             <Ve />
           </a>
         </div>

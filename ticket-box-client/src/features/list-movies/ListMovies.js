@@ -12,40 +12,43 @@ const ListMovies = () => {
       const response = await MovieAPI.getAll();
       setListMovie(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleRuningTime = (time) => {
     const H = Math.floor(time / 60);
     const M = time % 60;
 
-    return `${H} giờ ${M} phút`
-  }
+    return `${H} giờ ${M} phút`;
+  };
 
   useEffect(() => {
     fetchMovieList();
-  }, [])
+  }, []);
 
   return (
     <div className="main-list-movies">
       <div className="list-movies">
-
-        {listMovie.map(movie => {
+        {listMovie.map((movie) => {
           return (
             <div key={movie._id} className="list-style-card">
               <div className="list-card-movies">
-                <a onClick={e => {
-                  if(e.target.className === "list-muave"){
-                    navigate("/buy", {state: movie});
-                  }else{
-                    navigate("/detail-movies", {state: movie})
-                  }
-                }}
+                <a
+                  onClick={(e) => {
+                    if (e.target.className === "list-muave") {
+                      navigate("/buy", { state: movie });
+                    } else {
+                      navigate("/detail-movies", { state: movie });
+                    }
+                  }}
                 >
                   <div className="list-card-movies_cover">
                     <picture>
-                      <img src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`} alt={movie.name} />
+                      <img
+                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        alt={movie.name}
+                      />
                     </picture>
                   </div>
                   <div className="list-card-movies_body">
@@ -61,13 +64,14 @@ const ListMovies = () => {
                     </div>
                   </div>
 
-                  <button onClick={e => {
-                    if(e.target.className === "list-muave"){
-                      navigate("/buy", {state: movie});
-                    }else{
-                      navigate("/detail-movies", {state: movie})
-                    }
-                  }}
+                  <button
+                    onClick={(e) => {
+                      if (e.target.className === "list-muave") {
+                        navigate("/buy", { state: movie });
+                      } else {
+                        navigate("/detail-movies", { state: movie });
+                      }
+                    }}
                     className="list-muave"
                   >
                     Mua vé
@@ -75,9 +79,8 @@ const ListMovies = () => {
                 </a>
               </div>
             </div>
-          )
+          );
         })}
-        
       </div>
     </div>
   );

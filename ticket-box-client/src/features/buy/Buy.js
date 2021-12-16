@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import ShowTimeAPI from "../../api/showTimeAPI";
 import { Row, Col, Collapse } from "antd";
 import "./Buy.css";
 import Calendar from "../../components/calendar/Calendar";
@@ -10,16 +11,27 @@ function callback(key) {
 }
 
 const Buy = (props) => {
-  const {movieDetail} = props;
+  const [showTime, setShowTime] = useState([]);
+
+  const fetchShowTime = async () => {
+    const response = await ShowTimeAPI.getAll();
+    setShowTime(response.data);
+  };
+
+  useEffect(() => {
+    fetchShowTime();
+  }, []);
+
+  const { movieDetail } = props;
   console.log(movieDetail);
 
   const handleRuningTime = (time) => {
     const H = Math.floor(time / 60);
     const M = time % 60;
 
-    return `${H} giờ ${M} phút`
-  }
-  
+    return `${H} giờ ${M} phút`;
+  };
+
   return (
     <div className="buy">
       <div className="title-buy">
@@ -50,22 +62,26 @@ const Buy = (props) => {
           </div>
         </Col>
         <Col className="info-xuat-chieu">
-          <Collapse
-            defaultActiveKey={["1"]}
-            onChange={callback}
-            className="collapse"
-          >
-            <Panel header="BHD Star 3.2" key="1">
-              <div className="thoi-gian">
-                <div className="loai-phim">
-                  <h2>2D</h2>
-                </div>
-                <div className="gio">
-                  <a href="/thanhtoan">12:50</a>
-                </div>
-              </div>
-            </Panel>
-          </Collapse>
+          {showTime.map((item) => {
+            return (
+              <Collapse
+                defaultActiveKey={["1"]}
+                onChange={callback}
+                className="collapse"
+              >
+                <Panel header={item.room.name} key="1">
+                  <div className="thoi-gian">
+                    <div className="loai-phim">
+                      <h2>2D</h2>
+                    </div>
+                    <div className="gio">
+                      <a href="/thanhtoan">{item.timeStart}</a>
+                    </div>
+                  </div>
+                </Panel>
+              </Collapse>
+            );
+          })}
 
           <Collapse
             defaultActiveKey={["1"]}
@@ -83,7 +99,6 @@ const Buy = (props) => {
               </div>
             </Panel>
           </Collapse>
-
         </Col>
       </Row>
     </div>
