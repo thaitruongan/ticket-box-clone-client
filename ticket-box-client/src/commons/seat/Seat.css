@@ -6,12 +6,19 @@
   display: flex;
   border-radius: 5px;
   justify-content: center;
+  color: #f0f0f0;
 }
 
 .freeFalse {
   border: none;
   background-color: #2a2d34;
+  color: #2a2d34;
   opacity: 0.1;
+}
+.isUSelected {
+  border: none !important;
+  border: 2px solid #219258;
+  background-color: #219258;
 }
 
 .vipTrue {

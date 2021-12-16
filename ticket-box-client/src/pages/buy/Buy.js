@@ -4,10 +4,13 @@ import AppHeader from "../../components/header/Header";
 import AppNav from "../../components/nav/Nav";
 import Buy from "../../features/buy/Buy";
 import "./Buy.css"
+import { useLocation } from "react-router";
 
 const { Header, Sider, Content } = Layout;
 
-const buy = () => {
+const BuyPage = () => {
+  const detail = useLocation();
+
   return (
     <Layout className="mainLayout">
       <Header className="header">
@@ -26,11 +29,11 @@ const buy = () => {
           <AppNav />
         </Sider>
         <Content>
-          <Buy />
+          <Buy movieDetail={detail.state} />
         </Content>
       </Layout>
     </Layout>
   );
 };
 
-export default buy;
+export default BuyPage;

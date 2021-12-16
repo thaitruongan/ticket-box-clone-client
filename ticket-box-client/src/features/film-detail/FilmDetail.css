@@ -1,3 +1,15 @@
+.fdcbw {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.fdcbw-container {
+  margin: 92px 0 24px 0;
+  margin-top: 92px;
+  margin-bottom: 24px;
+}
+
 .FilmDetail {
   box-sizing: border-box;
   position: relative;

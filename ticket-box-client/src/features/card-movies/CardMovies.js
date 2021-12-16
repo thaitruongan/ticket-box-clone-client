@@ -2,40 +2,69 @@ import React, { useState, useEffect } from "react";
 import "./CardMovies.css";
 import { Row, Col } from "antd";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import MovieAPI from "../../api/movieAPI";
 
 const CardMovies = () => {
   const [movies, setMovies] = useState([]);
-  const getMovies = async () => {
-    const response = await axios.get(
-      "https://ticket-box-clone.herokuapp.com/api/movie"
-    );
-    setMovies(response.data.data);
+  const navigate = useNavigate();
+
+  const fetchMovie = async () => {
+    try {
+      const response = await MovieAPI.getAll();
+      setMovies(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleRuningTime = (time) => {
+    const H = Math.floor(time / 60);
+    const M = time % 60;
+
+    return `${H} giờ ${M} phút`;
+  };
+
   useEffect(() => {
-    getMovies();
+    fetchMovie();
   }, []);
 
-  const navigate = useNavigate();
-  const onClick = () => {
-    navigate("/buy");
-  };
   return (
     <div className="card">
       <Row gutter={20}>
-        {movies.map((item) => {
+        {movies.map((movie) => {
           return (
             <Col className="gutter-row" span={6}>
               <div className="style-card">
                 <div className="card-movies">
                   <div className="card-movies_cover">
-                    <img alt={item.name} src={item.image} />
+                    <picture>
+                      <img
+                        alt={movie.name}
+                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                      />
+                    </picture>
                     <div className="bnt-img">
                       <div className="bnt-xem">
-                        <button className="xemchitiet">Xem chi tiết</button>
+                        <button onClick={(e) => {
+                            if (e.target.className === "muave") {
+                              navigate("/buy", { state: movie });
+                            } else {
+                              navigate("/detail-movies", { state: movie });
+                            }
+                          }} className="xemchitiet">Xem chi tiết</button>
                       </div>
                       <div className="btn-mua">
-                        <button onClick={onClick} className="muave">
+                        <button
+                          onClick={(e) => {
+                            if (e.target.className === "muave") {
+                              navigate("/buy", { state: movie });
+                            } else {
+                              navigate("/detail-movies", { state: movie });
+                            }
+                          }}
+                          className="muave"
+                        >
                           Mua vé
                         </button>
                       </div>
@@ -43,14 +72,14 @@ const CardMovies = () => {
                   </div>
                   <div className="card-movies_body">
                     <div className="title">
-                      <h4>{item.name}</h4>
+                      <h4>{movie.name}</h4>
                     </div>
                     <div className="description">
-                      <h6>{item.name}</h6>
+                      <h6>{movie.name}</h6>
                     </div>
                     <div className="info">
-                      <span>{item.label}</span>
-                      <span>1 giờ 40 phút</span>
+                      <span>{movie.label}</span>
+                      <span>{handleRuningTime(movie.runningTime)}</span>
                     </div>
                   </div>
                 </div>

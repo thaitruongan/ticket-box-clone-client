@@ -1,298 +1,250 @@
-{
-    "message": "successfully!",
-    "data": [
+[{
+    "_id": "61b2dc5efac1c383ed99d772",
+    "seatId": "61b2d0135b2065af8e65c4f9",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
         {
-            "_id": "61b2dc5efac1c383ed99d76f",
-            "movie": {
-                "_id": "61aedafbc5c70c6293511675",
-                "name": "SHANG-CHI AND THE LEGEND OF THE TEN RINGS",
-                "image": "mew.png",
-                "trailer": "hihi.mp4",
-                "description": "hihi",
-                "label": "C13",
-                "runningTime": 90,
-                "releaseDate": "2021-12-06T17:00:00.000Z",
-                "createBy": "hihi",
-                "createdAt": "2021-12-07T03:54:35.054Z",
-                "updatedAt": null,
-                "updateBy": "61b1cb0b2555becdff46f0e4",
-                "version": 1,
-                "oldVersion": [
-                    {
-                        "_id": "61aedafbc5c70c6293511675",
-                        "name": "SHANG-CHI AND THE LEGEND OF THE TEN RINGS",
-                        "image": "hih.png",
-                        "trailer": "hihi.mp4",
-                        "description": "hihi",
-                        "label": "C13",
-                        "runningTime": 90,
-                        "releaseDate": "2021-12-06T17:00:00.000Z",
-                        "createdAt": "2021-12-07T03:54:35.054Z",
-                        "updatedAt": null,
-                        "updateBy": null,
-                        "version": 0,
-                        "oldVersion": [],
-                        "__v": 0
-                    }
-                ],
-                "__v": 0
-            },
-            "timeStart": "2021-12-09T17:00:00.000Z",
+            "_id": "61b2d0135b2065af8e65c4f9",
+            "row": "A",
+            "column": 1,
+            "isVip": true,
+            "isAvailable": true,
             "roomId": "61b2d0135b2065af8e65c4f7",
-            "standardPrice": 30000,
-            "vipPrice": 50000,
-            "tickets": [
-                {
-                    "_id": "61b2dc5efac1c383ed99d772",
-                    "seatId": "61b2d0135b2065af8e65c4f9",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0135b2065af8e65c4f9",
-                            "row": "A",
-                            "column": 1,
-                            "isVip": true,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d774",
-                    "seatId": "61b2d0135b2065af8e65c4fb",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0135b2065af8e65c4fb",
-                            "row": "A",
-                            "column": 2,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d776",
-                    "seatId": "61b2d0135b2065af8e65c4fd",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0135b2065af8e65c4fd",
-                            "row": "A",
-                            "column": 3,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d778",
-                    "seatId": "61b2d0135b2065af8e65c4ff",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0135b2065af8e65c4ff",
-                            "row": "A",
-                            "column": 4,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d77a",
-                    "seatId": "61b2d0135b2065af8e65c501",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0135b2065af8e65c501",
-                            "row": "A",
-                            "column": 5,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d77c",
-                    "seatId": "61b2d0135b2065af8e65c503",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0135b2065af8e65c503",
-                            "row": "B",
-                            "column": 1,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d77e",
-                    "seatId": "61b2d0135b2065af8e65c505",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0135b2065af8e65c505",
-                            "row": "B",
-                            "column": 2,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d780",
-                    "seatId": "61b2d0145b2065af8e65c507",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0145b2065af8e65c507",
-                            "row": "B",
-                            "column": 3,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d782",
-                    "seatId": "61b2d0145b2065af8e65c509",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0145b2065af8e65c509",
-                            "row": "B",
-                            "column": 4,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                },
-                {
-                    "_id": "61b2dc5ffac1c383ed99d784",
-                    "seatId": "61b2d0145b2065af8e65c50b",
-                    "showtimeId": "61b2dc5efac1c383ed99d76f",
-                    "status": "free",
-                    "userId": null,
-                    "__v": 0,
-                    "seat": [
-                        {
-                            "_id": "61b2d0145b2065af8e65c50b",
-                            "row": "B",
-                            "column": 5,
-                            "isVip": false,
-                            "isAvailable": true,
-                            "roomId": "61b2d0135b2065af8e65c4f7",
-                            "createBy": "61b1cb0b2555becdff46f0e4",
-                            "createdAt": "2021-12-10T03:56:21.156Z",
-                            "updatedAt": null,
-                            "updateBy": null,
-                            "version": 0,
-                            "oldVersion": [],
-                            "__v": 0
-                        }
-                    ]
-                }
-            ]
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
         }
     ]
-}
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d774",
+    "seatId": "61b2d0135b2065af8e65c4fb",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0135b2065af8e65c4fb",
+            "row": "A",
+            "column": 2,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d776",
+    "seatId": "61b2d0135b2065af8e65c4fd",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0135b2065af8e65c4fd",
+            "row": "A",
+            "column": 3,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d778",
+    "seatId": "61b2d0135b2065af8e65c4ff",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0135b2065af8e65c4ff",
+            "row": "A",
+            "column": 4,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d77a",
+    "seatId": "61b2d0135b2065af8e65c501",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0135b2065af8e65c501",
+            "row": "A",
+            "column": 5,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d77c",
+    "seatId": "61b2d0135b2065af8e65c503",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0135b2065af8e65c503",
+            "row": "B",
+            "column": 1,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d77e",
+    "seatId": "61b2d0135b2065af8e65c505",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0135b2065af8e65c505",
+            "row": "B",
+            "column": 2,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d780",
+    "seatId": "61b2d0145b2065af8e65c507",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0145b2065af8e65c507",
+            "row": "B",
+            "column": 3,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d782",
+    "seatId": "61b2d0145b2065af8e65c509",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0145b2065af8e65c509",
+            "row": "B",
+            "column": 4,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+},
+{
+    "_id": "61b2dc5ffac1c383ed99d784",
+    "seatId": "61b2d0145b2065af8e65c50b",
+    "showtimeId": "61b2dc5efac1c383ed99d76f",
+    "status": "free",
+    "userId": null,
+    "__v": 0,
+    "seat": [
+        {
+            "_id": "61b2d0145b2065af8e65c50b",
+            "row": "B",
+            "column": 5,
+            "isVip": false,
+            "isAvailable": true,
+            "roomId": "61b2d0135b2065af8e65c4f7",
+            "createBy": "61b1cb0b2555becdff46f0e4",
+            "createdAt": "2021-12-10T03:56:21.156Z",
+            "updatedAt": null,
+            "updateBy": null,
+            "version": 0,
+            "oldVersion": [],
+            "__v": 0
+        }
+    ]
+}]

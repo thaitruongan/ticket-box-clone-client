@@ -2,19 +2,53 @@ import React, { useState } from "react";
 import GoogleLogin from "react-google-login";
 import "./SignIn.css";
 import { CheckOutlined } from "@ant-design/icons";
-import Input from "../../commons/informationInput/Input";
 import { ReactComponent as CuteDog } from "../../assets/svg/dog.svg";
 import { ReactComponent as FacebookIcon } from "../../assets/svg/facebook.svg";
 import { ReactComponent as GmailIcon } from "../../assets/svg/gmail.svg";
 import { ReactComponent as CloseOutlined } from "../../assets/svg/x.svg";
 import { ReactComponent as LogoWhite } from "../../assets/svg/logo-white.svg";
+import UserAPI from "../../api/userAPI";
+import { useNavigate } from "react-router";
 
 const SignIn = () => {
-  const [check, setCheck] = useState(false);
+  const navigate = useNavigate();
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const [check, setCheck] = useState(true);
+  const [isLoading, setIsLoading] = useState(false)
 
   const hanldeCheckRules = () => {
     setCheck(!check);
   };
+
+  const handlePhoneInput = (val) => {
+    setPhoneNumber(val);
+  }
+
+  const handleStyleButton = () => {
+    if (phoneNumber.length === 10 && check && !isLoading) {
+      return {backgroundColor: "#2dc275", pointerEvents: ""}
+    }else{
+      return {backgroundColor: "#E6EBF5", pointerEvents: ""}
+    }
+  }
+
+  const handleSignInPhoneNumber = async () => {
+    if (phoneNumber.length === 10 && check) {
+      try {
+        setIsLoading(true);
+        const response = await UserAPI.SignInByPhone(phoneNumber);
+        if (response.message === "success!") {
+          setIsLoading(false);
+          navigate("/login/import-otp", {state: phoneNumber})
+        }
+
+      } catch (error) {
+        console.log(error)
+      }
+    }else{
+    }
+  }
+
   const responseGoogle = (response) => {
     console.log(response);
   };
@@ -41,7 +75,7 @@ const SignIn = () => {
           <div>
             <p>+84</p>
           </div>
-          <Input placeholder="Nhập ở đây" maxLength="10" />
+          <input className="Input" placeholder="Nhập ở đây" pattern="[0-9]" maxLength="10" type="number" onChange={e => handlePhoneInput(e.target.value)} value={phoneNumber} ></input>
         </div>
         <div className="check-rule">
           <div className="check" onClick={() => hanldeCheckRules()}>
@@ -58,7 +92,7 @@ const SignIn = () => {
           </p>
         </div>
         <div className="bottom">
-          <button className="next-button">Tiếp tục</button>
+          <button className="next-button" style={handleStyleButton()} onClick={() => handleSignInPhoneNumber()} >Tiếp tục</button>
           <div className="or">
             <span className="sosip">Hoặc</span>
           </div>
@@ -66,23 +100,18 @@ const SignIn = () => {
             <div>
               <FacebookIcon className="facebook" />
             </div>
-            <div>
               <GoogleLogin
                 clientId="408075301782-j39rulkr2te17lttl2fp29pigqq1u3qt.apps.googleusercontent.com"
                 //buttonText="Login"
                 render={(renderProps) => (
-                  <button
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
+                  <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
                     <GmailIcon className="gmail" />
-                  </button>
+                  </div>
                 )}
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={"single_host_origin"}
               />
-            </div>
           </div>
         </div>
       </div>
