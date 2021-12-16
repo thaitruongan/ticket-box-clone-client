@@ -1,6 +1,7 @@
 .card {
   width: 56rem;
-  height: auto;
+  height: 20rem;
+  overflow: hidden;
 }
 
 .card-movies {

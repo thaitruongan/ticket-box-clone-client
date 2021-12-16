@@ -55,16 +55,12 @@ const AppBannerMovie = () => {
                       }
                     }}
                   >
-                    <img
-                      src="https://images.tkbcdn.com/2/540/810/poster/bdd717f9-5cb4-11ec-8fb8-0242ac110002@webp"
-                      alt="vidu"
-                    />
-                    {/* <picture>
-                  <img
-                    src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
-                    alt={movie.name}
-                  />
-                </picture> */}
+                    <picture>
+                      <img
+                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        alt={movie.name}
+                      />
+                    </picture>
                   </a>
                 </div>
                 <div className="banner-movies_info">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import showTimeAPI from "../../api/showTimeAPI";
+import ShowTimeAPI from "../../api/showTimeAPI";
 import { Row, Col, Collapse } from "antd";
 import "./Buy.css";
 import Calendar from "../../components/calendar/Calendar";
@@ -11,11 +11,19 @@ function callback(key) {
 }
 
 const Buy = (props) => {
+  const [showTime, setShowTime] = useState([]);
+
+  const fetchShowTime = async () => {
+    const response = await ShowTimeAPI.getAll();
+    setShowTime(response.data);
+  };
+
+  useEffect(() => {
+    fetchShowTime();
+  }, []);
+
   const { movieDetail } = props;
   console.log(movieDetail);
-
-  const [showTime, setShowTime] = useState([]);
-  const [room, setRoom] = useState([]);
 
   const handleRuningTime = (time) => {
     const H = Math.floor(time / 60);
@@ -23,27 +31,6 @@ const Buy = (props) => {
 
     return `${H} giờ ${M} phút`;
   };
-  const fetchShowTime = async () => {
-    try {
-      const response = await showTimeAPI.getAll();
-      setShowTime(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const fetchRoom = async () => {
-    try {
-      const response = await showTimeAPI.getAll();
-      setRoom(response.data);
-    } catch (error) {
-      console.error();
-    }
-  };
-  useEffect(() => {
-    fetchShowTime();
-    fetchRoom();
-  }, []);
 
   return (
     <div className="buy">
@@ -75,20 +62,20 @@ const Buy = (props) => {
           </div>
         </Col>
         <Col className="info-xuat-chieu">
-          {showTime.map((showtime) => {
+          {showTime.map((item) => {
             return (
               <Collapse
                 defaultActiveKey={["1"]}
                 onChange={callback}
                 className="collapse"
               >
-                <Panel header={room.name} key="1">
+                <Panel header={item.room.name} key="1">
                   <div className="thoi-gian">
                     <div className="loai-phim">
                       <h2>2D</h2>
                     </div>
                     <div className="gio">
-                      <a href="/thanhtoan">{showtime.timeStart}</a>
+                      <a href="/thanhtoan">{item.timeStart}</a>
                     </div>
                   </div>
                 </Panel>
