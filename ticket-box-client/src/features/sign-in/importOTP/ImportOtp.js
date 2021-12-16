@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './ImportOtp.css';
 import {LeftOutlined} from '@ant-design/icons'
+import UserAPI from "../../../api/userAPI";
+import { useLocation } from "react-router";
 
 const ImportOtp = () => {
+    const stateNavigate = useLocation();
+    const [check, setCheck] = useState(false)
     const [count, setCount] = useState(0);
+    const [otp, setOtp] = useState("");
+    const [countdown, setCcountdown] = useState(3);
 
     const autoTab = e => {
+        console.log(e.target.value)
+        setOtp(`${otp}${e.target.value}`);
         if (count < 3) {
             if (e.target.value.length === e.target.maxLength) {
                 const nextInput = document.getElementById(`${count + 1}`)
@@ -14,16 +22,37 @@ const ImportOtp = () => {
                     setCount(count + 1);
                 }
             }
-        }else{
-            // check otp
-            console.log('OTP');
-            setCount(0)
-            document.getElementById('0').value = '';
-            document.getElementById('1').value = '';
-            document.getElementById('2').value = '';
-            document.getElementById('3').value = '';
         }
     }
+
+    useEffect(() => {
+        document.getElementById("0").focus();
+    },[]);
+
+    useEffect( () => {        
+        if (otp.length === 4) {
+            const sendOtp = async () => {            
+                console.log('OTP');
+                setCheck(true);
+                try {
+                    const response = await UserAPI.ImportOTP(stateNavigate.state, otp);
+                    console.log(response);
+                } catch (error) {
+                    alert("Wrong OTP");
+                    console.log(error)
+                }
+    
+                setCount(0)
+                setOtp("");
+                document.getElementById("0").focus();
+                document.getElementById('0').value = '';
+                document.getElementById('1').value = '';
+                document.getElementById('2').value = '';
+                document.getElementById('3').value = '';
+            }
+            sendOtp();
+        }
+    }, [otp]);
 
     return (
         <div className="import-otp">

@@ -49,7 +49,10 @@ span {
   justify-content: space-between;
 }
 
-.input-otp input {
+.input-otp .input-0,
+.input-1,
+.input-2,
+.input-3 {
   text-align: center;
   font-weight: bold;
   font-size: 24px;
@@ -61,7 +64,7 @@ span {
   outline: none;
   background-color: #e6e6e6;
   caret-color: #2dc275;
-  -webkit-appearance: none;
+  border: none;
 }
 
 .input-otp input::-webkit-outer-spin-button,

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import "./Seat.css";
+import React from "react";
+import './Seat.css';
 
 const Seat = (props) => {
   const { element, onClick, selectedList, idSocket, selectedListServer } =

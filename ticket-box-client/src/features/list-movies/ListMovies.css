@@ -6,9 +6,9 @@
 }
 .list-movies {
   display: flex;
-    flex-wrap: wrap;
-    flex-grow: 0;
-    flex-shrink: 0;
+  flex-wrap: wrap;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 .list-style-card {
   flex: 0 0 50%;
@@ -96,4 +96,5 @@ h6 {
   outline: none;
   cursor: pointer;
   white-space: nowrap;
+  z-index: 9999;
 }
