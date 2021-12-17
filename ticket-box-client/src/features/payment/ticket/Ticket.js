@@ -1,5 +1,5 @@
 import React from "react";
-import "./Ve.css";
+import "./Ticket.css";
 import { Checkbox, Button } from "antd";
 
 const Ve = () => {
