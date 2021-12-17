@@ -6,7 +6,6 @@ import "./ManagerFilm.css";
 import { Button, Layout } from "antd";
 import UserManager from "../../features/userManager/UserManager";
 import EventManager from "../../features/eventManager/EventManager";
-import AddFilm from "../../features/manager-film/add-film/AddFilm";
 import { useSelector } from "react-redux";
 import { selectCurrentUser, selectToken } from "../../app/userSlice";
 import { useNavigate } from "react-router";
@@ -38,10 +37,8 @@ const QLPhimPage = () => {
       case 3:
         return <ListQl />;
       case 4:
-        return <AddFilm />;
-      case 5:
         return <EventManager />;
-      case 6:
+      case 5:
         return;
 
       default:

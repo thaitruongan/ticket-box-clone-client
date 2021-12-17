@@ -40,7 +40,7 @@ const AppBannerMovie = () => {
 
   return (
     <div className="banner-movie">
-      <Carousel breakPoints={breakPoints} className="carousel">
+      <Carousel enableAutoPlay autoPlaySpeed={2500} breakPoints={breakPoints} className="carousel">
         {bannerMovie.map((movie) => {
           return (
             <div className="item-banner">

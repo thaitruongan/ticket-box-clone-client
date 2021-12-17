@@ -6,14 +6,25 @@
   padding-right: 32px;
   margin-top: 2rem;
 }
+.button{
+  display: flex;
+}
+.button-add-film{
+  margin-right: 2rem;
+}
 .list-ql {
   background-color: white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .search-list {
   display: flex;
+  margin-bottom: 1rem;
 }
 .search-list-img {
   padding-top: 4px;
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 .input-color {
   background-color: white;
@@ -22,7 +33,8 @@
 }
 .ngay-cong-chieu {
   display: flex;
-  margin-left: 3rem;
+  margin-left: 7rem;
+  margin-top: 1rem;
 }
 .ngay-cong-chieu h4 {
   padding-top: 3px;
@@ -30,3 +42,11 @@
 .ngay-cong-chieu .date-picker-cong-chieu {
   margin-left: 1rem;
 }
+
+table, th, td {  
+  border: 1px solid gray;
+}  
+th, td {  
+  padding: 10px;
+  text-align: center;
+} 

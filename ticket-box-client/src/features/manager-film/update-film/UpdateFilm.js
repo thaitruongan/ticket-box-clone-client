@@ -1,22 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Form, Upload, Button } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 
-import "./AddFilm.css";
+import "./UpdateFilm.css";
 
-const AddFilm = (props) => {
-  const { trigger, onClickClosePopupAdd } = props;
-  const [film, setFilm] = useState([]);
+const UpdateFilm = (props) => {
+  const { trigger, onClickClosePopupUpdate } = props;
 
-  const handle = (e) => {
-    const newFilm = { ...film };
-    newFilm[e.target.id] = e.target.value;
-    setFilm(newFilm);
-    console.log(newFilm);
-  };
-  const handleClosePopupAdd = () => {
-    if (onClickClosePopupAdd) {
-      onClickClosePopupAdd();
+  const handleClosePopupUpdate = () => {
+    if (onClickClosePopupUpdate) {
+      onClickClosePopupUpdate();
     }
   };
   const normFile = (e) => {
@@ -30,51 +23,51 @@ const AddFilm = (props) => {
   };
 
   return trigger ? (
-    <div className="PopupAddFilm" onClick={() => handleClosePopupAdd()}>
-      <div className="page-add-film">
+    <div className="PopupUpdateFilm" onClick={() => handleClosePopupUpdate()}>
+      <div className="page-update-film">
         <Row>
           <Col span={24}>
             <div className="title-page">
-              <h2>Thêm Phim</h2>
+              <h2>Sửa Phim</h2>
             </div>
-            <div className="gach-chan-ql-add-r1"></div>
+            <div className="gach-chan-ql-update-r1"></div>
           </Col>
         </Row>
         <Row>
-          <div className="form-add">
+          <div className="form-update">
             <form>
-              <div className="form-add_container">
-                <div className="form-add-info">
+              <div className="form-update_container">
+                <div className="form-update-info">
                   <h2>Thông tin phim</h2>
-                  <div className="gach-chan-ql-add-r2-c1"></div>
-                  <div className="content-form-add-info">
+                  <div className="gach-chan-ql-update-r2-c1"></div>
+                  <div className="content-form-update-info">
                     <h5>Tên</h5>
                     <input
-                      className="name-add"
-                      onChange={(e) => handle(e)}
+                      className="name-update"
+                      onChange=""
                       id="name"
-                      value={film.name}
+                      value=""
                     ></input>
                     <div className="date-time">
                       <div>
                         <h5>Ngày công chiếu</h5>
                         <input
-                          className="date-add"
+                          className="date-update"
                           type="date"
-                          onChange={(e) => handle(e)}
+                          onChange=""
                           id="releaseDate"
-                          value={film.releaseDate}
+                          value=""
                         ></input>
                       </div>
                       <div>
                         <h5>Thời lượng</h5>
                         <div className="input">
                           <input
-                            className="add-time"
+                            className="update-time"
                             type="number"
-                            onChange={(e) => handle(e)}
+                            onChange=""
                             id="runningTime"
-                            value={film.runningTime}
+                            value=""
                             style={{
                               width: "5rem",
                               height: "1.6rem",
@@ -88,31 +81,31 @@ const AddFilm = (props) => {
                     <h5>Giới thiệu</h5>
                     <textarea
                       className="gioi-thieu"
-                      onChange={(e) => handle(e)}
+                      onChange=""
                       id="description"
-                      value={film.description}
+                      value=""
                     ></textarea>
                     <h5>Trailer</h5>
                     <input
-                      className="trailer-add"
-                      onChange={(e) => handle(e)}
+                      className="trailer-update"
+                      onChange=""
                       id="trailer"
-                      value={film.trailer}
+                      value=""
                     ></input>
                   </div>
                 </div>
-                <div className="form-add-img">
+                <div className="form-update-img">
                   <h2>Hình ảnh bộ phim</h2>
-                  <div className="gach-chan-ql-add-r2-c2"></div>
-                  <div className="content-form-add-img">
+                  <div className="gach-chan-ql-update-r2-c2"></div>
+                  <div className="content-form-update-img">
                     <Form.Item
                       name="dragger"
                       valuePropName="fileList"
                       getValueFromEvent={normFile}
                       noStyle
-                      onChange={(e) => handle(e)}
+                      onChange=""
                       id="image"
-                      value={film.image}
+                      value=""
                     >
                       <Upload.Dragger name="files" action="/upload.do">
                         <p className="ant-upload-drag-icon">
@@ -132,7 +125,7 @@ const AddFilm = (props) => {
                   shape="round"
                   size="large"
                   className="bnt-save"
-                  onClick={() => handleClosePopupAdd()}
+                  onClick={() => handleClosePopupUpdate()}
                 >
                   Save
                 </Button>
@@ -147,4 +140,4 @@ const AddFilm = (props) => {
   );
 };
 
-export default AddFilm;
+export default UpdateFilm;

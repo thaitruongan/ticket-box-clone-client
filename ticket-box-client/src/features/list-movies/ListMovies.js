@@ -42,6 +42,7 @@ const ListMovies = () => {
                       navigate("/detail-movies", { state: movie });
                     }
                   }}
+                  className="click-hover"
                 >
                   <div className="list-card-movies_cover">
                     <picture>

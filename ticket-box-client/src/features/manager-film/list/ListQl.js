@@ -1,83 +1,74 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import MovieAPI from "../../../api/movieAPI";
+import AddFilm from "../add-film/AddFilm";
+import UpdateFilm from "../update-film/UpdateFilm";
 import { ReactComponent as Search } from "../../../images/search.svg";
-import { Input, DatePicker, Button, Table } from "antd";
-import { VideoCameraAddOutlined } from "@ant-design/icons";
+import { Input, DatePicker, Button } from "antd";
+import { VideoCameraAddOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import moment from "moment";
 import "./ListQl.css";
 
 const ListQl = () => {
-  
-  const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
-  const columns = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      sorter: {},
-    },
-    {
-      title: "PHIM",
-      dataIndex: "phim",
-    },
-    {
-      title: "NGÀY CÔNG CHIẾU",
-      dataIndex: "date",
-      sorter: {},
-    },
-    {
-      title: "THỜI LƯỢNG",
-      dataIndex: "time",
-      sorter: {},
-    },
-    {
-      title: "TRAILER",
-      dataIndex: "link",
-      sorter: {},
-    },
-  ];
+  const [listMovies, setListMovies] = useState([]);
+  const [popupAdd, setPopupAdd] = useState(false);
+  const [popupUpdate, setPopupUpdate] = useState(false);
 
-  const data = [
-    {
-      key: "1",
-      id: 1,
-      phim: "Mắt Biếc",
-      date: "18-07-2021",
-      time: "90 phút",
-      link: "https://www.youtube.com/watch?v=KSFS0OfIK2c",
-    },
-    {
-      key: "2",
-      id: 2,
-      phim: "Mắt Biếc",
-      date: "18-07-2021",
-      time: "90 phút",
-      link: "https://www.youtube.com/watch?v=KSFS0OfIK2c",
-    },
-    {
-      key: "3",
-      id: 3,
-      phim: "Mắt Biếc",
-      date: "18-07-2021",
-      time: "90 phút",
-      link: "https://www.youtube.com/watch?v=KSFS0OfIK2c",
-    },
-  ];
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
+  const handlePopupAdd = () => {
+    setPopupAdd(!popupAdd);
   };
+
+  const handlePopupUpdate = () => {
+    setPopupUpdate(!popupUpdate);
+  };
+
+  const fetchListMovies = async () => {
+    try {
+      const response = await MovieAPI.getAll();
+      setListMovies(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchListMovies();
+  }, []);
+
+  const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
+
   return (
     <>
+      <AddFilm trigger={popupAdd} onClickClosePopupAdd={handlePopupAdd} />
+      <UpdateFilm
+        trigger={popupUpdate}
+        onClickClosePopupUpdate={handlePopupUpdate}
+      />
       <div className="content-ql">
         <h2>Danh Sách Phim</h2>
-        <div className="button-add-film">
-          <Button
-            onClick=''
-            type="primary"
-            shape="round"
-            icon={<VideoCameraAddOutlined />}
-            size="large"
-          >
-            Thêm Phim
-          </Button>
+        <div className="button">
+          <div className="button-add-film">
+            <Button
+              onClick={() => handlePopupAdd()}
+              type="primary"
+              shape="round"
+              icon={<VideoCameraAddOutlined />}
+              size="large"
+            >
+              Thêm Phim
+            </Button>
+          </div>
+          <div className="button-update-film">
+            <Button
+              onClick={() => handlePopupUpdate()}
+              type="primary"
+              shape="round"
+              icon={<VideoCameraOutlined />}
+              size="large"
+            >
+              Sửa Phim
+            </Button>
+          </div>
         </div>
       </div>
       <div className="list-ql">
@@ -90,14 +81,46 @@ const ListQl = () => {
             <h4>Ngày công chiếu</h4>
             <div className="date-picker-cong-chieu">
               <DatePicker
-                defaultValue={("10/12/2021", moment(dateFormatList[0]))}
+                defaultValue={("12/12/2021", moment(dateFormatList[0]))}
                 format={dateFormatList}
               />
             </div>
           </div>
         </div>
         <div className="list-film">
-          <Table columns={columns} dataSource={data} onChange={onChange} />
+          <table>
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>PHIM</th>
+                <th>NGÀY CÔNG CHIẾU</th>
+                <th>THỜI LƯỢNG</th>
+                <th>TRAILER</th>
+              </tr>
+            </thead>
+            {listMovies.map((item, index) => {
+              return (
+                <tbody>
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>
+                      <div>
+                        <picture>
+                          <image
+                            src={`https://ticket-box-clone.herokuapp.com/image/${item.image}`}
+                          />
+                        </picture>
+                        <p>{item.name}</p>{" "}
+                      </div>
+                    </td>
+                    <td>{item.releaseDate}</td>
+                    <td>{item.runningTime} phút</td>
+                    <td>{item.trailer}</td>
+                  </tr>
+                </tbody>
+              );
+            })}
+          </table>
         </div>
       </div>
     </>

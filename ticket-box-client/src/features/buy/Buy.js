@@ -73,7 +73,7 @@ const Buy = (props) => {
                       <h2>2D</h2>
                     </div>
                     <div className="gio">
-                      <a href="/thanhtoan">{item.timeStart}</a>
+                      <a href="/payment">{item.timeStart}</a>
                     </div>
                   </div>
                 </Panel>
