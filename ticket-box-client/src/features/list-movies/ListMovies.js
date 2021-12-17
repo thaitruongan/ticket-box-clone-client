@@ -34,7 +34,7 @@ const ListMovies = () => {
           return (
             <div key={movie._id} className="list-style-card">
               <div className="list-card-movies">
-                <div
+                <div className="lsmec"
                   onClick={(e) => {
                     if (e.target.className === "list-muave") {
                       navigate("/buy", { state: movie });
@@ -66,6 +66,7 @@ const ListMovies = () => {
                   </div>
 
                   <button
+                    className="list-muave"
                     onClick={(e) => {
                       if (e.target.className === "list-muave") {
                         navigate("/buy", { state: movie });
@@ -73,7 +74,6 @@ const ListMovies = () => {
                         navigate("/detail-movies", { state: movie });
                       }
                     }}
-                    className="list-muave"
                   >
                     Mua vé
                   </button>

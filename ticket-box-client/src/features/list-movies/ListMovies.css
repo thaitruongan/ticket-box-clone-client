@@ -17,16 +17,27 @@
   padding-right: 12px;
 }
 
+<<<<<<< HEAD
 .list-card-movies .click-hover {
+=======
+.list-card-movies .lsmec {
+>>>>>>> 9f2edafe562510ce7a6d527375f4a52f404be34a
   padding: 16px;
   display: flex;
   position: relative;
   width: 25rem;
+<<<<<<< HEAD
 }
 .click-hover {
+=======
+>>>>>>> 9f2edafe562510ce7a6d527375f4a52f404be34a
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+}
+
+.list-card-movies .lsmec:hover {
+  background-color: #f0f0f0;
 }
 
 .list-card-movies_cover img {
