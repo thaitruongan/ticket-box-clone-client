@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input } from "antd";
 import { ReactComponent as User } from "../../../images/info-user.svg";
-import "./InfoUser.css";
+import "./ReceiverInfo.css";
 
 const InfoUser = () => {
   return (

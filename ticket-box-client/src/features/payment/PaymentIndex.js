@@ -1,8 +1,8 @@
 import React from "react";
 import { Row, Col } from "antd";
-import InfoUser from "./thong-tin-nguoi-nhan/InfoUser";
-import BuyBox from "./phuong-thuc-thanh-toan/BuyBox";
-import Ve from "./ve/Ve";
+import InfoUser from "./receiver-info/ReceiverInfo";
+import BuyBox from "./payment-methods/BuyBox";
+import Ve from "./ticket/Ticket";
 import TimeWaiting from "./time-waiting/TimeWaiting";
 
 const ThanhToanIndex = () => {

@@ -4,8 +4,8 @@ import Home from "./pages/home/Home";
 import SignIn from "./features/sign-in/SignIn";
 import Movies from "./pages/movies/Movies";
 import BuyPage from "./pages/buy/Buy";
-import ThanhToan from "./pages/thanh-toan/ThanhToan";
-import QLPhimPage from "./pages/ql-phim/QLPhimPage";
+import Payment from "./pages/payment/Payment";
+import ManagerFilm from "./pages/manager-film/ManagerFilm";
 
 import Profile from "./features/profile/Profile";
 import FilmDetail from "./features/film-detail/FilmDetail";
@@ -24,8 +24,8 @@ function App() {
         <Route path="/detail-movies" element={<FilmDetail />} />
         <Route path="/buy" element={<BuyPage />} />
         <Route path="/select-seat" element={<SeatMap />} />
-        <Route path="/thanhtoan" element={<ThanhToan />} />
-        <Route path="/admin" element={<QLPhimPage />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/admin" element={<ManagerFilm />} />
       </Routes>
     </Router>
   );

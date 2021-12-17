@@ -57,7 +57,7 @@ const AppBannerMovie = () => {
                   >
                     <picture>
                       <img
-                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        src="https://images.tkbcdn.com/1/780/300/Upload/eventcover/2021/12/11/44B240.jpg"//{`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
                         alt={movie.name}
                       />
                     </picture>

@@ -1,8 +1,8 @@
 import React from "react";
 import { Layout } from "antd";
 import AppHeader from "../../components/header/Header";
-import "./ThanhToan.css";
-import ThanhToanIndex from "../../features/thanh-toan/ThanhToanIndex";
+import "./Payment.css";
+import ThanhToanIndex from "../../features/payment/PaymentIndex";
 const { Header, Content } = Layout;
 
 const ThanhToan = () => {
