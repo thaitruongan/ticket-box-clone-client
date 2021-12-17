@@ -17,16 +17,18 @@
   padding-right: 12px;
 }
 
-.list-card-movies a {
+.list-card-movies .lsmec {
   padding: 16px;
   display: flex;
   position: relative;
   width: 25rem;
-}
-a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+}
+
+.list-card-movies .lsmec:hover {
+  background-color: #f0f0f0;
 }
 
 .list-card-movies_cover img {

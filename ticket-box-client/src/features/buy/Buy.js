@@ -3,6 +3,7 @@ import ShowTimeAPI from "../../api/showTimeAPI";
 import { Row, Col, Collapse } from "antd";
 import "./Buy.css";
 import Calendar from "../../components/calendar/Calendar";
+import { useNavigate } from "react-router";
 
 const { Panel } = Collapse;
 
@@ -11,6 +12,7 @@ function callback(key) {
 }
 
 const Buy = (props) => {
+  const navigate = useNavigate();
   const [showTime, setShowTime] = useState([]);
   const { movieDetail } = props;
 
@@ -61,8 +63,10 @@ const Buy = (props) => {
         </Col>
         <Col className="info-xuat-chieu">
           {showTime.map((item) => {
+            console.log(item);
             return (
               <Collapse
+                key={item._id}
                 defaultActiveKey={["1"]}
                 onChange={callback}
                 className="collapse"
@@ -72,15 +76,15 @@ const Buy = (props) => {
                     <div className="loai-phim">
                       <h2>2D</h2>
                     </div>
-                    <div className="gio">
-                      <a href="/thanhtoan">{item.timeStart}</a>
+                    <div className="gio" >
+                      {item.timeStart}
                     </div>
                   </div>
                 </Panel>
               </Collapse>
             );
           })}
-
+{/* 
           <Collapse
             defaultActiveKey={["1"]}
             onChange={callback}
@@ -96,7 +100,7 @@ const Buy = (props) => {
                 </div>
               </div>
             </Panel>
-          </Collapse>
+          </Collapse> */}
         </Col>
       </Row>
     </div>
