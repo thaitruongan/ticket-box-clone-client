@@ -14,11 +14,13 @@ const AddFilm = (props) => {
     setFilm(newFilm);
     console.log(newFilm);
   };
+
   const handleClosePopupAdd = () => {
     if (onClickClosePopupAdd) {
       onClickClosePopupAdd();
     }
   };
+  
   const normFile = (e) => {
     console.log("Upload event:", e);
 
