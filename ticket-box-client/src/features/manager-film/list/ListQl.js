@@ -3,15 +3,34 @@ import MovieAPI from "../../../api/movieAPI";
 import AddFilm from "../add-film/AddFilm";
 import UpdateFilm from "../update-film/UpdateFilm";
 import { ReactComponent as Search } from "../../../images/search.svg";
-import { Input, DatePicker, Button } from "antd";
+import { Input } from "antd";
 import { VideoCameraAddOutlined, VideoCameraOutlined } from "@ant-design/icons";
-import moment from "moment";
 import "./ListQl.css";
 
 const ListQl = () => {
   const [listMovies, setListMovies] = useState([]);
   const [popupAdd, setPopupAdd] = useState(false);
   const [popupUpdate, setPopupUpdate] = useState(false);
+  const [movieSelected, setMovieSelected] = useState({});
+  const [activeId, setActiveId] = useState("");
+
+  const handleSelectMovie = (u) => {
+    setMovieSelected(u);
+    setActiveId(u._id);
+  };
+
+  const handleSelectStyle = (u) => {
+    if (movieSelected) {
+      if (activeId !== u._id) {
+        return { backgroundColor: "#f0f0f0", color: "#000000" };
+      } else {
+        return {
+          backgroundColor: "#2DC275",
+          color: "#ffffff",
+        };
+      }
+    }
+  };
 
   const handlePopupAdd = () => {
     setPopupAdd(!popupAdd);
@@ -34,8 +53,14 @@ const ListQl = () => {
   useEffect(() => {
     fetchListMovies();
   }, []);
+  const handleReleaseDate = (date) => {
+    const d = new Date(date);
+    const getD = d.getDate();
+    const getM = d.getMonth() + 1;
+    const getY = d.getFullYear();
 
-  const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
+    return `${getD}/${getM}/${getY}`;
+  };
 
   return (
     <>
@@ -48,26 +73,20 @@ const ListQl = () => {
         <h2>Danh Sách Phim</h2>
         <div className="button">
           <div className="button-add-film">
-            <Button
-              onClick={() => handlePopupAdd()}
-              type="primary"
-              shape="round"
-              icon={<VideoCameraAddOutlined />}
-              size="large"
-            >
+            <button className="bnt-event" onClick={() => handlePopupAdd()}>
+              <i>
+                <VideoCameraAddOutlined />
+              </i>
               Thêm Phim
-            </Button>
+            </button>
           </div>
           <div className="button-update-film">
-            <Button
-              onClick={() => handlePopupUpdate()}
-              type="primary"
-              shape="round"
-              icon={<VideoCameraOutlined />}
-              size="large"
-            >
+            <button className="bnt-event" onClick={() => handlePopupUpdate()}>
+              <i>
+                <VideoCameraOutlined />
+              </i>
               Sửa Phim
-            </Button>
+            </button>
           </div>
         </div>
       </div>
@@ -80,10 +99,12 @@ const ListQl = () => {
           <div className="ngay-cong-chieu">
             <h4>Ngày công chiếu</h4>
             <div className="date-picker-cong-chieu">
-              <DatePicker
-                defaultValue={("12/12/2021", moment(dateFormatList[0]))}
-                format={dateFormatList}
-              />
+              <input
+                type="date"
+                id="daytime"
+                name="daytime"
+                className="datepicker"
+              ></input>
             </div>
           </div>
         </div>
@@ -101,21 +122,32 @@ const ListQl = () => {
             {listMovies.map((item, index) => {
               return (
                 <tbody>
-                  <tr>
+                  <tr
+                    key={item._id}
+                    style={handleSelectStyle(item)}
+                    onClick={() => handleSelectMovie(item)}
+                  >
                     <td>{index + 1}</td>
                     <td>
-                      <div>
+                      <div className="movie">
+                        {/* <img
+                          src="https://images.tkbcdn.com/2/420/600/poster/e491c1fe-51a5-11ec-8fb8-0242ac110002@webp"
+                          alt=""
+                          className="img-list-manager"
+                        /> */}
                         <picture>
-                          <image
+                          <img
+                            alt={item.name}
                             src={`https://ticket-box-clone.herokuapp.com/image/${item.image}`}
+                            className="img-list-manager"
                           />
                         </picture>
                         <p>{item.name}</p>{" "}
                       </div>
                     </td>
-                    <td>{item.releaseDate}</td>
+                    <td>{handleReleaseDate(item.releaseDate)}</td>
                     <td>{item.runningTime} phút</td>
-                    <td>{item.trailer}</td>
+                    <td className="trailer">{item.trailer}</td>
                   </tr>
                 </tbody>
               );

@@ -6,12 +6,41 @@
   padding-right: 32px;
   margin-top: 2rem;
 }
-.button{
+.button {
   display: flex;
 }
-.button-add-film{
+.button-add-film {
   margin-right: 2rem;
 }
+.bnt-event {
+  text-transform: none;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 20px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  min-width: 88px;
+  padding: 0px 24px;
+  background: #2dc275;
+  color: #fff;
+}
+.bnt-event i {
+  margin-right: 8px;
+}
+
+.bnt-event:hover {
+  background: #229459;
+}
+
 .list-ql {
   background-color: white;
   margin-top: 1rem;
@@ -43,10 +72,37 @@
   margin-left: 1rem;
 }
 
-table, th, td {  
+table,
+th,
+td {
   border: 1px solid gray;
-}  
-th, td {  
+}
+th,
+td {
   padding: 10px;
   text-align: center;
-} 
+}
+
+td {
+  cursor: pointer;
+}
+
+.trailer,
+.movie {
+  text-align: left;
+}
+
+.movie {
+  display: flex;
+}
+
+.movie img {
+  width: 3rem;
+  height: 4rem;
+  border-radius: 4px;
+  margin-right: 1rem;
+}
+
+.movie p {
+  font-weight: bold;
+}

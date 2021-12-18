@@ -30,8 +30,31 @@
   border-radius: 80px;
   margin-top: 2rem;
 }
-
+.check-box-access a{
+  color: #2dc275;
+}
 .button-thanh-toan {
-  width: 21rem;
-  color: rgb(255, 255, 255);
+  text-transform: none;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 20px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  min-width: 88px;
+  padding: 0px 24px;
+  background: #2dc275;
+  color: #fff;
+}
+
+.button-thanh-toan:hover {
+  background: #229459;
 }

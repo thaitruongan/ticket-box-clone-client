@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Form, Upload, Button } from "antd";
+import { Row, Col, Form, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 
 import "./UpdateFilm.css";
@@ -109,7 +109,7 @@ const UpdateFilm = (props) => {
                     >
                       <Upload.Dragger name="files" action="/upload.do">
                         <p className="ant-upload-drag-icon">
-                          <InboxOutlined />
+                          <InboxOutlined style={{color: "#2dc275"}}/>
                         </p>
                         <p className="ant-upload-text">
                           Nhấn hoặc thả ảnh của bạn vào đây
@@ -120,15 +120,12 @@ const UpdateFilm = (props) => {
                 </div>
               </div>
               <div className="bnt-save-film">
-                <Button
-                  type="primary"
-                  shape="round"
-                  size="large"
+                <button
                   className="bnt-save"
                   onClick={() => handleClosePopupUpdate()}
                 >
                   Save
-                </Button>
+                </button>
               </div>
             </form>
           </div>

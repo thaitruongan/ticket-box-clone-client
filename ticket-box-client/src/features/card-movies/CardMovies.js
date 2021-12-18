@@ -41,18 +41,23 @@ const CardMovies = () => {
                     <picture>
                       <img
                         alt={movie.name}
-                        src="https://images.tkbcdn.com/2/420/600/poster/e491c1fe-51a5-11ec-8fb8-0242ac110002@webp"//{`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
                       />
                     </picture>
                     <div className="bnt-img">
                       <div className="bnt-xem">
-                        <button onClick={(e) => {
+                        <button
+                          onClick={(e) => {
                             if (e.target.className === "muave") {
                               navigate("/buy", { state: movie });
                             } else {
                               navigate("/detail-movies", { state: movie });
                             }
-                          }} className="xemchitiet">Xem chi tiết</button>
+                          }}
+                          className="xemchitiet"
+                        >
+                          Xem chi tiết
+                        </button>
                       </div>
                       <div className="btn-mua">
                         <button
