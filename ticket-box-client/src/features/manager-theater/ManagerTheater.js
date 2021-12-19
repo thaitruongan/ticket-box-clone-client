@@ -94,6 +94,24 @@ export const ManagerTheater = () => {
             </div>
           </div>
           <div className="content-lr">
+            {listRoom.map((item, index) => {
+              return (
+                <>
+                  <div className="lr-item">
+                    <p>{index + 1}</p>
+                  </div>
+                  <div className="lr-item">
+                    <p>{item.name}</p>
+                  </div>
+                  <div className="lr-item">
+                    <p>{item.rowAmount}</p>
+                  </div>
+                  <div className="lr-item">
+                    <p>{item.columnAmount}</p>
+                  </div>
+                </>
+              );
+            })}
             <div className="lr-item">
               <p>1</p>
             </div>
