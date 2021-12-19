@@ -9,6 +9,8 @@ import EventManager from "../../features/eventManager/EventManager";
 import { useSelector } from "react-redux";
 import { selectCurrentUser, selectToken } from "../../app/userSlice";
 import { useNavigate } from "react-router";
+import { ManagerTheater } from "../../features/manager-theater/ManagerTheater";
+import Manager from "../../features/manager/Manager";
 
 const { Header, Content, Sider } = Layout;
 
@@ -29,17 +31,15 @@ const QLPhimPage = () => {
   const switchComponent = (n) => {
     switch (n) {
       case 0:
-        return;
+        return <Manager />;
       case 1:
         return <UserManager />;
       case 2:
-        return;
+        return <ManagerTheater />;
       case 3:
         return <ListQl />;
       case 4:
         return <EventManager />;
-      case 5:
-        return;
 
       default:
         return;

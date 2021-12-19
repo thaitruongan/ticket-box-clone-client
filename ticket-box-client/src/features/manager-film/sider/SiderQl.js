@@ -9,8 +9,6 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-const { SubMenu } = Menu;
-
 const SiderQl = (props) => {
   const { onHandleChangeSwitchNum } = props;
 
@@ -56,14 +54,13 @@ const SiderQl = (props) => {
           Quản lý phim
         </Menu.Item>
 
-        <SubMenu key="events" icon={<CalendarOutlined />} title="Xuất Chiếu">
-          <Menu.Item key="4" onClick={() => onClickHandle(5)}>
-            Quản lý xuất chiếu
-          </Menu.Item>
-          <Menu.Item key="5" onClick={() => onClickHandle(6)}>
-            Xuất chiếu
-          </Menu.Item>
-        </SubMenu>
+        <Menu.Item
+          key="4"
+          icon={<CalendarOutlined />}
+          onClick={() => onClickHandle(4)}
+        >
+          Quản lý xuất chiếu
+        </Menu.Item>
       </Menu>
     </>
   );

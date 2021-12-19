@@ -6,17 +6,23 @@ const MovieAPI = {
     return axiosClient.get(url, { params });
   },
 
-  addFilm: (image, name, trailer, description, label, runningTime, releaseDate) => {
+  addFilm: (token, image, name, trailer, description, label, runningTime, releaseDate) => {
     const url = "movie";
     return axiosClient.post(url, { 
-        'file':`${image}`,
+        'image':`${image}`,
         'name':`${name}`,
         'trailer': `${trailer}`,
         'description': `${description}`,
         'label': `${label}`,
         'runningTime':`${runningTime}`,
         'releaseDate':`${releaseDate}`,
-     });
+        headers: {
+          'content-type': 'application/json',
+          //'content-type': 'multipart/form-data',
+          'tbtoken': token
+        },
+      },
+    );
   },
 };
 

@@ -1,0 +1,29 @@
+.manager{
+    margin-left: 3rem;
+}
+.film {
+    margin-top: 2rem;
+    width: 30rem;
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    height: 100%;
+}
+
+.room {
+    background: #fff;
+    width: 30rem;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 2rem;
+    height: 15rem;
+}
+
+.user{
+    background: #fff;
+    width: 30rem;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 2rem;
+    height: 15rem;
+}
