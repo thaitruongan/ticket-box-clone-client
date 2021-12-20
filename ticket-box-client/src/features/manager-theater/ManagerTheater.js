@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import RoomAPI from "../../api/roomAPI";
 import { selectToken } from "../../app/userSlice";
+import { addCurrentRoom } from "../../app/roomSlice";
 import { ShopOutlined } from "@ant-design/icons";
 import "./ManagerTheater.css";
 
 export const ManagerTheater = () => {
+  const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const [show, setShow] = useState(false);
   const [listRoom, setListRoom] = useState([]);
+  const [name, setName] = useState("");
+  const [rowAmount, setRowAmount] = useState("");
+  const [columnAmount, setColumnAmount] = useState("");
 
   useEffect(() => {
     const fetchAllRoom = async () => {
@@ -25,6 +30,29 @@ export const ManagerTheater = () => {
 
     fetchAllRoom();
   }, [token]);
+
+  useEffect(() => {
+    const addRoom = async () => {
+      try {
+        const response = await RoomAPI.addRoom(
+          token,
+          name,
+          rowAmount,
+          columnAmount
+        );
+        if (response.message === "successfully!") {
+          dispatch(addCurrentRoom(response));
+          setName("");
+          setRowAmount("");
+          setColumnAmount("");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    addRoom();
+  }, [token, name, rowAmount, columnAmount, dispatch]);
   return (
     <>
       <div className="manager-room">
@@ -46,33 +74,26 @@ export const ManagerTheater = () => {
               <div className="fmr">
                 <div>
                   <h5>Tên rạp</h5>
-                  <input
-                    className="name-room"
-                    onChange=""
-                    id="name"
-                    value=""
-                  ></input>
+                  <input className="name-room" id="name" value=""></input>
                 </div>
                 <div>
                   <h5>Số lượng hàng</h5>
-                  <input
-                    className="row-room"
-                    onChange=""
-                    id="row"
-                    value=""
-                  ></input>
+                  <input className="row-room" id="row" value=""></input>
                 </div>
                 <div>
                   <h5>Số lượng cột</h5>
-                  <input
-                    className="col-room"
-                    onChange=""
-                    id="col"
-                    value=""
-                  ></input>
+                  <input className="col-room" id="col" value=""></input>
                 </div>
               </div>
-              <button className="submit" onClick={() => setShow(false)}>
+              <button className="submit" 
+              onClick={async () => {
+                setShow(false);
+                await RoomAPI.addRoom(
+                  name,
+                  rowAmount,
+                  columnAmount
+                );
+              }}>
                 save
               </button>
             </form>

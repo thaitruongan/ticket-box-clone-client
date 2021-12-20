@@ -1,76 +1,96 @@
-import React from "react";
-import './EventManager.css';
-import { Select, DatePicker } from 'antd';
-import moment from 'moment';
+import React, { useState, useEffect } from "react";
+import ShowTimeAPI from "../../api/showTimeAPI";
+import "./EventManager.css";
 import AddEvent from "../../commons/addEvent/AddEvent";
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-
 const EventManager = () => {
-    const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
-    const today = new Date();
-    const movieData =[
-        {
-            id: '1',
-            name: 'SHANG-CHI AND THE LEGEND OF THE TEN RINGS',
-            time: '2 giờ 12 phút',
-            tag: 'C13',
-            avatar: 'https://images.tkbcdn.com/2/320/480/poster/d64fc5b6-51a3-11ec-8fb8-0242ac110002@webp',
-        },
-        {
-            id: '2',
-            name: 'SHANG-CHI AND THE LEGEND OF THE TEN RINGS',
-            time: '2 giờ 12 phút',
-            tag: 'C13',
-            avatar: 'https://images.tkbcdn.com/2/320/480/poster/d64fc5b6-51a3-11ec-8fb8-0242ac110002@webp',
-        },
-        {
-            id: '3',
-            name: 'SHANG-CHI AND THE LEGEND OF THE TEN RINGS',
-            time: '2 giờ 12 phút',
-            tag: 'C13',
-            avatar: 'https://images.tkbcdn.com/2/320/480/poster/d64fc5b6-51a3-11ec-8fb8-0242ac110002@webp',
-        },
-        {
-            id: '4',
-            name: 'SHANG-CHI AND THE LEGEND OF THE TEN RINGS',
-            time: '2 giờ 12 phút',
-            tag: 'C13',
-            avatar: 'https://images.tkbcdn.com/2/320/480/poster/d64fc5b6-51a3-11ec-8fb8-0242ac110002@webp',
-        },
-        {
-            id: '5',
-            name: 'SHANG-CHI AND THE LEGEND OF THE TEN RINGS',
-            time: '2 giờ 12 phút',
-            tag: 'C13',
-            avatar: 'https://images.tkbcdn.com/2/320/480/poster/d64fc5b6-51a3-11ec-8fb8-0242ac110002@webp',
-        },
-    ];
-    return (
-        <div className="event-manager-container">
-            <div className="steb-01">
-                <Select
-                className="select-name-movie"
-                    showSearch
-                    placeholder="Chọn phim"
-                    optionFilterProp="children"
-                >
-                    {movieData.map((movie) => (
-                        <Option className="omsfem" value={movie.name}>{movie.name}</Option>
-                    ))}
-                </Select>
+  const [showCreate, setShowCreate] = useState(false);
+  const [listShowTime, setListShowTime] = useState([]);
 
-                <RangePicker
-                    className="range-date-picker"
-                    defaultValue={[moment(today, dateFormatList[0]), moment(today, dateFormatList[0])]}
-                    format={dateFormatList}
-                />
-            </div>
+  const handleDate = (date) => {
+    const d = new Date(date);
+    const getD = d.getDate();
+    const getM = d.getMonth() + 1;
+    const getY = d.getFullYear();
 
-            <AddEvent/>
+    return `${getD}/${getM}/${getY}`;
+  };
+
+  const handleTime = (time) => {
+    const t = new Date(time);
+    const getH = t.getHours();
+    const getM = t.getMinutes();
+    const getS = t.getSeconds();
+
+    return `${getH}:${getM}:${getS}`;
+  };
+  const fetchListShowTime = async () => {
+    try {
+      const response = await ShowTimeAPI.getAll();
+      setListShowTime(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchListShowTime();
+  }, []);
+
+  return (
+    <div className="event-manager-container">
+      <div>
+        <h2>Danh sách suất chiếu</h2>
+      </div>
+      <div className="list-event">
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>SUẤT CHIẾU</th>
+              <th>PHIM</th>
+              <th>RẠP</th>
+              <th>GIÁ</th>
+            </tr>
+          </thead>
+          {listShowTime.map((item, index) => {
+            return (
+              <tbody>
+                <tr key={item._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="show-time">
+                      <p> Ngày {handleDate(item.timeStart)}</p>
+                      <p>{handleTime(item.timeStart)} giờ</p>
+                    </div>
+                  </td>
+                  <td>{item.movieId}</td>
+                  <td>{item.roomId}</td>
+                  <td>
+                    <div className="price">
+                      <p>Giá chuẩn {item.standardPrice}</p>
+                      <p>Giá VIP {item.vipPrice}</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            );
+          })}
+        </table>
+      </div>
+      <div className="button">
+        <button className="btn-cst" onClick={() => setShowCreate(!showCreate)}>
+          Tạo suất chiếu
+        </button>
+      </div>
+      {showCreate ? (
+        <div className="create">
+          <AddEvent />
         </div>
-    )
-}
+      ) : null}
+    </div>
+  );
+};
 
-export default EventManager
+export default EventManager;

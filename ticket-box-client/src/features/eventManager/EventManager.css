@@ -47,3 +47,54 @@
   .ant-select-selection-placeholder {
   margin: auto 0;
 }
+
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 3px solid #ffffff;
+  background: #f0f0f0;
+}
+th,
+td {
+  padding: 10px;
+}
+
+td {
+  cursor: pointer;
+}
+
+.show-time,
+.price {
+  text-align: left;
+}
+
+.btn-cst {
+  text-transform: none;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 20px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  min-width: 88px;
+  padding: 0px 24px;
+  background: #2dc275;
+  color: #fff;
+  margin:1rem 3rem;
+}
+
+.btn-cst:hover {
+  background: #229459;
+}

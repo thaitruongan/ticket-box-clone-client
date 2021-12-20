@@ -25,5 +25,4 @@ export default movieReducer;
 
 export const {addCurrentMovie, updateCurrentMovie} = movieSlice.actions;
 
-export const selectToken = (state) => state.movie.token;
 export const selectCurrentMovie = (state) => state.movie.currentMovie;

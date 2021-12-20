@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import MovieAPI from "../../api/movieAPI";
-import { selectCurrentUser, selectToken } from "../../app/userSlice";
+import { selectToken } from "../../app/userSlice";
 import RoomAPI from "../../api/roomAPI";
 import UserAPI from "../../api/userAPI";
 import { Row, Col } from "antd";
+import theater from "../../images/BHDStar_theater.jpg";
 import "./Manager.css";
 
 const Manager = () => {
@@ -82,12 +83,23 @@ const Manager = () => {
         <Col>
           <div className="room">
             {listRoom.map((item) => {
-              return <p>{item.name}</p>;
+              return (
+                <div className="room-item">
+                  <picture>
+                    <img src={theater} alt="theater" />
+                  </picture>
+                  <p>{item.name}</p>;
+                </div>
+              );
             })}
           </div>
           <div className="user">
             {listUSer.map((item) => {
-              return <p>{item.name}</p>;
+              return (
+                <div className="user-item">
+                  <p>{item.name}</p>
+                </div>
+              );
             })}
           </div>
         </Col>

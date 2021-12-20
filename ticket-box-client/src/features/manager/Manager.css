@@ -13,6 +13,9 @@
 .film-item {
   display: flex;
   margin: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgb(204, 198, 198);
 }
 
 .film img {
@@ -23,6 +26,7 @@
   font-size: 15px;
   font-weight: bold;
   margin: 1rem;
+  color: #fff;
 }
 
 .room {
@@ -41,4 +45,17 @@
   padding: 1rem;
   margin: 2rem;
   height: 15rem;
+}
+
+.user-item{
+  background: rgb(204, 198, 198);
+  text-align: center;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.user-item p{
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
 }
