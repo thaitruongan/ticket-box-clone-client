@@ -63,7 +63,7 @@ const Calendar = (props) => {
         <li
           key={day.toLocaleDateString()}
           className={`detail__listOfDay--item ${idx === 0 ? "active" : ""}`}
-          // onClick={(e) => handleSelectDay(e, day)}
+          onClick={(e) => handleSelectDay(e, day)}
         >
           <p className="dayOfWeek">{displayDayOfWeek(day)[0]}</p>
           <p className="date">{`${day.getDate()}`.padStart(2, "0")}</p>

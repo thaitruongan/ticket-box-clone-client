@@ -18,7 +18,7 @@
   color: white;
 }
 
-.header-login .content {
+.header-login .content-header-login {
   background-color: transparent;
   max-width: 360px;
   margin: auto;
@@ -34,29 +34,29 @@
   position: absolute;
 }
 
-.content .close {
+.content-header-login .close {
   cursor: pointer;
   z-index: 2;
 }
 
-.content .close-tag .close path {
+.content-header-login .close-tag .close path {
   stroke: #ffffff;
 }
 
-.content .bot-header {
+.content-header-login .bot-header {
   height: 64px;
   position: relative;
   margin: auto 0 0 0;
 }
 
-.content .bot-header .logo-white {
+.content-header-login .bot-header .logo-white {
   margin-left: 0px;
   position: absolute;
   bottom: 16px;
   left: 20px;
 }
 
-.content .bot-header .sosip {
+.content-header-login .bot-header .sosip {
   margin-top: 24px;
   position: absolute;
   bottom: 20px;
@@ -69,7 +69,7 @@
   font-family: Raleway, sans-serif;
 }
 
-.content .bot-header .cute-dog {
+.content-header-login .bot-header .cute-dog {
   position: absolute;
   right: 20px;
 }

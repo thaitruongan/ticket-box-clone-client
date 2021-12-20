@@ -30,7 +30,7 @@
   border-radius: 80px;
   margin-top: 2rem;
 }
-.check-box-access a{
+.check-box-access a {
   color: #2dc275;
 }
 .button-thanh-toan {
@@ -55,6 +55,24 @@
   color: #fff;
 }
 
+.thong-tin-ve-phim {
+  margin-left: 10px;
+}
+
 .button-thanh-toan:hover {
   background: #229459;
+}
+
+.phong-ve .pv-list {
+  display: flex;
+}
+
+.phong-ve .pv-list .pv-child:not(:last-child) {
+  margin-right: 5px;
+}
+
+.rcld {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
