@@ -12,7 +12,6 @@ const CardMovies = () => {
     try {
       const response = await MovieAPI.getAll();
       setMovies(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }

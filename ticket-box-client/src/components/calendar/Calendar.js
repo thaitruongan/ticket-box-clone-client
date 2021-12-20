@@ -35,6 +35,7 @@ const displayDayOfWeek = (dateString) => {
 };
 
 const Calendar = (props) => {
+  const {onClick} = props
   const value = moment();
   const startDay = value.clone().startOf("day");
   const endDay = value.clone().endOf("month").endOf("week");
@@ -46,8 +47,9 @@ const Calendar = (props) => {
   );
 
   const handleSelectDay = (e, dateString) => {
-    const day = dateString.toLocaleDateString("it-IT");
-    props.selectDay(day);
+    if (dateString && onClick) {      
+      onClick(dateString);
+    }
 
     Array.from(ulRef.current.childNodes).forEach((li) => {
       li.classList.remove("active");

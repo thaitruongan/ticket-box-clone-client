@@ -8,7 +8,6 @@ const SeatRow = (props) => {
     onClickOnSeat,
     selectedList,
     idSocket,
-    selectedListServer,
   } = props;
   const hanldeClickOnSeat = (tic) => {
     if (onClickOnSeat && tic) {
@@ -25,7 +24,6 @@ const SeatRow = (props) => {
           idSocket={idSocket}
           onClick={hanldeClickOnSeat}
           selectedList={selectedList}
-          selectedListServer={selectedListServer}
         />
       ))}
     </div>

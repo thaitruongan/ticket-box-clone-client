@@ -10,7 +10,8 @@ const ImportOtp = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const stateNavigate = useLocation();
-    const phoneNumber = stateNavigate.state;
+    const phoneNumber = stateNavigate.state.phoneNumber;
+    const prevPath = stateNavigate.state.prevPath;
     const [check, setCheck] = useState(false)
     const [count, setCount] = useState(0);
     const [otp, setOtp] = useState("");
@@ -59,7 +60,9 @@ const ImportOtp = () => {
                 setCheck(true);
                 try {
                     const response = await UserAPI.ImportOTP(phoneNumber, otp);
-                    if (response.message === "success!") {                        
+                    console.log(response);
+                    if (response.token) {
+                        localStorage.setItem("token", response.token);
                         dispatch(addCurrentUser(response));
                         setCount(0);
                         setCheck(false);
@@ -70,9 +73,9 @@ const ImportOtp = () => {
                         document.getElementById('3').value = '';
                         setOtp("");
                         if (response.version === 0) {
-                            navigate("/profile")
+                            navigate("/profile", {state: prevPath})
                         } else {                            
-                            navigate("/")
+                            navigate(prevPath)
                         }
                     }
                 } catch (error) {
@@ -90,7 +93,7 @@ const ImportOtp = () => {
             }        
             importOTP();
         }
-    }, [phoneNumber, otp, dispatch, navigate]);
+    }, [phoneNumber, otp, dispatch, navigate, prevPath]);
 
     return (
         <div className="import-otp">
@@ -105,9 +108,8 @@ const ImportOtp = () => {
             </div>
             <span className="space"></span>
             <span className="question">Không nhận được OTP??</span>
-            <div className="resend-otp" style={{pointerEvents: isCountDROtp ? "none" : ""}} onClick={async () => {
+            <div className="resend-otp" style={{pointerEvents: isCountDROtp ? "none" : ""}} onClick={() => {
                     setIsCountDROtp(true);
-                    await UserAPI.SignInByPhone(phoneNumber);
                 }} ><span style={{color: isCountDROtp ? "grey" : "#2dc275"}} >{isCountDROtp ? handleCountDROtp() : "Gửi lại OTP"}</span></div>
             <button className="next-button" style={{backgroundColor: check ? "#2dc275" : "#e6ebf5", pointerEvents: check ? "none" : "" }} >Tiếp tục</button>
         </div>

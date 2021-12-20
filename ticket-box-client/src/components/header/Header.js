@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { ReactComponent as Ve } from "../../images/ve.svg";
 import { ReactComponent as Search } from "../../images/search.svg";
@@ -12,6 +12,7 @@ import { ReactComponent as UserLogo } from "../../assets/svg/user.svg";
 import { ReactComponent as Signout } from "../../assets/svg/signout.svg";
 
 const AppHeader = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   const currentUser = useSelector(selectCurrentUser);
@@ -28,17 +29,27 @@ const AppHeader = () => {
 
   const popContent = (
     <div className="popover-user-option">
-      <div className="header-option update-profile" onClick={() => navigate("/profile")} >
+      <div
+        className="header-option update-profile"
+        onClick={() => navigate("/profile", {state: location.pathname})}
+      >
         <UserLogo/>
         Chỉnh sửa hồ sơ
       </div>
 
-      <div className="header-option manager-header" onClick={() => navigate("/admin")} style={{display: handlePermission()}} >
+      <div
+        className="header-option manager-header"
+        onClick={() => navigate("/admin")}
+        style={{display: handlePermission()}}
+      >
         <Setting />
         Quản lý
       </div>
 
-      <div className="header-option signout-header" onClick={() => navigate("/")} >
+      <div
+        className="header-option signout-header"
+        onClick={() => navigate("/")}
+      >
         <Signout/>  
         Thoát
       </div>
@@ -58,7 +69,7 @@ const AppHeader = () => {
     }else{
       return (
         <div className="login">
-          <div className="swblbnua" onClick={() => {navigate("/login")}} >Đăng nhập | Đăng ký</div>
+          <div className="swblbnua" onClick={() => {navigate("/login", {state: location.pathname})}} >Đăng nhập | Đăng ký</div>
         </div>
       )
     }

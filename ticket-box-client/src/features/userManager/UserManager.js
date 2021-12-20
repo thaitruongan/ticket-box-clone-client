@@ -115,7 +115,6 @@ const UserManager = () => {
                                 <Radio.Group className="radio-group" value={userSelected.sex} >
                                     <Radio value="male">Nam</Radio>
                                     <Radio value="female">Nữ</Radio>
-                                    <Radio value ="other">Khác</Radio>
                                 </Radio.Group>
                             </div>
                         </div>
