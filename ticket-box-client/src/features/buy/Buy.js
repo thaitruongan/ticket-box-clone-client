@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+=======
+import React, { useState, useEffect, useNavigate } from "react";
+>>>>>>> ce2daff29344966fed07e783063269265fadda07
 import ShowTimeAPI from "../../api/showTimeAPI";
 import { Row, Col, Collapse } from "antd";
 import "./Buy.css";

@@ -1,9 +1,69 @@
-import React from "react";
+import React,{useState} from "react";
 import "./AddEvent.css";
 //import { PlusCircleOutlined } from "@ant-design/icons";
 import { DatePicker, TimePicker, Select } from "antd";
+import ShowTimeAPI from "../../api/showTimeAPI";
+import { useSelector } from "react-redux";
+import { selectToken } from "../../app/userSlice";
 
-const AddEvent = () => {
+const { Option } = Select;
+const AddEvent = (props) => {
+  const {movie, room, fetchListShowTime} = props;
+  const token = useSelector(selectToken);
+  const [movieId, setMovieId] = useState(null);
+  const [roomId,setRoomId] = useState(null)
+  const [date, setDate] = useState(null)
+  const [time, setTime] = useState(null)
+  const [price, setPrice] = useState(0)
+  const [vipPrice,setVipPrice] = useState(0)  
+  console.log(room)
+  
+  function handleChangeMovie(value) {
+    console.log(`selected ${value}`);
+    setMovieId(value)
+
+  }
+  function handleChangeRoom(value) {
+    console.log(`selected ${value}`);
+    setRoomId(value)
+  }
+
+  function onChangeDate(date, dateString) {
+    console.log(dateString);
+    setDate(dateString)
+  }
+
+  function onChangeTime(time, timeString) {
+    console.log(timeString);
+    setTime(timeString)
+  }
+
+  const handleChangePrice = (e) => {
+    
+    setPrice(e.target.value)
+    console.log(e.target.value)
+  };
+
+  const handleChangeVipPrice = (e) => {
+    
+    setVipPrice(e.target.value)
+    console.log(e.target.value)
+  };
+
+  const handleSubmit = async(e) =>{
+    let _date = new Date(date)
+    _date.setHours(time[0]+time[1]+"")
+    _date.setMinutes(time[3]+time[4]+"")
+    console.log(movieId,roomId,_date,price,vipPrice)
+    try{
+      const res = await ShowTimeAPI.addShowTime(token, movieId,roomId,_date,price,vipPrice)
+      console.log(res)
+      fetchListShowTime();
+    }catch(err){
+      console.log(err)
+    }
+  }
+
   return (
     <div className="new-event-container">
       <div className="btn-mecm">
@@ -24,26 +84,31 @@ const AddEvent = () => {
               showSearch
               placeholder="Chọn phim"
               optionFilterProp="children"
+              onChange={handleChangeMovie}
             >
-              {/* {movieData.map((movie) => (
-            <Option className="omsfem" value={movie.name}>
-              {movie.name}
-            </Option>
-          ))} */}
+              {
+                movie.map((movie)=>{
+                  return(<Option value={movie._id}>{movie.name}</Option>)
+                })
+              }
             </Select>
           </div>
           <div className="time-start">
             <div className="dtpfem d">
               <h5>Chọn ngày</h5>
+<<<<<<< HEAD
               <DatePicker
                 className="selectd"
                 style={{ width: "8rem", marginRight: "4.2rem" }}
               />
+=======
+              <DatePicker onChange={onChangeDate}/>
+>>>>>>> ce2daff29344966fed07e783063269265fadda07
             </div>
 
             <div className="time">
               <h5>Chọn giờ</h5>
-              <TimePicker className="selectt" />
+              <TimePicker className="selectt" onChange={onChangeTime} />
             </div>
           </div>
         </div>
@@ -56,27 +121,38 @@ const AddEvent = () => {
               showSearch
               placeholder="Chọn rạp"
               optionFilterProp="children"
+              onChange={handleChangeRoom}
             >
-              {/* {movieData.map((movie) => (
-            <Option className="omsfem" value={movie.name}>
-              {movie.name}
-            </Option>
-          ))} */}
+              {
+                room.map((room)=>{
+                  return(<Option value={room._id}>{room.name}</Option>)
+                })
+              }
             </Select>
           </div>
 
           <div className="add-price">
             <div className="chuan">
               <h5>Giá chuẩn</h5>
+<<<<<<< HEAD
               <input className="gia" style={{ marginRight: "5rem" }} />
+=======
+              <input className="gia" value={price} id="price" style={{ marginRight:"5rem"}} onChange={(e) => handleChangePrice(e)} />
+>>>>>>> ce2daff29344966fed07e783063269265fadda07
             </div>
             <div className="sstfem dtpfem">
               <h5>Giá VIP</h5>
-              <input className="gia" />
+              <input className="gia" value={vipPrice} id="vipPrice" onChange={(e) => handleChangeVipPrice(e)}/>
             </div>
           </div>
+          
         </div>
       </div>
+      <button type="submit" className="submit" onClick={(e)=>{                
+                handleSubmit(e)
+                }}>
+                save
+      </button>
     </div>
   );
 };
