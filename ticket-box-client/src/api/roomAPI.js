@@ -14,14 +14,14 @@ const RoomAPI = {
   addRoom: (token, name, rowAmount, columnAmount)=>{
     const url = "room";
     return axiosClient.post(url, {
-      headers: {
-        "content-type": "application/json",
-        tbtoken: token,
-      },
+      
       'name':`${name}`,
       'rowAmount':`${rowAmount}`,
       'columnAmount':`${columnAmount}`,
-    })
+    },{headers: {
+      "content-type": "application/json",
+      "tbtoken": token,
+    },})
   }
 };
 

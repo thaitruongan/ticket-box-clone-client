@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import ShowTimeAPI from "../../api/showTimeAPI";
 import "./EventManager.css";
 import AddEvent from "../../commons/addEvent/AddEvent";
+import MovieAPI from "../../api/movieAPI";
+import RoomAPI from "../../api/roomAPI";
+import { useSelector } from "react-redux";
+import { selectToken } from "../../app/userSlice";
 
 const EventManager = () => {
+  const token = useSelector(selectToken);
   const [showCreate, setShowCreate] = useState(false);
   const [listShowTime, setListShowTime] = useState([]);
-
+  const [listMovie, setListMovie] = useState([])
+  const [listRoom,setListRoom] = useState([])
   const handleDate = (date) => {
     const d = new Date(date);
     const getD = d.getDate();
@@ -33,9 +39,30 @@ const EventManager = () => {
       console.log(error);
     }
   };
+  
+  const fetchMovie = async()=>{
+    try{
+      const res = await MovieAPI.getAll();      
+      setListMovie(res.data)
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  const fetchRoom = async()=>{
+    try{
+      const res = await RoomAPI.getAll(token);
+      console.log(res.data)
+      setListRoom(res.data)
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   useEffect(() => {
     fetchListShowTime();
+    fetchMovie();
+    fetchRoom();
   }, []);
 
   return (
@@ -65,8 +92,8 @@ const EventManager = () => {
                       <p>{handleTime(item.timeStart)} giờ</p>
                     </div>
                   </td>
-                  <td>{item.movieId}</td>
-                  <td>{item.roomId}</td>
+                  <td>{item.movie[0].name}</td>
+                  <td>{item.room[0].name}</td>
                   <td>
                     <div className="price">
                       <p>Giá chuẩn {item.standardPrice}</p>
@@ -86,7 +113,7 @@ const EventManager = () => {
       </div>
       {showCreate ? (
         <div className="create">
-          <AddEvent />
+          <AddEvent movie={listMovie} fetchListShowTime={fetchListShowTime} room={listRoom} />
         </div>
       ) : null}
     </div>
