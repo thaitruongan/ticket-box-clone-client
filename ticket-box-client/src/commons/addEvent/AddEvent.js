@@ -107,7 +107,7 @@ const AddEvent = (props) => {
         </div>
 
         <div className="col-content-2">
-        <div className="select-room">
+          <div className="select-room">
             <h5>Chọn rạp</h5>
             <Select
               className="select-room-sl"

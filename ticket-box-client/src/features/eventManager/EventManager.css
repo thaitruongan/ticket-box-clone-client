@@ -48,22 +48,22 @@
   margin: auto 0;
 }
 
-table {
+.table-event {
   width: 100%;
 }
 
-table,
-th,
-td {
+.table-event,
+.th-event,
+.td-event {
   border: 3px solid #ffffff;
   background: #f0f0f0;
 }
-th,
-td {
+.th-event,
+.td-event {
   padding: 10px;
 }
 
-td {
+.td-event {
   cursor: pointer;
 }
 
@@ -92,7 +92,7 @@ td {
   padding: 0px 24px;
   background: #2dc275;
   color: #fff;
-  margin:1rem 3rem;
+  margin: 1rem 3rem;
 }
 
 .btn-cst:hover {

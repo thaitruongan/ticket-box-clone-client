@@ -14,8 +14,8 @@ const movieSlice = createSlice({
             state.currentMovie = action.payload.movie
         },
 
-        updateCurrentMovie(state) {
-
+        updateCurrentMovie(state, action) {
+            state.currentMovie = action.payload
         },
     },
 });
