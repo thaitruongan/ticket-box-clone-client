@@ -16,7 +16,13 @@ const Buy = (props) => {
   const [showTimeList, setShowTimeList] = useState([]);
   const rooms = [];
   const { movieDetail } = props;
-
+//navigate when props null
+  useEffect(() => {
+    if (movieDetail === null) {
+      navigate("/movies");
+    }
+  },[movieDetail, navigate])
+//fetch showtime by date
   const handleSelectDay = async (date) => {
     if (date) {
       try {
@@ -29,7 +35,7 @@ const Buy = (props) => {
       }
     }
   };
-
+//fetch showtime today
   useEffect(() => {
     const fetchShowTime = async () => {
       try {
@@ -45,13 +51,13 @@ const Buy = (props) => {
 
     fetchShowTime();
   }, [movieDetail._id]);
-
+//get room list
   for (let i = 0; i < showTimeList.length; i++) {
     if (!rooms.find((element) => element._id === showTimeList[i].roomId)) {
       rooms.push(showTimeList[i].room[0]);
     }
   }
-
+//handle running time
   const handleRuningTime = (time) => {
     const H = Math.floor(time / 60);
     const M = time % 60;

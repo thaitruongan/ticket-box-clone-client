@@ -13,7 +13,6 @@ import { useLocation, useNavigate } from "react-router";
 
 const SeatMap = () => {
   // const socketRef = useRef();
-  const location = useLocation();
   const navigate = useNavigate();
   const currentUser = useSelector(selectCurrentUser);
   const showtimeState = useLocation();
@@ -34,7 +33,7 @@ const SeatMap = () => {
   const standarPrice = showtimeState.state.standardPrice;
   const timeStart = new Date(showtimeState.state.timeStart);
   const timeEnd = new Date(timeStart);
-  timeEnd.setMinutes(timeEnd.getMinutes() + 120)
+  timeEnd.setMinutes(timeEnd.getMinutes() + showtimeState.state.movie[0].runningTime);
   let format = new Intl.NumberFormat("vi-Vn", {
     style: "currency",
     currency: "VND",
@@ -46,9 +45,9 @@ const SeatMap = () => {
     setIsCountdown(false);
     setCountdown(0);
     if (currentUser._id) {
-      navigate("/payment", {state: {selectedList, total}})
+      navigate("/payment", {state: {selectedList, total, showtime: showtimeState.state}})
     }else{
-      navigate("/login", {state: location.pathname})
+      navigate("/login", {state: showtimeState.pathname})
     }
   }
   //handle time start - end
@@ -99,7 +98,6 @@ const SeatMap = () => {
     if (isCountdown) {
       if (countdown > 0) {
         var timeout = setTimeout(() => setCountdown(countdown - 1), 1000);
-        console.log(countdown)
       } else {
         socket.emit("Timeout", { showtimeId: showtimeId });
         setIsCountdown(false);

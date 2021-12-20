@@ -5,11 +5,12 @@ import { Popover } from "antd";
 import { ReactComponent as Setting } from "../../../assets/svg/setting.svg";
 import { ReactComponent as UserLogo } from "../../../assets/svg/user.svg";
 import { ReactComponent as Signout } from "../../../assets/svg/signout.svg";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { selectCurrentUser, selectToken } from "../../../app/userSlice";
 
 const HeaderQl = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   const currentUser = useSelector(selectCurrentUser);
@@ -30,7 +31,7 @@ const HeaderQl = () => {
     <div className="popover-user-option">
       <div
         className="header-option update-profile"
-        onClick={() => navigate("/profile")}
+        onClick={() => navigate("/profile", {state: location.pathname})}
       >
         <UserLogo />
         Chỉnh sửa hồ sơ

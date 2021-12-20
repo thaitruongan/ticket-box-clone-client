@@ -1,12 +1,17 @@
 import axiosClient from "./axiosClient";
 
 const PaymentAPI = {
-    SignInByPhone: (id, ticketList, totalPrice) => {
+    createPayment: (token, ticketList, totalPrice, infor) => {
         const url = 'payment';
         return axiosClient.post(url, {
-            "userId": id,
-            "tickets": ticketList,
-            "totalPrice": totalPrice
+            "ticketsId": ticketList,
+            "totalPrice": `${totalPrice}`,
+            "email": `${infor.email}`,
+            "phoneNumber": `${infor.phoneNumber}`
+        }, {
+            headers: {
+                'tbtoken': token
+            }
         })
     },
 }

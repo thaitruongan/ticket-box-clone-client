@@ -21,6 +21,7 @@ import { addCurrentUser } from "./app/userSlice";
 function App() {
   const dispatch = useDispatch();
   const checkToken = localStorage.getItem("token");
+  //check token
   useEffect(() => {
     const checkTokenFetchUser = async () => {
       if (checkToken) {

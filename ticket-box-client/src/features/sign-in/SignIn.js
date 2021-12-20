@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GoogleLogin from "react-google-login";
 import "./SignIn.css";
 import { CheckOutlined } from "@ant-design/icons";
@@ -9,14 +9,23 @@ import { ReactComponent as CloseOutlined } from "../../assets/svg/x.svg";
 import { ReactComponent as LogoWhite } from "../../assets/svg/logo-white.svg";
 import UserAPI from "../../api/userAPI";
 import { useLocation, useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../app/userSlice";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const prevPath = location.state;
+  const currentUser = useSelector(selectCurrentUser);
+  const prevPath = !location.state ? "/" : location.state;
   const [phoneNumber, setPhoneNumber] = useState("")
   const [check, setCheck] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/")
+    }
+  },[currentUser, navigate]);
 
   const hanldeCheckRules = () => {
     setCheck(!check);
@@ -58,7 +67,7 @@ const SignIn = () => {
   return (
     <div className="sign-in-page">
       <div className="header-login">
-        <div className="content">
+        <div className="content-header-login">
           <div className="close-tag" onClick={() => navigate(prevPath)} >
             <CloseOutlined className="close" />
           </div>

@@ -12,6 +12,10 @@ const FilmDetail = () => {
     const [popup, setPopup] = useState(false);
     const detail = state.state;
 
+    if (!detail) {
+        navigate("/movies");
+    }
+
     const handlePopup = () => {
         setPopup(!popup);
     };

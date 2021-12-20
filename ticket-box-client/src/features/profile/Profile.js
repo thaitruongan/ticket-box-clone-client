@@ -5,9 +5,10 @@ import {ReactComponent as Camera} from "../../assets/svg/camera.svg";
 import { DatePicker, Radio, Button } from 'antd';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCurrentUser, selectCurrentUser, selectToken, updateCurrentUser } from '../../app/userSlice';
+import { addCurrentUser, selectCurrentUser, selectToken } from '../../app/userSlice';
 import { useLocation, useNavigate } from 'react-router';
 import UserAPI from '../../api/userAPI';
+import ReactLoading from 'react-loading';
 
 const Profile = () => {
     const location = useLocation();
@@ -25,7 +26,12 @@ const Profile = () => {
         birth: !currentUser.birth ? new Date() : new Date(currentUser.birth),
         sex: !currentUser.sex ? "" : currentUser.sex,
     });
-    console.log(currentUser.avatar.search('https:'), currentUser.avatar)
+
+    if (!currentUser) {
+        navigate("/");
+    }
+
+    // console.log(currentUser.avatar.search('https:'), currentUser.avatar)
     const onSelectSexButton = e => {
         setInforUser((prevInfor) => ({
             ...prevInfor,
@@ -34,11 +40,7 @@ const Profile = () => {
     };
 
     const handleCloseButton = () => {
-        if (!inforUser.email || !inforUser.name || !inforUser.birth || !inforUser.sex) {
-            alert("Hãy cập nhật đầy đủ thông tin trước khi thoát!!!");
-        } else {
-            navigate(location.state)
-        }
+        navigate(location.state)
     }
 
     const updateUser = async () => {
@@ -52,7 +54,7 @@ const Profile = () => {
                     setIsLoading(true);
                     const response = await UserAPI.updatePersonalInfo(token, inforUser);
                     console.log(response);
-                    if (response.message === 'User update successfully!') {
+                    if (response.message === "User update successfully!") {
                         dispatch(addCurrentUser({token: token, user: response.data}));
                         navigate(location.state);
                     } else {
@@ -65,8 +67,7 @@ const Profile = () => {
                     alert("cập nhật thất bại");
                     setIsLoading(false);
                     navigate(location.state);
-                }                
-                // navigate(location.state)
+                }
             }
         }
     }
@@ -166,14 +167,22 @@ const Profile = () => {
                         </Radio.Group>
                     </div>
                 </div>
-
-                <div className="finish-button">
-                    <Button
-                        type="primary"
-                        className="fnbp"
-                        onClick={() => updateUser()}
-                    >Hoàn thành</Button>
-                </div>
+                {isLoading
+                ? (
+                    <div className="rcld">
+                        <ReactLoading type="spin" color="#2dc275" height="40px" width="40px" />
+                    </div>
+                )
+                : (
+                    <div className="finish-button">
+                        <Button
+                            type="primary"
+                            className="fnbp"
+                            onClick={() => updateUser()}
+                        >Hoàn thành</Button>
+                    </div>
+                )
+                }
             </div>
         </div>
     )
