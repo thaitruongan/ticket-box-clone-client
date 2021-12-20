@@ -59,12 +59,20 @@ const ListQl = () => {
     return `${getD}/${getM}/${getY}`;
   };
 
-  const handle = (e) => {
-    const newFilm = { ...film };
-    newFilm[e.target.id] = e.target.value;
-    setFilm(newFilm);
-    console.log(newFilm);
+  const handleImage = (e) => {
+    console.log("target",e.target)
+    setFilm((film) => ({
+      ...film,
+      file: e.target.files[0]
+    }))
   };
+
+  const handle = (e) => {
+    const _film = { ...film };
+    _film[e.target.id] = e.target.value;
+    setFilm(_film);
+    console.log(_film);
+  }
 
   const handleUpdate = (e) => {
     const filmUpdate = { ...fimUpdate };
@@ -77,8 +85,14 @@ const ListQl = () => {
     console.log("Upload event:", e);
 
     if (Array.isArray(e)) {
+      setFilm((film) => ({
+        ...film,
+        file: e.file
+      }))
       return e;
     }
+
+    
 
     return e && e.imageList;
   };
@@ -212,24 +226,7 @@ const ListQl = () => {
                       <h2>Hình ảnh bộ phim</h2>
                       <div className="gach-chan-ql-add-r2-c2"></div>
                       <div className="content-form-add-img">
-                        <Form.Item
-                          name="dragger"
-                          valuePropName="imageList"
-                          getValueFromEvent={normFile}
-                          noStyle
-                          onChange={(e) => handle(e)}
-                          id="image"
-                          value={film.image}
-                        >
-                          <Upload.Dragger name="images" action="/upload.do">
-                            <p className="ant-upload-drag-icon">
-                              <InboxOutlined style={{ color: "#2dc275" }} />
-                            </p>
-                            <p className="ant-upload-text">
-                              Nhấn hoặc thả ảnh của bạn vào đây
-                            </p>
-                          </Upload.Dragger>
-                        </Form.Item>
+                        <input type="file" onChange={(e)=> {handleImage(e)}}/>
                       </div>
                     </div>
                   </div>

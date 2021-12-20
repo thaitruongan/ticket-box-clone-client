@@ -26,7 +26,7 @@ const AppHeader = () => {
       }
     }
   }
-
+  console.log(currentUser.avatar)
   const popContent = (
     <div className="popover-user-option">
       <div

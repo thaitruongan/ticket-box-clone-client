@@ -8,6 +8,7 @@ const MovieAPI = {
 
   addFilm: (token, film) => {
     const url = "movie";
+    console.log(film)
     const formData = new FormData();
     formData.append('file', film.file);
     formData.append('name', film.name);
