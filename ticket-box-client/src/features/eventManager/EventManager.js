@@ -92,15 +92,9 @@ const EventManager = () => {
                       <p>{handleTime(item.timeStart)} giờ</p>
                     </div>
                   </td>
-<<<<<<< HEAD
-                  <td className="td-event">{item.movieId}</td>
-                  <td className="td-event">{item.roomId}</td>
-                  <td className="td-event">
-=======
                   <td>{item.movie[0].name}</td>
                   <td>{item.room[0].name}</td>
                   <td>
->>>>>>> ce2daff29344966fed07e783063269265fadda07
                     <div className="price">
                       <p>Giá chuẩn {item.standardPrice}</p>
                       <p>Giá VIP {item.vipPrice}</p>

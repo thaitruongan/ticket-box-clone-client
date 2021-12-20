@@ -96,14 +96,7 @@ const AddEvent = (props) => {
           <div className="time-start">
             <div className="dtpfem d">
               <h5>Chọn ngày</h5>
-<<<<<<< HEAD
-              <DatePicker
-                className="selectd"
-                style={{ width: "8rem", marginRight: "4.2rem" }}
-              />
-=======
               <DatePicker onChange={onChangeDate}/>
->>>>>>> ce2daff29344966fed07e783063269265fadda07
             </div>
 
             <div className="time">
@@ -134,11 +127,7 @@ const AddEvent = (props) => {
           <div className="add-price">
             <div className="chuan">
               <h5>Giá chuẩn</h5>
-<<<<<<< HEAD
-              <input className="gia" style={{ marginRight: "5rem" }} />
-=======
               <input className="gia" value={price} id="price" style={{ marginRight:"5rem"}} onChange={(e) => handleChangePrice(e)} />
->>>>>>> ce2daff29344966fed07e783063269265fadda07
             </div>
             <div className="sstfem dtpfem">
               <h5>Giá VIP</h5>
