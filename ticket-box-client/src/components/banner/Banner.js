@@ -15,7 +15,6 @@ const AppBanner = () => {
     try {
       const response = await BannerAPI.getAll();
       setBanner(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +29,7 @@ const AppBanner = () => {
       <Carousel breakPoints={breakPoints}>
         {banner.map((item) => {
           return (
-            <Item className="item-banner-img">
+            <Item key={item._id} className="item-banner-img">
               <div
                 onClick={() => {
                   navigate("/detail-movies", { state: item });

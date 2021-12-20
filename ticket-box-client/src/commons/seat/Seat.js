@@ -2,11 +2,10 @@ import React from "react";
 import './Seat.css';
 
 const Seat = (props) => {
-  const { element, onClick, selectedList, idSocket, selectedListServer } =
+  const { element, onClick, selectedList, idSocket } =
     props;
 
   const isVip = element.isVip;
-  console.log(element, isVip);
   const isFree = element.status;
   let className = "";
   let className2 = "";
@@ -22,10 +21,6 @@ const Seat = (props) => {
 
   if (selectedList.find((tic) => element._id === tic._id)) {
     className2 = "isUSelected";
-  } else {
-    if (selectedListServer.find((tic) => element._id === tic._id)) {
-      className2 = "freeFalse";
-    }
   }
 
   if (isFree === "free") {

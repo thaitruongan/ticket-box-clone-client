@@ -13,17 +13,41 @@ function callback(key) {
 
 const Buy = (props) => {
   const navigate = useNavigate();
-  const [showTime, setShowTime] = useState([]);
+  const [showTimeList, setShowTimeList] = useState([]);
+  const rooms = [];
   const { movieDetail } = props;
 
-  const fetchShowTime = async () => {
-    const response = await ShowTimeAPI.getAll();
-    setShowTime(response.data);
-  };
+  const handleSelectDay = async (date) => {
+    if (date) {
+      try {
+        const response = await ShowTimeAPI.getByMovie(movieDetail._id, date);
+        if (response.message === "successfully!") {
+          setShowTimeList(response.data)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 
   useEffect(() => {
+    const fetchShowTime = async () => {
+      try {
+        const response = await ShowTimeAPI.getByMovie(movieDetail._id, new Date());
+        setShowTimeList(response.data);
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    
     fetchShowTime();
-  }, []);
+  }, [movieDetail._id]);
+
+  for (let i = 0; i < showTimeList.length; i++) {
+    if (!rooms.find((element) => element._id === showTimeList[i].roomId)) {
+      rooms.push(showTimeList[i].room[0]);
+    }
+  }
 
   const handleRuningTime = (time) => {
     const H = Math.floor(time / 60);
@@ -47,7 +71,7 @@ const Buy = (props) => {
         </div>
         <div className="lich-chieu">
           <div className="site-calendar-demo-card">
-            <Calendar />
+            <Calendar onClick={handleSelectDay} />
           </div>
         </div>
       </div>
@@ -58,12 +82,13 @@ const Buy = (props) => {
               src="https://images.tkbcdn.com/2/48/48/poster/f8242538-2799-11ea-90b0-0242ac110003@webp"
               alt="BHD Star"
             />
-            <h4>BHD Star</h4>
+            <h4>TicketBox</h4>
           </div>
         </Col>
         <Col className="info-xuat-chieu">
-          {showTime.map((item) => {
-            console.log(item);
+          {rooms.map((item) => {
+            const showTimes = showTimeList.filter(st => st.roomId === item._id);
+
             return (
               <Collapse
                 key={item._id}
@@ -71,36 +96,21 @@ const Buy = (props) => {
                 onChange={callback}
                 className="collapse"
               >
-                <Panel header={item.room.name} key="1">
+                <Panel header={item.name} key="1">
                   <div className="thoi-gian">
-                    <div className="loai-phim">
-                      <h2>2D</h2>
-                    </div>
-                    <div className="gio" >
-                      {item.timeStart}
-                    </div>
+                    {showTimes.map(element => {
+                      const timeStart = new Date(element.timeStart);
+                      return (
+                        <div key={element._id} className="gio" onClick={() => navigate("/select-seat", {state: element})} >
+                          {Math.floor(timeStart.getMinutes() / 10) > 0 ? `${timeStart.getHours()}:${timeStart.getMinutes()}` : `${timeStart.getHours()}:0${timeStart.getMinutes()}` }
+                        </div>
+                      )
+                    })}
                   </div>
                 </Panel>
               </Collapse>
             );
           })}
-{/* 
-          <Collapse
-            defaultActiveKey={["1"]}
-            onChange={callback}
-            className="collapse"
-          >
-            <Panel header="BHD Star 3.2" key="1">
-              <div className="thoi-gian">
-                <div className="loai-phim">
-                  <h2>2D</h2>
-                </div>
-                <div className="gio">
-                  <a href="/thanhtoan">12:50</a>
-                </div>
-              </div>
-            </Panel>
-          </Collapse> */}
         </Col>
       </Row>
     </div>

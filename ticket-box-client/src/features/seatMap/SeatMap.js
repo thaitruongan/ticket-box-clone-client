@@ -1,33 +1,69 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PaymentButton from "../../commons/paymentButton/PaymentButton";
 import SeatRow from "../../commons/seat/SeatRow";
 import "./SeatMap.css";
 import AppHeader from "../../components/header/Header";
 import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../app/userSlice";
+import { useLocation, useNavigate } from "react-router";
+// import ShowTimeAPI from "../../api/showTimeAPI";
 
-const host = "http://localhost:8000";
+// const host = "http://localhost:8000";
 
 const SeatMap = () => {
-  const socketRef = useRef();
-  const [countdown, setCountdown] = useState(5);
+  // const socketRef = useRef();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentUser = useSelector(selectCurrentUser);
+  const showtimeState = useLocation();
+  const [countdown, setCountdown] = useState(300);
   const [isCountdown, setIsCountdown] = useState(false);
   const [total, setTotal] = useState(0);
   const [selectedList, setSelectedList] = useState([]);
-  const [selectedListServer, setSelectedListServer] = useState([]);
-  const [select, setSelect] = useState(false);
   const [idSocket, setIdSocket] = useState();
   const [socket, setSocket] = useState(null);
   const [data, setData] = useState([]);
   const [flag, setFlag] = useState(1);
+  // const [showtime, setShowtime] = useState();
 
   const seatRows = [];
-  const showtimeId = "61bac6745fe160c9f808b2db";
-  const userId = "61b9df5505764aa4e182379a";
+  const showtimeId = showtimeState.state._id;
+  const userId = currentUser._id;
+  const vipPrice = showtimeState.state.vipPrice;
+  const standarPrice = showtimeState.state.standardPrice;
+  const timeStart = new Date(showtimeState.state.timeStart);
+  const timeEnd = new Date(timeStart);
+  timeEnd.setMinutes(timeEnd.getMinutes() + 120)
   let format = new Intl.NumberFormat("vi-Vn", {
     style: "currency",
     currency: "VND",
   });
+  //handle payment button
+  const handlePaymentButton = () => {
+    socket.disconnect();
+    setSocket(null);
+    setIsCountdown(false);
+    setCountdown(0);
+    if (currentUser._id) {
+      navigate("/payment", {state: {selectedList, total}})
+    }else{
+      navigate("/login", {state: location.pathname})
+    }
+  }
+  //handle time start - end
+  const handleTimeStartEnd = (h, m) => {
+    let mi = m, ho = h;
 
+    if (h < 10) {
+      ho = `0${h}`;
+    }
+    if (m < 10) {
+      mi = `0${m}`;
+    }
+    return `${ho}:${mi}`
+  }
+  //handle select seat
   const handleSelected = (tic) => {
     if (selectedList.find((tick) => tick._id === tic._id)) {
       setSelectedList([...selectedList.filter((tick) => tick._id !== tic._id)]);
@@ -36,13 +72,14 @@ const SeatMap = () => {
         showtimeId: showtimeId,
       });
       if (tic.isVip) {
-        setTotal(total - 50000);
+        setTotal(total - vipPrice);
       } else {
-        setTotal(total - 30000);
+        setTotal(total - standarPrice);
       }
     } else {
+      setCountdown(0);
       setIsCountdown(true);
-      setCountdown(10);
+      setCountdown(300);
       setSelectedList([...selectedList, tic]);
       socket.emit("pick-new-ticket", {
         ticketId: tic._id,
@@ -50,55 +87,59 @@ const SeatMap = () => {
         showtimeId: showtimeId,
       });
       if (tic.isVip) {
-        setTotal(total + 50000);
+        setTotal(total + vipPrice);
       } else {
-        setTotal(total + 30000);
+        setTotal(total + standarPrice);
       }
     }
   };
+  //count donw selected
 
-  const propsInforMovie = {
-    id: "1",
-    name: "SHANG-CHI AND THE LEGEND OF THE TEN RINGS",
-    time: "2 giờ 12 phút",
-    tag: "C13",
-    avatar:
-      "https://images.tkbcdn.com/2/320/480/poster/d64fc5b6-51a3-11ec-8fb8-0242ac110002@webp",
-  };
-  const propsShowtimes = {
-    id: "1",
-    name: "BHD Star 3.2",
-    type: "2D",
-    timeStart: "10:50",
-    timeEnd: "12:27",
-    date: "10/12/2021",
-  };
-
-  seatRows.sort();
-
-  if (isCountdown) {
-    if (countdown > 0) {
-      setTimeout(() => setCountdown(countdown - 1), 1000);
-    } else {
-      const newList = selectedList;
-      socket.emit("Timeout", { showtimeId: showtimeId });
-      setIsCountdown(false);
-      setSelectedList([]);
-      setTotal(0);
+  useEffect(() => {
+    if (isCountdown) {
+      if (countdown > 0) {
+        var timeout = setTimeout(() => setCountdown(countdown - 1), 1000);
+        console.log(countdown)
+      } else {
+        socket.emit("Timeout", { showtimeId: showtimeId });
+        setIsCountdown(false);
+        setSelectedList([]);
+        setTotal(0);
+      }
     }
-  }
-
+    return () => {
+      clearTimeout(timeout);
+    }
+  },[isCountdown, countdown, socket, showtimeId])
+  //connect socket
   useEffect(() => {
     // setSocket(io("ws://localhost:5000"));
     setSocket(io("https://ticket-box-clone.herokuapp.com/"));
   }, []);
+//fetch showtime by id
+  // useEffect(() => {
+  //   const fetchShowTimeById = async() => {
+  //     try {
+  //       const response = await ShowTimeAPI.getById(showtimeId);
+  //       if(response.message === "successfully!"){
+  //         setShowtime(response.data);
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
 
+  //   fetchShowTimeById();
+  // },[showtimeId]);
+// set seat row
   for (let i = 0; i < data.length; i++) {
     if (!seatRows.find((element) => element === data[i].row)) {
       seatRows.push(data[i].row);
     }
   }
 
+  seatRows.sort();
+//event socket
   useEffect(() => {
     if (socket !== null) {
       socket.on("welcome", (message) => {
@@ -106,13 +147,12 @@ const SeatMap = () => {
       });
 
       socket.on("get-data", (data) => {
-        console.log("get data");
         setData(data);
       });
 
       socket.emit("get-data", { id: showtimeId });
     }
-  }, [socket]);
+  }, [socket, showtimeId]);
 
   if (socket !== null && flag === 1) {
     setFlag(0);
@@ -157,7 +197,6 @@ const SeatMap = () => {
                             elements={rowElements}
                             onClickOnSeat={handleSelected}
                             selectedList={selectedList}
-                            selectedListServer={selectedListServer}
                           />
                         );
                       })}
@@ -171,33 +210,33 @@ const SeatMap = () => {
                   <div className="movie-info-ticket">
                     <img
                       className="avatar-movie-on-ticket"
-                      src={propsInforMovie.avatar}
-                      alt={propsInforMovie.name}
+                      src={`https://ticket-box-clone.herokuapp.com/image/${showtimeState.state.movie[0].image}`}
+                      alt={`${showtimeState.state.movie[0].name}`}
                     />
 
                     <div className="other-info-movie-on-ticket-container">
                       <h4 className="movie-name-on-ticket">
-                        {propsInforMovie.name}
+                        {showtimeState.state.movie[0].name}
                       </h4>
 
                       <div className="other-info-movie-on-ticket">
-                        {propsInforMovie.tag}
+                        {showtimeState.state.movie[0].label}
                         <span className="dash-vertical">|</span>
-                        {propsShowtimes.type}
+                        2D
                       </div>
                     </div>
                   </div>
 
-                  <h4 className="showtime-name">{propsShowtimes.name}</h4>
+                  <h4 className="showtime-name">{showtimeState.state.room[0].name}</h4>
 
                   <div className="show-time-infor">
-                    {propsShowtimes.timeStart} - {propsShowtimes.timeEnd} |{" "}
-                    {propsShowtimes.date}
+                    {handleTimeStartEnd(timeStart.getHours(), timeStart.getMinutes())} - {handleTimeStartEnd(timeEnd.getHours(), timeEnd.getMinutes())} |{" "}
+                    {timeStart.toLocaleDateString('en-GB')}
                   </div>
 
                   <div className="total-count">{format.format(total)}</div>
 
-                  <PaymentButton isSelected={select} />
+                  <PaymentButton isSelected={selectedList.length > 0 ? true : false} onClick={handlePaymentButton} />
                 </div>
 
                 <div className="seat-information-container">
@@ -214,12 +253,12 @@ const SeatMap = () => {
 
                     <div className="istt">
                       <span className="istt-asdn"></span>
-                      <span className="istt-t">Adult Standard - 30.000đ</span>
+                      <span className="istt-t">Standard - {format.format(standarPrice)}</span>
                     </div>
 
                     <div className="istt">
                       <span className="istt-arbn"></span>
-                      <span className="istt-t">Adult VIP - 50.000đ</span>
+                      <span className="istt-t">VIP - {format.format(vipPrice)}</span>
                     </div>
                   </div>
                 </div>

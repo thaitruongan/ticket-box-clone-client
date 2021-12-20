@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     token: "",
     currentUser: {},
+    isSelectSeat: false,
 };
 
 const userSlice = createSlice({
@@ -15,8 +16,8 @@ const userSlice = createSlice({
             state.currentUser = action.payload.user
         },
 
-        updateCurrentUser(state) {
-
+        updateCurrentUser(state, action) {
+            state.currentUser = action.payload
         },
 
         removeCurrentUser(state) {
@@ -32,3 +33,4 @@ export const {addCurrentUser, updateCurrentUser, removeCurrentUser} = userSlice.
 
 export const selectToken = (state) => state.user.token;
 export const selectCurrentUser = (state) => state.user.currentUser;
+export const selectSeatState = (state) => state.user.isSelectSeat;

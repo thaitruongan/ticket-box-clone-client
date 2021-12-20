@@ -11,8 +11,30 @@ import Profile from "./features/profile/Profile";
 import FilmDetail from "./features/film-detail/FilmDetail";
 import SeatMap from "./features/seatMap/SeatMap";
 import ImportOtp from "./features/sign-in/importOTP/ImportOtp";
+import { useEffect } from "react";
+import UserAPI from "./api/userAPI";
+import { useDispatch } from "react-redux";
+import { addCurrentUser } from "./app/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  const checkToken = localStorage.getItem("token");
+  useEffect(() => {
+    const checkTokenFetchUser = async () => {
+      if (checkToken) {
+        try {
+          const response = await UserAPI.checkToken(checkToken);
+          const currentUser = {token: checkToken, user: response.data}
+          dispatch(addCurrentUser(currentUser))
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    };
+
+    checkTokenFetchUser();
+  },[checkToken, dispatch]);
+
   return (
     <Router>
       <Routes>

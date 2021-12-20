@@ -25,6 +25,32 @@ const UserAPI = {
             "otp": `${otp}`
           })
     },
+
+    updatePersonalInfo: (token, infor) => {
+        const url = 'user';
+        const formData = new FormData();
+        formData.append("file", infor.file);
+        formData.append("email", infor.email);
+        formData.append("name", infor.name);
+        formData.append("birth", infor.birth);
+        formData.append("sex", infor.sex);
+        return axiosClient.put(url, formData,{
+            headers: {
+                'content-type': 'multipart/form-data',
+                'tbtoken': token,
+            }
+          })
+    },
+
+    checkToken: (token) => {
+        const url = 'user/verify';
+        return axiosClient.get(url, {
+            headers: {
+                'tbtoken': token
+            },
+        }
+        )
+    },
 }
 
 export default UserAPI

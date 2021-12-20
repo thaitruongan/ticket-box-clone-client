@@ -11,17 +11,18 @@ const breakPoints = [{ width: 2500, itemsToShow: 1 }];
 const AppBannerMovie = () => {
   const [bannerMovie, setBannerMovie] = useState([]);
   const [popup, setPopup] = useState(false);
+  const [trailerLink, setTrailerLink] = useState("");
   const navigate = useNavigate();
 
-  const handlePopup = () => {
+  const handlePopup = (link) => {
     setPopup(!popup);
+    setTrailerLink(link);
   };
 
   const fetchBannerMovie = async () => {
     try {
       const response = await MovieAPI.getAll();
       setBannerMovie(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -43,18 +44,10 @@ const AppBannerMovie = () => {
       <Carousel breakPoints={breakPoints} className="carousel">
         {bannerMovie.map((movie) => {
           return (
-            <div className="item-banner">
-              <Item key={movie._id} className="item-banner-movie-img">
+            <div key={movie._id} className="item-banner">
+              <Item className="item-banner-movie-img">
                 <div className="banner-movies_cover">
-                  <div
-                    onClick={(e) => {
-                      if (e.target.className === "muave-banner") {
-                        navigate("/buy", { state: movie });
-                      } else {
-                        navigate("/detail-movies", { state: movie });
-                      }
-                    }}
-                  >
+                  <div style={{cursor: "pointer"}} onClick={() => {navigate("/detail-movies", { state: movie })}}>
                     <picture>
                       <img
                         src="https://images.tkbcdn.com/1/780/300/Upload/eventcover/2021/12/11/44B240.jpg"//{`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
@@ -64,7 +57,7 @@ const AppBannerMovie = () => {
                   </div>
                 </div>
                 <div className="banner-movies_info">
-                  <div className="banner-title">
+                  <div className="banner-title" style={{cursor: "pointer"}} onClick={() => {navigate("/detail-movies", { state: movie })}}>
                     <h2>{movie.name}</h2>
                   </div>
                   <div className="banner-time">
@@ -73,34 +66,20 @@ const AppBannerMovie = () => {
                   </div>
                   <div className="banner-description">
                     <h6>{movie.description}</h6>
-                    <div className="bnt-bnds"
-                      onClick={(e) => {
-                        if (e.target.className === "muave-banner") {
-                          navigate("/buy", { state: movie });
-                        } else {
-                          navigate("/detail-movies", { state: movie });
-                        }
-                      }}
-                    >
+                    <div className="bnt-bnds" onClick={() => {navigate("/detail-movies", { state: movie })}}>
                       Xem thêm
                     </div>
                   </div>
                   <div className="button-banner">
                     <button
-                      onClick={(e) => {
-                        if (e.target.className === "muave-banner") {
-                          navigate("/buy", { state: movie });
-                        } else {
-                          navigate("/detail-movies", { state: movie });
-                        }
-                      }}
                       className="button-muave-banner"
+                      onClick={() => {navigate("/buy", { state: movie })}}
                     >
                       Mua vé
                     </button>
                     <button
                       className="button-play-trailer"
-                      onClick={() => handlePopup()}
+                      onClick={() => handlePopup(movie.trailer)}
                     >
                       Xem trailer
                     </button>
@@ -109,7 +88,7 @@ const AppBannerMovie = () => {
               </Item>
               <PopupTrailer
                 trigger={popup}
-                link={movie.trailer}
+                link={trailerLink}
                 movieName={movie.name}
                 onClickClosePopup={handlePopup}
               />
