@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ShowTimeAPI from "../../api/showTimeAPI";
 import { Row, Col, Collapse } from "antd";
 import "./Buy.css";
@@ -14,7 +15,6 @@ const Buy = (props) => {
   const navigate = useNavigate();
   const [showTimeList, setShowTimeList] = useState([]);
   const rooms = [];
-  const [showTime, setShowTime] = useState([]);
   const { movieDetail } = props;
 
   const handleSelectDay = async (date) => {
@@ -22,24 +22,27 @@ const Buy = (props) => {
       try {
         const response = await ShowTimeAPI.getByMovie(movieDetail._id, date);
         if (response.message === "successfully!") {
-          setShowTimeList(response.data)
+          setShowTimeList(response.data);
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
-  }
+  };
 
   useEffect(() => {
     const fetchShowTime = async () => {
       try {
-        const response = await ShowTimeAPI.getByMovie(movieDetail._id, new Date());
+        const response = await ShowTimeAPI.getByMovie(
+          movieDetail._id,
+          new Date()
+        );
         setShowTimeList(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
-    
+
     fetchShowTime();
   }, [movieDetail._id]);
 
@@ -87,7 +90,9 @@ const Buy = (props) => {
         </Col>
         <Col className="info-xuat-chieu">
           {rooms.map((item) => {
-            const showTimes = showTimeList.filter(st => st.roomId === item._id);
+            const showTimes = showTimeList.filter(
+              (st) => st.roomId === item._id
+            );
 
             return (
               <Collapse
@@ -98,13 +103,21 @@ const Buy = (props) => {
               >
                 <Panel header={item.name} key="1">
                   <div className="thoi-gian">
-                    {showTimes.map(element => {
+                    {showTimes.map((element) => {
                       const timeStart = new Date(element.timeStart);
                       return (
-                        <div key={element._id} className="gio" onClick={() => navigate("/select-seat", {state: element})} >
-                          {Math.floor(timeStart.getMinutes() / 10) > 0 ? `${timeStart.getHours()}:${timeStart.getMinutes()}` : `${timeStart.getHours()}:0${timeStart.getMinutes()}` }
+                        <div
+                          key={element._id}
+                          className="gio"
+                          onClick={() =>
+                            navigate("/select-seat", { state: element })
+                          }
+                        >
+                          {Math.floor(timeStart.getMinutes() / 10) > 0
+                            ? `${timeStart.getHours()}:${timeStart.getMinutes()}`
+                            : `${timeStart.getHours()}:0${timeStart.getMinutes()}`}
                         </div>
-                      )
+                      );
                     })}
                   </div>
                 </Panel>

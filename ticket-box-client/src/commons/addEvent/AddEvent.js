@@ -33,9 +33,12 @@ const AddEvent = () => {
             </Select>
           </div>
           <div className="time-start">
-            <div className="date">
+            <div className="dtpfem d">
               <h5>Chọn ngày</h5>
-              <DatePicker className="selectd" style={{width:"8rem", marginRight:"4.2rem"}}/>
+              <DatePicker
+                className="selectd"
+                style={{ width: "8rem", marginRight: "4.2rem" }}
+              />
             </div>
 
             <div className="time">
@@ -46,7 +49,7 @@ const AddEvent = () => {
         </div>
 
         <div className="col-content-2">
-        <div className="select-room">
+          <div className="select-room">
             <h5>Chọn rạp</h5>
             <Select
               className="select-room-sl"
@@ -65,7 +68,7 @@ const AddEvent = () => {
           <div className="add-price">
             <div className="chuan">
               <h5>Giá chuẩn</h5>
-              <input className="gia" style={{ marginRight:"5rem"}} />
+              <input className="gia" style={{ marginRight: "5rem" }} />
             </div>
             <div className="sstfem dtpfem">
               <h5>Giá VIP</h5>

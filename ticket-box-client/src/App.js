@@ -7,6 +7,8 @@ import BuyPage from "./pages/buy/Buy";
 import Payment from "./pages/payment/Payment";
 import ManagerFilm from "./pages/manager-film/ManagerFilm";
 
+import ListQl from "./features/manager-film/list/ListQl";
+
 import Profile from "./features/profile/Profile";
 import FilmDetail from "./features/film-detail/FilmDetail";
 import SeatMap from "./features/seatMap/SeatMap";
@@ -48,6 +50,7 @@ function App() {
         <Route path="/select-seat" element={<SeatMap />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/admin" element={<ManagerFilm />} />
+        <Route path="/film" element={<ListQl/>}/>
       </Routes>
     </Router>
   );

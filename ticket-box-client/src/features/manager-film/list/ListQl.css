@@ -1,5 +1,4 @@
-.page-add-film,
-.page-update-film {
+.page-add-film, .page-update-film {
   margin-bottom: 2rem;
 }
 .title-page {
@@ -16,17 +15,19 @@
   bottom: 4px;
   margin-left: 1rem;
 }
-.form-add_container,
-.form-update_container {
+.form-add_container, .form-update_container {
   display: flex;
 }
-.form-add-info,
-.form-update-info {
+.form-add-info, .form-update-info {
   background-color: white;
   border-radius: 3%;
   margin-top: 2rem;
   padding: 1rem;
   margin-left: 1.5rem;
+}
+.nlb{
+  display: flex;
+  justify-content: space-between;
 }
 .date-time {
   display: flex;
@@ -40,11 +41,15 @@
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.name-add,
-.name-update,
+.name-add, .name-update{
+  width: 20rem;
+}
+
+.label-add, .label-update{
+  width: 5rem;
+}
 .gioi-thieu,
-.trailer-add,
-.trailer-update {
+.trailer-add, .trailer-update {
   width: 29.5rem;
 }
 
@@ -56,17 +61,14 @@
   border-radius: 80px;
   margin-left: -1rem;
 }
-.content-form-add-info,
-.content-form-update-info {
+.content-form-add-info, .content-form-update-info {
   margin-top: 1.5rem;
 }
-.content-form-add-info h5,
-.content-form-update-info h5 {
+.content-form-add-info h5, .content-form-update-info h5 {
   font-size: 15px;
   margin-top: 1.5rem;
 }
-.form-add-img,
-.form-update-img {
+.form-add-img, .form-update-img {
   background-color: white;
   border-radius: 3%;
   width: 25rem;
@@ -83,8 +85,7 @@
   margin-left: -1rem;
 }
 
-.content-form-add-img,
-.content-form-update-img {
+.content-form-add-img, .content-form-update-img {
   margin-top: 2rem;
 }
 
@@ -193,18 +194,18 @@
   margin-left: 1rem;
 }
 
-.table-film,
-.th_film,
-.td_film {
+table,
+th,
+td {
   border: 1px solid gray;
 }
-.th_film,
-.td_film {
+th,
+td {
   padding: 10px;
   text-align: center;
 }
 
-.td_film {
+td {
   cursor: pointer;
 }
 

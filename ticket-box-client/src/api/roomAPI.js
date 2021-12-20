@@ -18,9 +18,9 @@ const RoomAPI = {
         "content-type": "application/json",
         tbtoken: token,
       },
-      'name':`${name}`,
-      'rowAmount':`${rowAmount}`,
-      'columnAmount':`${columnAmount}`,
+      'name':name,
+      'rowAmount':rowAmount,
+      'columnAmount':columnAmount,
     })
   }
 };
