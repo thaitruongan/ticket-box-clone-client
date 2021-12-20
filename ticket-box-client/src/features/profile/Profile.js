@@ -25,7 +25,7 @@ const Profile = () => {
         birth: !currentUser.birth ? new Date() : new Date(currentUser.birth),
         sex: !currentUser.sex ? "" : currentUser.sex,
     });
-
+    console.log(currentUser.avatar.search('https:'), currentUser.avatar)
     const onSelectSexButton = e => {
         setInforUser((prevInfor) => ({
             ...prevInfor,
@@ -76,7 +76,7 @@ const Profile = () => {
             <div className="form-profile">
                 <CloseOutlined className="close" onClick={() => handleCloseButton()} />
                 <div className="avatar">
-                    <img src={currentUser.google.id ? currentUser.avatar : `https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`} alt="avatar.png"/>
+                    <img src={currentUser.avatar.search('https:') !== -1 ? currentUser.avatar : `https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`} alt="avatar.png"/>
                     <div className="file-upload">
                         <Camera className="camera" />
                         <input
