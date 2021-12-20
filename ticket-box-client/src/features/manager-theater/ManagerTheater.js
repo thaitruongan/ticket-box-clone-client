@@ -7,9 +7,9 @@ import "./ManagerTheater.css";
 
 export const ManagerTheater = () => {
   const token = useSelector(selectToken);
-  const [show, setShow] = useState(false);
+  const [showCreate, setShowCreate] = useState(false);
   const [listRoom, setListRoom] = useState([]);
-  const [room, setRoom] = useState([])
+  const [room, setRoom] = useState([]);
 
   const handle = (e) => {
     const newRoom = { ...room };
@@ -22,21 +22,21 @@ export const ManagerTheater = () => {
     try {
       const response = await RoomAPI.getAll(token);
       console.log(response.data);
-      setListRoom(response.data)
+      setListRoom(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleSubmit =async(e) =>{
-    console.log(room)
-    try{
-      await RoomAPI.addRoom(token,room.name,room.row,room.col)
-      fetchAllRoom()
-    }catch(err){
-      console.log(err)
+  const handleSubmit = async (e) => {
+    console.log(room);
+    try {
+      await RoomAPI.addRoom(token, room.name, room.row, room.col);
+      fetchAllRoom();
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
     fetchAllRoom();
@@ -47,9 +47,8 @@ export const ManagerTheater = () => {
       <div className="manager-room">
         <div className="content-ql">
           <h2>Danh Sách Rạp</h2>
-
           <div className="button-add-room">
-            <button className="bnt-event" onClick={() => setShow(true)}>
+            <button className="bnt-event" onClick={() => setShowCreate(true)}>
               <i>
                 <ShopOutlined />
               </i>
@@ -57,7 +56,7 @@ export const ManagerTheater = () => {
             </button>
           </div>
         </div>
-        {show ? (
+        {showCreate ? (
           <div className="add-room">
             <form>
               <div className="fmr">
@@ -89,15 +88,20 @@ export const ManagerTheater = () => {
                   ></input>
                 </div>
               </div>
-              <button type="submit" className="submit" onClick={(e)=>{                
-                handleSubmit(e)
-                setShow(false);
-                }}>
+              <button
+                type="submit"
+                className="submit"
+                onClick={(e) => {
+                  handleSubmit(e);
+                  setShowCreate(false);
+                }}
+              >
                 save
               </button>
             </form>
           </div>
         ) : null}
+
         <div className="list-room-ql">
           <div className="nlm">
             <div className="nlm-item">
@@ -113,26 +117,24 @@ export const ManagerTheater = () => {
               <p>SỐ GHẾ TRÊN MỘT DÃY</p>
             </div>
           </div>
-          {
-            listRoom.map((room)=>{
-                return(
-                  <div className="content-lr">
-                    <div className="lr-item">
-                      <p>{listRoom.indexOf(room) + 1}</p>
-                    </div>
-                    <div className="lr-item">
-                      <p>{room.name}</p>
-                    </div>
-                    <div className="lr-item">
-                      <p>{room.rowAmount}</p>
-                    </div>
-                    <div className="lr-item">
-                      <p>{room.columnAmount}</p>
-                    </div>
-                  </div>
-                )
-            })
-          }          
+          {listRoom.map((room) => {
+            return (
+              <div className="content-lr" key={room._id}>
+                <div className="lr-item">
+                  <p>{listRoom.indexOf(room) + 1}</p>
+                </div>
+                <div className="lr-item">
+                  <p>{room.name}</p>
+                </div>
+                <div className="lr-item">
+                  <p>{room.rowAmount}</p>
+                </div>
+                <div className="lr-item">
+                  <p>{room.columnAmount}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

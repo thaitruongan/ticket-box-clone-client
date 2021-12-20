@@ -20,6 +20,12 @@
   border: 1px solid #64eea6;
   border-radius: 6px;
 }
+.bnt_mng_room{
+  display: flex;
+}
+.button-add-room{
+  margin-right: 2rem;
+}
 .submit{
   margin-left: 50rem;
   margin-top: 1rem;

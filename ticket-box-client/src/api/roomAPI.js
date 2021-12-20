@@ -18,10 +18,26 @@ const RoomAPI = {
       'name':`${name}`,
       'rowAmount':`${rowAmount}`,
       'columnAmount':`${columnAmount}`,
-    },{headers: {
+    },
+    { headers: {
       "content-type": "application/json",
       "tbtoken": token,
-    },})
+      },
+    })
+  },
+
+  editRoom: (token, id, name, rowAmount, columnAmount)=>{
+    const url="movie/"+id;
+    return axiosClient.put(url, {
+      'name':`${name}`,
+      'rowAmount':`${rowAmount}`,
+      'columnAmount':`${columnAmount}`,
+    },
+    { headers: {
+        'content-type': 'multipart/form-data',
+        'tbtoken': token,
+      },
+    })
   }
 };
 

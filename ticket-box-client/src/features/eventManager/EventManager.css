@@ -69,7 +69,10 @@ table{
 .price {
   text-align: left;
 }
-
+.button{
+  display: flex;
+  justify-content: space-between;
+}
 .btn-cst {
   text-transform: none;
   appearance: button;
