@@ -71,7 +71,7 @@ const HeaderQl = () => {
             <img
               className="avatar-user-header"
               src={
-                currentUser.google.id
+                currentUser.avatar.search('https:') !== -1
                   ? currentUser.avatar
                   : `https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`
               }

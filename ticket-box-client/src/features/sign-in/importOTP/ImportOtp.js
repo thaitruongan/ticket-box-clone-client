@@ -99,7 +99,7 @@ const ImportOtp = () => {
         <div className="import-otp">
             <div className="back" onClick={() => navigate("/login")}><LeftOutlined/></div>
             <span className="top">Nhập 4 chữ số được gửi đến:</span>
-            <span className="phone-number">+84836450670</span>
+            <span className="phone-number">{phoneNumber}</span>
             <div className="input-otp">
                 <input className="input-0" id="0" pattern="[0-9]" type="number" maxLength="1" onChange={autoTab} />
                 <input className="input-1" id="1" pattern="[0-9]" type="number" maxLength="1" onChange={autoTab} />

@@ -1,9 +1,9 @@
 import axiosClient from "./axiosClient";
 
 const ShowTimeAPI = {
-    getAll: (params) => {
+    getAll: () => {
         const url = 'showtime';
-        return axiosClient.get(url, { params })
+        return axiosClient.get(url)
     },
 
     getByMovie: (id, date) => {
@@ -17,6 +17,21 @@ const ShowTimeAPI = {
         const url = 'showtime/'+id;
         return axiosClient.get(url)
     },
+
+    addShowTime:(token,movieId,roomId,_date,price,vipPrice) => {
+        const url = "showtime";
+        return axiosClient.post(url, {
+            
+            'movieId':`${movieId}`,
+            'roomId':`${roomId}`,
+            'timeStart':`${_date}`,
+            'standardPrice':`${price}`,
+            'vipPrice':`${vipPrice}`,
+        },{headers: {
+            "content-type": "application/json",
+            "tbtoken": token,
+        },})
+  }
 }
 
 export default ShowTimeAPI

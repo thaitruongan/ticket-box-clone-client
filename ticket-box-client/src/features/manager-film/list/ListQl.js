@@ -16,18 +16,21 @@ const ListQl = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const [listMovies, setListMovies] = useState([]);
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [trailer, setTrailer] = useState("");
-  const [description, setDescription] = useState("");
-  const [label, setLabel] = useState("");
-  const [runningTime, setRunningTime] = useState("");
-  const [releaseDate, setReleaseDate] = useState("");
   const [movieSelected, setMovieSelected] = useState({});
   const [activeId, setActiveId] = useState("");
   const [showAdd, setShowAdd] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   const [film, setFilm] = useState([]);
+  console.log(movieSelected);
+  const [fimUpdate, setFimUpdate] = useState({
+    file: undefined,
+    name: !movieSelected.name ? "" : movieSelected.name,
+    trailer: !movieSelected.trailer ? "" : movieSelected.trailer,
+    description: !movieSelected.description ? "" : movieSelected.description,
+    label: !movieSelected.label ? new Date() : new Date(movieSelected.label),
+    runningTime: !movieSelected.runningTime ? "" : movieSelected.runningTime,
+    releaseDate: !movieSelected.releaseDate ? "" : movieSelected.releaseDate,
+  });
 
   const handleSelectMovie = (u) => {
     setMovieSelected(u);
@@ -56,19 +59,40 @@ const ListQl = () => {
     return `${getD}/${getM}/${getY}`;
   };
 
+  const handleImage = (e) => {
+    console.log("target",e.target)
+    setFilm((film) => ({
+      ...film,
+      file: e.target.files[0]
+    }))
+  };
+
   const handle = (e) => {
-    const newFilm = { ...film };
-    newFilm[e.target.id] = e.target.value;
-    setFilm(newFilm);
-    console.log(newFilm);
+    const _film = { ...film };
+    _film[e.target.id] = e.target.value;
+    setFilm(_film);
+    console.log(_film);
+  }
+
+  const handleUpdate = (e) => {
+    const filmUpdate = { ...fimUpdate };
+    filmUpdate[e.target.id] = e.target.value;
+    setFimUpdate(filmUpdate);
+    console.log(filmUpdate);
   };
 
   const normFile = (e) => {
     console.log("Upload event:", e);
 
     if (Array.isArray(e)) {
+      setFilm((film) => ({
+        ...film,
+        file: e.file
+      }))
       return e;
     }
+
+    
 
     return e && e.imageList;
   };
@@ -87,53 +111,29 @@ const ListQl = () => {
     fetchListMovies();
   }, []);
 
-  useEffect(() => {
-    const addMovie = async () => {
-      try {
-        const response = await MovieAPI.addFilm(
-          token,
-          image,
-          name,
-          trailer,
-          description,
-          label,
-          runningTime,
-          releaseDate
-        );
-        if (response.message === "success!") {
-          dispatch(addCurrentMovie(response));
-          setImage("");
-          setName("");
-          setTrailer("");
-          setDescription("");
-          setLabel("");
-          setRunningTime("");
-          setReleaseDate("");
-        }
-      } catch (error) {
-        console.log(error);
-        setImage("");
-        setName("");
-        setTrailer("");
-        setDescription("");
-        setLabel("");
-        setRunningTime("");
-        setReleaseDate("");
+  const addMovie = async () => {
+    try {
+      const response = await MovieAPI.addFilm(token, film);
+      if (response.message === "success!") {
+        dispatch(addCurrentMovie({ token: token, movie: response.data }));
       }
-    };
-    addMovie();
-  }, [
-    token,
-    image,
-    name,
-    trailer,
-    description,
-    label,
-    runningTime,
-    releaseDate,
-    dispatch,
-  ]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const updateUser = async () => {
+    try {
+      const response = await MovieAPI.updateFilm(token, fimUpdate);
+      console.log(response);
+      if (response.message === "successfully!") {
+        dispatch(addCurrentMovie({ token: token, movie: response.data }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   return (
     <>
       {showAdd ? (
@@ -155,13 +155,27 @@ const ListQl = () => {
                       <h2>Thông tin phim</h2>
                       <div className="gach-chan-ql-add-r2-c1"></div>
                       <div className="content-form-add-info">
-                        <h5>Tên</h5>
-                        <input
-                          className="name-add"
-                          onChange={(e) => handle(e)}
-                          id="name"
-                          value={film.name}
-                        ></input>
+                        <div className="nlb">
+                          <div>
+                            <h5>Tên</h5>
+                            <input
+                              className="name-add"
+                              onChange={(e) => handle(e)}
+                              id="name"
+                              value={film.name}
+                            ></input>
+                          </div>
+                          <div>
+                            <h5>Label</h5>
+                            <input
+                              className="label-add"
+                              onChange={(e) => handle(e)}
+                              id="label"
+                              value={film.label}
+                            ></input>
+                          </div>
+                        </div>
+
                         <div className="date-time">
                           <div>
                             <h5>Ngày công chiếu</h5>
@@ -212,24 +226,7 @@ const ListQl = () => {
                       <h2>Hình ảnh bộ phim</h2>
                       <div className="gach-chan-ql-add-r2-c2"></div>
                       <div className="content-form-add-img">
-                        <Form.Item
-                          name="dragger"
-                          valuePropName="imageList"
-                          getValueFromEvent={normFile}
-                          noStyle
-                          onChange={(e) => handle(e)}
-                          id="image"
-                          value={film.image}
-                        >
-                          <Upload.Dragger name="images" action="/upload.do">
-                            <p className="ant-upload-drag-icon">
-                              <InboxOutlined style={{ color: "#2dc275" }} />
-                            </p>
-                            <p className="ant-upload-text">
-                              Nhấn hoặc thả ảnh của bạn vào đây
-                            </p>
-                          </Upload.Dragger>
-                        </Form.Item>
+                        <input type="file" onChange={(e)=> {handleImage(e)}}/>
                       </div>
                     </div>
                   </div>
@@ -238,15 +235,7 @@ const ListQl = () => {
                       className="bnt-save"
                       onClick={async () => {
                         setShowAdd(false);
-                        await MovieAPI.addFilm(
-                          image,
-                          name,
-                          trailer,
-                          description,
-                          label,
-                          runningTime,
-                          releaseDate
-                        );
+                        addMovie();
                       }}
                     >
                       Save
@@ -277,22 +266,36 @@ const ListQl = () => {
                       <h2>Thông tin phim</h2>
                       <div className="gach-chan-ql-update-r2-c1"></div>
                       <div className="content-form-update-info">
-                        <h5>Tên</h5>
-                        <input
-                          className="name-update"
-                          onChange=""
-                          id="name"
-                          value={movieSelected.name}
-                        ></input>
+                        <div className="nlb">
+                          <div>
+                            <h5>Tên</h5>
+                            <input
+                              className="name-update"
+                              onChange={(e) => handleUpdate(e)}
+                              id="name"
+                              value={fimUpdate.name}
+                            ></input>
+                          </div>
+                          <div>
+                            <h5>Label</h5>
+                            <input
+                              className="label-update"
+                              onChange={(e) => handleUpdate(e)}
+                              id="label"
+                              value={fimUpdate.label}
+                            ></input>
+                          </div>
+                        </div>
+
                         <div className="date-time">
                           <div>
                             <h5>Ngày công chiếu</h5>
                             <input
                               className="date-update"
                               type="date"
-                              onChange=""
+                              onChange={(e) => handleUpdate(e)}
                               id="releaseDate"
-                              value={movieSelected.releaseDate}
+                              value={fimUpdate.releaseDate}
                             ></input>
                           </div>
                           <div>
@@ -301,9 +304,9 @@ const ListQl = () => {
                               <input
                                 className="update-time"
                                 type="number"
-                                onChange=""
+                                onChange={(e) => handleUpdate(e)}
                                 id="runningTime"
-                                value={movieSelected.runningTime}
+                                value={fimUpdate.runningTime}
                                 style={{
                                   width: "5rem",
                                   height: "1.6rem",
@@ -317,16 +320,16 @@ const ListQl = () => {
                         <h5>Giới thiệu</h5>
                         <textarea
                           className="gioi-thieu"
-                          onChange=""
+                          onChange={(e) => handleUpdate(e)}
                           id="description"
-                          value={movieSelected.description}
+                          value={fimUpdate.description}
                         ></textarea>
                         <h5>Trailer</h5>
                         <input
                           className="trailer-update"
-                          onChange=""
+                          onChange={(e) => handleUpdate(e)}
                           id="trailer"
-                          value={movieSelected.trailer}
+                          value={fimUpdate.trailer}
                         ></input>
                       </div>
                     </div>
@@ -339,9 +342,9 @@ const ListQl = () => {
                           valuePropName="imageList"
                           getValueFromEvent={normFile}
                           noStyle
-                          onChange=""
+                          onChange={(e) => handleUpdate(e)}
                           id="image"
-                          value={movieSelected.image}
+                          value={fimUpdate.image}
                         >
                           <Upload.Dragger name="images" action="/upload.do">
                             <p className="ant-upload-drag-icon">
@@ -358,7 +361,10 @@ const ListQl = () => {
                   <div className="bnt-save-film">
                     <button
                       className="bnt-save"
-                      onClick={() => setShowUpdate(false)}
+                      onClick={() => {
+                        setShowUpdate(false);
+                        updateUser();
+                      }}
                     >
                       Save
                     </button>
@@ -414,14 +420,14 @@ const ListQl = () => {
             </div>
           </div>
           <div className="list-film">
-            <table>
+            <table className="table-film">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>PHIM</th>
-                  <th>NGÀY CÔNG CHIẾU</th>
-                  <th>THỜI LƯỢNG</th>
-                  <th>TRAILER</th>
+                  <th className="th_film">STT</th>
+                  <th className="th_film">PHIM</th>
+                  <th className="th_film">NGÀY CÔNG CHIẾU</th>
+                  <th className="th_film">THỜI LƯỢNG</th>
+                  <th className="th_film">TRAILER</th>
                 </tr>
               </thead>
               {listMovies.map((item, index) => {
@@ -432,8 +438,8 @@ const ListQl = () => {
                       style={handleSelectStyle(item)}
                       onClick={() => handleSelectMovie(item)}
                     >
-                      <td>{index + 1}</td>
-                      <td>
+                      <td className="td_film">{index + 1}</td>
+                      <td className="td_film">
                         <div className="movie">
                           {/* <img
                           src="https://images.tkbcdn.com/2/420/600/poster/e491c1fe-51a5-11ec-8fb8-0242ac110002@webp"
@@ -450,8 +456,10 @@ const ListQl = () => {
                           <p>{item.name}</p>{" "}
                         </div>
                       </td>
-                      <td>{handleReleaseDate(item.releaseDate)}</td>
-                      <td>{item.runningTime} phút</td>
+                      <td className="td_film">
+                        {handleReleaseDate(item.releaseDate)}
+                      </td>
+                      <td className="td_film">{item.runningTime} phút</td>
                       <td className="trailer">{item.trailer}</td>
                     </tr>
                   </tbody>

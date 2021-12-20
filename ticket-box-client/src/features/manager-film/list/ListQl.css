@@ -25,6 +25,10 @@
   padding: 1rem;
   margin-left: 1.5rem;
 }
+.nlb{
+  display: flex;
+  justify-content: space-between;
+}
 .date-time {
   display: flex;
   justify-content: space-between;
@@ -37,7 +41,13 @@
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.name-add, .name-update,
+.name-add, .name-update{
+  width: 20rem;
+}
+
+.label-add, .label-update{
+  width: 5rem;
+}
 .gioi-thieu,
 .trailer-add, .trailer-update {
   width: 29.5rem;

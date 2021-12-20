@@ -1,58 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import RoomAPI from "../../api/roomAPI";
 import { selectToken } from "../../app/userSlice";
-import { addCurrentRoom } from "../../app/roomSlice";
 import { ShopOutlined } from "@ant-design/icons";
 import "./ManagerTheater.css";
 
 export const ManagerTheater = () => {
-  const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const [show, setShow] = useState(false);
   const [listRoom, setListRoom] = useState([]);
-  const [name, setName] = useState("");
-  const [rowAmount, setRowAmount] = useState("");
-  const [columnAmount, setColumnAmount] = useState("");
+  const [room, setRoom] = useState([])
+
+  const handle = (e) => {
+    const newRoom = { ...room };
+    newRoom[e.target.id] = e.target.value;
+    setRoom(newRoom);
+    console.log(newRoom);
+  };
+
+  const fetchAllRoom = async () => {
+    try {
+      const response = await RoomAPI.getAll(token);
+      console.log(response.data);
+      setListRoom(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit =async(e) =>{
+    console.log(room)
+    try{
+      await RoomAPI.addRoom(token,room.name,room.row,room.col)
+      fetchAllRoom()
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   useEffect(() => {
-    const fetchAllRoom = async () => {
-      try {
-        const response = await RoomAPI.getAll(token);
-        if (response.message === "successfully!") {
-          console.log(response.data);
-          setListRoom(response.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchAllRoom();
   }, [token]);
 
-  useEffect(() => {
-    const addRoom = async () => {
-      try {
-        const response = await RoomAPI.addRoom(
-          token,
-          name,
-          rowAmount,
-          columnAmount
-        );
-        if (response.message === "successfully!") {
-          dispatch(addCurrentRoom(response));
-          setName("");
-          setRowAmount("");
-          setColumnAmount("");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    addRoom();
-  }, [token, name, rowAmount, columnAmount, dispatch]);
   return (
     <>
       <div className="manager-room">
@@ -74,26 +63,36 @@ export const ManagerTheater = () => {
               <div className="fmr">
                 <div>
                   <h5>Tên rạp</h5>
-                  <input className="name-room" id="name" value=""></input>
+                  <input
+                    className="name-room"
+                    onChange={(e) => handle(e)}
+                    id="name"
+                    value={room.name}
+                  ></input>
                 </div>
                 <div>
                   <h5>Số lượng hàng</h5>
-                  <input className="row-room" id="row" value=""></input>
+                  <input
+                    className="row-room"
+                    onChange={(e) => handle(e)}
+                    id="row"
+                    value={room.rowAmount}
+                  ></input>
                 </div>
                 <div>
-                  <h5>Số lượng cột</h5>
-                  <input className="col-room" id="col" value=""></input>
+                  <h5>Số lượng ghế</h5>
+                  <input
+                    className="col-room"
+                    onChange={(e) => handle(e)}
+                    id="col"
+                    value={room.columnAmount}
+                  ></input>
                 </div>
               </div>
-              <button className="submit" 
-              onClick={async () => {
+              <button type="submit" className="submit" onClick={(e)=>{                
+                handleSubmit(e)
                 setShow(false);
-                await RoomAPI.addRoom(
-                  name,
-                  rowAmount,
-                  columnAmount
-                );
-              }}>
+                }}>
                 save
               </button>
             </form>
@@ -114,77 +113,26 @@ export const ManagerTheater = () => {
               <p>SỐ GHẾ TRÊN MỘT DÃY</p>
             </div>
           </div>
-          <div className="content-lr">
-            {listRoom.map((item, index) => {
-              return (
-                <>
-                  <div className="lr-item">
-                    <p>{index + 1}</p>
+          {
+            listRoom.map((room)=>{
+                return(
+                  <div className="content-lr">
+                    <div className="lr-item">
+                      <p>{listRoom.indexOf(room) + 1}</p>
+                    </div>
+                    <div className="lr-item">
+                      <p>{room.name}</p>
+                    </div>
+                    <div className="lr-item">
+                      <p>{room.rowAmount}</p>
+                    </div>
+                    <div className="lr-item">
+                      <p>{room.columnAmount}</p>
+                    </div>
                   </div>
-                  <div className="lr-item">
-                    <p>{item.name}</p>
-                  </div>
-                  <div className="lr-item">
-                    <p>{item.rowAmount}</p>
-                  </div>
-                  <div className="lr-item">
-                    <p>{item.columnAmount}</p>
-                  </div>
-                </>
-              );
-            })}
-            <div className="lr-item">
-              <p>1</p>
-            </div>
-            <div className="lr-item">
-              <p>CineStar Num Bếu</p>
-            </div>
-            <div className="lr-item">
-              <p>5 hàng</p>
-            </div>
-            <div className="lr-item">
-              <p>10 cột</p>
-            </div>
-
-            <div className="lr-item">
-              <p>2</p>
-            </div>
-            <div className="lr-item">
-              <p>CineStar Num Bếu</p>
-            </div>
-            <div className="lr-item">
-              <p>5 hàng</p>
-            </div>
-            <div className="lr-item">
-              <p>10 cột</p>
-            </div>
-
-            <div className="lr-item">
-              <p>3</p>
-            </div>
-            <div className="lr-item">
-              <p>CineStar Num Bếu</p>
-            </div>
-            <div className="lr-item">
-              <p>5 hàng</p>
-            </div>
-            <div className="lr-item">
-              <p>10 cột</p>
-            </div>
-
-            <div className="lr-item">
-              <p>4</p>
-            </div>
-            <div className="lr-item">
-              <p>CineStar Num Bếu</p>
-            </div>
-            <div className="lr-item">
-              <p>5 hàng</p>
-            </div>
-            <div className="lr-item">
-              <p>10 cột</p>
-            </div>
-          </div>
+                )
+            })
+          }          
         </div>
       </div>
     </>
