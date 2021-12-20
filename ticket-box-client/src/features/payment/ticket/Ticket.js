@@ -1,6 +1,6 @@
 import React from "react";
 import "./Ticket.css";
-import { Checkbox, Button } from "antd";
+import { Checkbox } from "antd";
 
 const Ve = () => {
   const onChange = (e) => {
@@ -57,9 +57,7 @@ const Ve = () => {
           </Checkbox>
         </div>
         <div>
-          <Button type="primary" shape="round" size="large" className="button-thanh-toan">
-            Thanh Toán
-          </Button>
+          <button className="button-thanh-toan">Thanh Toán</button>
         </div>
       </div>
     </div>

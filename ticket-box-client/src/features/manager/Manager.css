@@ -1,0 +1,61 @@
+.manager {
+  margin-left: 3rem;
+}
+.film {
+  overflow: scroll;
+  margin-top: 2rem;
+  width: 30rem;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  height: 32rem;
+}
+.film-item {
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgb(204, 198, 198);
+}
+
+.film img {
+  width: 4rem;
+  height: 6rem;
+}
+.film-item p {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 1rem;
+  color: #fff;
+}
+
+.room {
+  background: #fff;
+  width: 30rem;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 2rem;
+  height: 15rem;
+}
+
+.user {
+  background: #fff;
+  width: 30rem;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 2rem;
+  height: 15rem;
+}
+
+.user-item{
+  background: rgb(204, 198, 198);
+  text-align: center;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.user-item p{
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+}

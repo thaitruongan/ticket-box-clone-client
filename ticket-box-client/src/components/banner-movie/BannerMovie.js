@@ -41,7 +41,7 @@ const AppBannerMovie = () => {
 
   return (
     <div className="banner-movie">
-      <Carousel breakPoints={breakPoints} className="carousel">
+      <Carousel enableAutoPlay autoPlaySpeed={2500} breakPoints={breakPoints} className="carousel">
         {bannerMovie.map((movie) => {
           return (
             <div key={movie._id} className="item-banner">
@@ -50,7 +50,7 @@ const AppBannerMovie = () => {
                   <div style={{cursor: "pointer"}} onClick={() => {navigate("/detail-movies", { state: movie })}}>
                     <picture>
                       <img
-                        src="https://images.tkbcdn.com/1/780/300/Upload/eventcover/2021/12/11/44B240.jpg"//{`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
                         alt={movie.name}
                       />
                     </picture>

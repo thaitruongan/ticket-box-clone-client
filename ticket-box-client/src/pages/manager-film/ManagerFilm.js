@@ -6,10 +6,11 @@ import "./ManagerFilm.css";
 import { Button, Layout } from "antd";
 import UserManager from "../../features/userManager/UserManager";
 import EventManager from "../../features/eventManager/EventManager";
-import AddFilm from "../../features/manager-film/add-film/AddFilm";
 import { useSelector } from "react-redux";
 import { selectCurrentUser, selectToken } from "../../app/userSlice";
 import { useLocation, useNavigate } from "react-router";
+import { ManagerTheater } from "../../features/manager-theater/ManagerTheater";
+import Manager from "../../features/manager/Manager";
 
 const { Header, Content, Sider } = Layout;
 
@@ -31,19 +32,15 @@ const QLPhimPage = () => {
   const switchComponent = (n) => {
     switch (n) {
       case 0:
-        return;
+        return <Manager />;
       case 1:
         return <UserManager />;
       case 2:
-        return;
+        return <ManagerTheater />;
       case 3:
         return <ListQl />;
       case 4:
-        return <AddFilm />;
-      case 5:
         return <EventManager />;
-      case 6:
-        return;
 
       default:
         return;

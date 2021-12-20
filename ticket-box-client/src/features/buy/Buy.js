@@ -3,7 +3,6 @@ import ShowTimeAPI from "../../api/showTimeAPI";
 import { Row, Col, Collapse } from "antd";
 import "./Buy.css";
 import Calendar from "../../components/calendar/Calendar";
-import { useNavigate } from "react-router";
 
 const { Panel } = Collapse;
 
@@ -15,6 +14,7 @@ const Buy = (props) => {
   const navigate = useNavigate();
   const [showTimeList, setShowTimeList] = useState([]);
   const rooms = [];
+  const [showTime, setShowTime] = useState([]);
   const { movieDetail } = props;
 
   const handleSelectDay = async (date) => {

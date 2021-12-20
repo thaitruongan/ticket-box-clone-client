@@ -2,10 +2,10 @@ import React from "react";
 import { Layout } from "antd";
 import AppHeader from "../../components/header/Header";
 import "./Payment.css";
-import ThanhToanIndex from "../../features/payment/PaymentIndex";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../app/userSlice";
 import { useLocation } from "react-router";
+import PaymentIndex from "../../features/payment/PaymentIndex";
 const { Header, Content } = Layout;
 
 const ThanhToan = () => {
@@ -27,7 +27,7 @@ const ThanhToan = () => {
         <AppHeader />
       </Header>
       <Content className="content-thanhtoan">
-        <ThanhToanIndex/>
+        <PaymentIndex/>
       </Content>
     </Layout>
   );

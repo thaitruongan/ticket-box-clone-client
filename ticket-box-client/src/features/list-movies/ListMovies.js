@@ -34,8 +34,9 @@ const ListMovies = () => {
           return (
             <div key={movie._id} className="list-style-card">
               <div className="list-card-movies">
-                <div className="lsmec"
-                  onClick={e => {
+                <div
+                  className="lsmec"
+                  onClick={(e) => {
                     if (e.target.className === "list-muave") {
                       navigate("/buy", { state: movie });
                     } else {
@@ -46,7 +47,7 @@ const ListMovies = () => {
                   <div className="list-card-movies_cover">
                     <picture>
                       <img
-                        src="https://images.tkbcdn.com/2/420/600/poster/e491c1fe-51a5-11ec-8fb8-0242ac110002@webp"//{`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
                         alt={movie.name}
                       />
                     </picture>

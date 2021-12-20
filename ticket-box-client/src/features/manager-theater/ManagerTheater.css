@@ -1,0 +1,67 @@
+.add-room{
+  margin: 1rem;
+  background: #fff;
+  padding: 1rem;
+  height: 13rem;
+  border-radius: 8px;
+}
+
+.fmr{
+  margin: 1rem 13rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+.fmr h5{
+  font-size: 18px;
+}
+.fmr input{
+  width: 12rem;
+  height: 2.5rem;
+  border: 1px solid #64eea6;
+  border-radius: 6px;
+}
+.submit{
+  margin-left: 50rem;
+  margin-top: 1rem;
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  background: #2dc275;
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+}
+.list-room-ql {
+  width: auto;
+  margin-left: 7rem;
+  margin-top: 3rem;
+}
+.nlm {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: 70px;
+  grid-gap: 10px;
+  text-align: center;
+}
+
+.nlm-item {
+  background: #64eea6;
+}
+.nlm-item p {
+  margin-top: 1.8rem;
+}
+.content-lr {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: 50px;
+  grid-gap: 10px;
+  text-align: center;
+}
+
+.lr-item {
+  background: #aca7a7;
+}
+.lr-item p {
+  margin-top: 1rem;
+}
