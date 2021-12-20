@@ -414,14 +414,14 @@ const ListQl = () => {
             </div>
           </div>
           <div className="list-film">
-            <table>
+            <table className="table-film">
               <thead>
                 <tr>
-                  <th>STT</th>
-                  <th>PHIM</th>
-                  <th>NGÀY CÔNG CHIẾU</th>
-                  <th>THỜI LƯỢNG</th>
-                  <th>TRAILER</th>
+                  <th className="th_film">STT</th>
+                  <th className="th_film">PHIM</th>
+                  <th className="th_film">NGÀY CÔNG CHIẾU</th>
+                  <th className="th_film">THỜI LƯỢNG</th>
+                  <th className="th_film">TRAILER</th>
                 </tr>
               </thead>
               {listMovies.map((item, index) => {
@@ -432,8 +432,8 @@ const ListQl = () => {
                       style={handleSelectStyle(item)}
                       onClick={() => handleSelectMovie(item)}
                     >
-                      <td>{index + 1}</td>
-                      <td>
+                      <td className="td_film">{index + 1}</td>
+                      <td className="td_film">
                         <div className="movie">
                           {/* <img
                           src="https://images.tkbcdn.com/2/420/600/poster/e491c1fe-51a5-11ec-8fb8-0242ac110002@webp"
@@ -450,8 +450,8 @@ const ListQl = () => {
                           <p>{item.name}</p>{" "}
                         </div>
                       </td>
-                      <td>{handleReleaseDate(item.releaseDate)}</td>
-                      <td>{item.runningTime} phút</td>
+                      <td className="td_film">{handleReleaseDate(item.releaseDate)}</td>
+                      <td className="td_film">{item.runningTime} phút</td>
                       <td className="trailer">{item.trailer}</td>
                     </tr>
                   </tbody>

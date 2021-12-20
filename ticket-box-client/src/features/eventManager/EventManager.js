@@ -44,30 +44,30 @@ const EventManager = () => {
         <h2>Danh sách suất chiếu</h2>
       </div>
       <div className="list-event">
-        <table>
+        <table className="table-event">
           <thead>
             <tr>
-              <th>STT</th>
-              <th>SUẤT CHIẾU</th>
-              <th>PHIM</th>
-              <th>RẠP</th>
-              <th>GIÁ</th>
+              <th className="th-event">STT</th>
+              <th className="th-event">SUẤT CHIẾU</th>
+              <th className="th-event">PHIM</th>
+              <th className="th-event">RẠP</th>
+              <th className="th-event">GIÁ</th>
             </tr>
           </thead>
           {listShowTime.map((item, index) => {
             return (
               <tbody>
                 <tr key={item._id}>
-                  <td>{index + 1}</td>
-                  <td>
+                  <td className="td-event">{index + 1}</td>
+                  <td className="td-event">
                     <div className="show-time">
                       <p> Ngày {handleDate(item.timeStart)}</p>
                       <p>{handleTime(item.timeStart)} giờ</p>
                     </div>
                   </td>
-                  <td>{item.movieId}</td>
-                  <td>{item.roomId}</td>
-                  <td>
+                  <td className="td-event">{item.movieId}</td>
+                  <td className="td-event">{item.roomId}</td>
+                  <td className="td-event">
                     <div className="price">
                       <p>Giá chuẩn {item.standardPrice}</p>
                       <p>Giá VIP {item.vipPrice}</p>
