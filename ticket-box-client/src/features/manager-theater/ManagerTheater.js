@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import RoomAPI from "../../api/roomAPI";
 import { selectToken } from "../../app/userSlice";
@@ -56,14 +56,14 @@ export const ManagerTheater = () => {
     setRoomUpdate(roomEdit);
   };
 
-  const fetchAllRoom = async () => {
+  const fetchAllRoom = useCallback(async () => {
     try {
       const response = await RoomAPI.getAll(token);
       setListRoom(response.data);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [token]);
 
   const handleSubmit = async () => {
     try {
@@ -91,7 +91,7 @@ export const ManagerTheater = () => {
 
   useEffect(() => {
     fetchAllRoom();
-  }, []);
+  }, [fetchAllRoom]);
 
   return (
     <>

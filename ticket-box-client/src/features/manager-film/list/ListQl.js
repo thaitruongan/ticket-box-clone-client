@@ -20,7 +20,6 @@ const ListQl = () => {
   const [showAdd, setShowAdd] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
   const [film, setFilm] = useState([]);
-  console.log(movieSelected);
   const [fimUpdate, setFimUpdate] = useState({
     file: undefined,
     name: !movieSelected.name ? "" : movieSelected.name,
@@ -80,13 +79,10 @@ const ListQl = () => {
     console.log(filmUpdate);
   };
 
-
-
   const fetchListMovies = async () => {
     try {
       const response = await MovieAPI.getAll();
       setListMovies(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -400,9 +396,8 @@ const ListQl = () => {
               </thead>
               {listMovies.map((item, index) => {
                 return (
-                  <tbody>
-                    <tr
-                      key={item._id}
+                  <tbody key={item._id}>
+                    <tr                      
                       style={handleSelectStyle(item)}
                       onClick={() => handleSelectMovie(item)}
                     >

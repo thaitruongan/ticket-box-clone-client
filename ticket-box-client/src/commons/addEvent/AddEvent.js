@@ -16,42 +16,34 @@ const AddEvent = (props) => {
   const [time, setTime] = useState(null);
   const [price, setPrice] = useState(0);
   const [vipPrice, setVipPrice] = useState(0);
-  console.log(room);
 
   function handleChangeMovie(value) {
-    console.log(`selected ${value}`);
     setMovieId(value);
   }
   function handleChangeRoom(value) {
-    console.log(`selected ${value}`);
     setRoomId(value);
   }
 
   function onChangeDate(date, dateString) {
-    console.log(dateString);
     setDate(dateString);
   }
 
   function onChangeTime(time, timeString) {
-    console.log(timeString);
     setTime(timeString);
   }
 
   const handleChangePrice = (e) => {
     setPrice(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleChangeVipPrice = (e) => {
     setVipPrice(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     let _date = new Date(date);
     _date.setHours(time[0] + time[1] + "");
     _date.setMinutes(time[3] + time[4] + "");
-    console.log(movieId, roomId, _date, price, vipPrice);
     try {
       const res = await ShowTimeAPI.addShowTime(
         token,
@@ -61,8 +53,9 @@ const AddEvent = (props) => {
         price,
         vipPrice
       );
-      console.log(res);
-      fetchListShowTime();
+      if (res.data) {
+        fetchListShowTime();        
+      }
     } catch (err) {
       console.log(err);
     }
@@ -91,7 +84,7 @@ const AddEvent = (props) => {
               onChange={handleChangeMovie}
             >
               {movie.map((movie) => {
-                return <Option value={movie._id}>{movie.name}</Option>;
+                return <Option key={movie._id} value={movie._id}>{movie.name}</Option>;
               })}
             </Select>
           </div>
@@ -119,7 +112,7 @@ const AddEvent = (props) => {
               onChange={handleChangeRoom}
             >
               {room.map((room) => {
-                return <Option value={room._id}>{room.name}</Option>;
+                return <Option key={room._id} value={room._id}>{room.name}</Option>;
               })}
             </Select>
           </div>
