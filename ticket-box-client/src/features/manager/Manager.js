@@ -104,7 +104,7 @@ const Manager = () => {
           <div className="user">
             {listUSer.map((item) => {
               return (
-                <div key={item.key} className="user-item">
+                <div key={item._id} className="user-item">
                   <p>{item.name}</p>
                 </div>
               );

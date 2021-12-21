@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ShowTimeAPI from "../../api/showTimeAPI";
 import "./EventManager.css";
 import AddEvent from "../../commons/addEvent/AddEvent";
@@ -36,7 +36,6 @@ const EventManager = () => {
     try {
       const response = await ShowTimeAPI.getAll();
       setListShowTime(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -51,21 +50,20 @@ const EventManager = () => {
     }
   };
 
-  const fetchRoom = async () => {
+  const fetchRoom = useCallback(async () => {
     try {
       const res = await RoomAPI.getAll(token);
-      console.log(res.data);
       setListRoom(res.data);
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [token]);
 
   useEffect(() => {
     fetchListShowTime();
     fetchMovie();
     fetchRoom();
-  },[]);
+  }, [fetchRoom]);
 
   return (
     <div className="event-manager-container">
@@ -85,8 +83,8 @@ const EventManager = () => {
           </thead>
           {listShowTime.map((item, index) => {
             return (
-              <tbody>
-                <tr key={item._id}>
+              <tbody key={item._id}>
+                <tr>
                   <td className="td-event">{index + 1}</td>
                   <td className="td-event">
                     <div className="show-time">
