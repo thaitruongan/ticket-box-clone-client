@@ -9,36 +9,40 @@ export const ManagerTheater = () => {
   const token = useSelector(selectToken);
   const [show, setShow] = useState(false);
   const [listRoom, setListRoom] = useState([]);
-  const [room, setRoom] = useState([])
+  const [room, setRoom] = useState({
+    name: "",
+    row: "",
+    col: ""
+  })
 
   const handle = (e) => {
     const newRoom = { ...room };
     newRoom[e.target.id] = e.target.value;
     setRoom(newRoom);
-    console.log(newRoom);
   };
 
-  const fetchAllRoom = async () => {
-    try {
-      const response = await RoomAPI.getAll(token);
-      console.log(response.data);
-      setListRoom(response.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleSubmit =async(e) =>{
-    console.log(room)
+  const handleSubmit = async() =>{
     try{
-      await RoomAPI.addRoom(token,room.name,room.row,room.col)
-      fetchAllRoom()
+      const response = await RoomAPI.addRoom(token,room.name,room.row,room.col)
+      if (response.data) {
+        setListRoom([...listRoom, response.data.saveRoom]) 
+      }
     }catch(err){
       console.log(err)
     }
   }
 
   useEffect(() => {
+    const fetchAllRoom = async () => {
+      try {
+        const response = await RoomAPI.getAll(token);
+        if (response.data) {
+          setListRoom(response.data)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchAllRoom();
   }, [token]);
 
@@ -76,7 +80,7 @@ export const ManagerTheater = () => {
                     className="row-room"
                     onChange={(e) => handle(e)}
                     id="row"
-                    value={room.rowAmount}
+                    value={room.row}
                   ></input>
                 </div>
                 <div>
@@ -85,7 +89,7 @@ export const ManagerTheater = () => {
                     className="col-room"
                     onChange={(e) => handle(e)}
                     id="col"
-                    value={room.columnAmount}
+                    value={room.col}
                   ></input>
                 </div>
               </div>
@@ -116,7 +120,7 @@ export const ManagerTheater = () => {
           {
             listRoom.map((room)=>{
                 return(
-                  <div className="content-lr">
+                  <div key={room._id} className="content-lr">
                     <div className="lr-item">
                       <p>{listRoom.indexOf(room) + 1}</p>
                     </div>

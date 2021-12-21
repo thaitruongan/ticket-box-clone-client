@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./TimeWaiting.css";
 
-const TIME_BOOKING = 10 * 1000;
+const TIME_BOOKING = 300 * 1000;
 
 const TimeWaiting = (props) => {
   const navigate = useNavigate();

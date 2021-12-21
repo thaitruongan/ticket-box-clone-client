@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col } from "antd";
 import InfoUser from "./receiver-info/ReceiverInfo";
 // import BuyBox from "./payment-methods/BuyBox";
 import Ve from "./ticket/Ticket";
-import TimeWaiting from "./time-waiting/TimeWaiting";
+// import TimeWaiting from "./time-waiting/TimeWaiting";
 import { useSelector } from "react-redux";
 import { selectCurrentUser, selectToken } from "../../app/userSlice";
 import PaymentAPI from "../../api/paymentAPI";
 import { useNavigate } from "react-router";
+import TicketAPI from "../../api/ticketAPI";
 
 const ThanhToanIndex = (props) => {
   const navigate = useNavigate();
@@ -20,14 +21,26 @@ const ThanhToanIndex = (props) => {
     phoneNumber: currentUser.phoneNumber
   })
   const [isLoading, setIsLoading] = useState(false);
+  const [countdown, setCountdown] = useState(10);
 //get ticket id list
   for (let i = 0; i < ticketList.length; i++) {
     ticketIdList.push(ticketList[i]._id)
   }
 //handle is timeout
-  const handleIsTimeOut = () => {
-    console.log("Time out");
-  };
+  useEffect(() => {
+    if (countdown > 0) {
+      var timeout = setTimeout(() => setCountdown(countdown - 1), 1000);
+      console.log(countdown)
+    } else {
+      (async () => {await TicketAPI.handleTimeOut(token)})();
+      alert("Hết thời gian thanh toán!!!")
+      navigate("/");
+    }
+
+    return () => {
+      clearTimeout(timeout);
+    }
+  },[countdown, token, navigate])
 //handle receiver email
   const handleEmailInfor = (val) => {
     setInfor({
@@ -78,7 +91,7 @@ const ThanhToanIndex = (props) => {
         {/* <BuyBox /> */}
       </Col>
       <Col xs={{ span: 11, offset: 1 }} lg={{ span: 7, offset: 2 }}>
-        <TimeWaiting handleIsTimeOut={handleIsTimeOut} />
+        {/* <TimeWaiting handleIsTimeOut={handleIsTimeOut} /> */}
         <Ve
           showtime={showtime}
           total={total}

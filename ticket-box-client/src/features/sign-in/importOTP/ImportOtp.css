@@ -110,7 +110,11 @@ input::-webkit-inner-spin-button {
   color: rgb(45, 194, 117);
 }
 
-.next-button {
+.rcld-ipotp {
+  margin-top: 16px;
+}
+
+.next-button-ipotp {
   border-radius: 20px;
   height: 40px;
   font-weight: bold;
@@ -124,6 +128,8 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   outline: none;
   color: white;
+  background-color: #f0f0f0;
+  pointer-events: none;
 }
 
 @media only screen and (min-width: 768px) {

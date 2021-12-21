@@ -49,21 +49,23 @@ const EventManager = () => {
     }
   }
 
-  const fetchRoom = async()=>{
-    try{
-      const res = await RoomAPI.getAll(token);
-      console.log(res.data)
-      setListRoom(res.data)
-    }catch(err){
-      console.log(err)
+  useEffect(() => {
+    const fetchRoom = async()=>{
+      try{
+        const res = await RoomAPI.getAll(token);
+        console.log(res.data)
+        setListRoom(res.data)
+      }catch(err){
+        console.log(err)
+      }
     }
-  }
+    fetchRoom();
+  },[token])
 
   useEffect(() => {
     fetchListShowTime();
     fetchMovie();
-    fetchRoom();
-  }, []);
+  },[]);
 
   return (
     <div className="event-manager-container">

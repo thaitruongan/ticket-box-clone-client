@@ -9,23 +9,22 @@ import { ReactComponent as CloseOutlined } from "../../assets/svg/x.svg";
 import { ReactComponent as LogoWhite } from "../../assets/svg/logo-white.svg";
 import UserAPI from "../../api/userAPI";
 import { useLocation, useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../app/userSlice";
+import ReactLoading from 'react-loading';
 
 const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const currentUser = useSelector(selectCurrentUser);
+  const token = localStorage.getItem("token");
   const prevPath = !location.state ? "/" : location.state;
   const [phoneNumber, setPhoneNumber] = useState("")
   const [check, setCheck] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (currentUser) {
+    if (token) {
       navigate("/")
     }
-  },[currentUser, navigate]);
+  },[token, navigate]);
 
   const hanldeCheckRules = () => {
     setCheck(!check);
@@ -48,6 +47,7 @@ const SignIn = () => {
       try {
         setIsLoading(true);
         const response = await UserAPI.SignInByPhone(phoneNumber);
+        console.log(response)
         if (response.message === "success!") {
           setIsLoading(false);
           navigate("import-otp", {state: {phoneNumber, prevPath}})
@@ -103,7 +103,23 @@ const SignIn = () => {
           </p>
         </div>
         <div className="bottom">
-          <button className="next-button" style={handleStyleButton()} onClick={() => handleSignInPhoneNumber()} >Tiếp tục</button>
+        {isLoading
+                ? (
+                    <div className="rcld">
+                        <ReactLoading className="rcld-li" type="spin" color="#2dc275" height="40px" width="40px" />
+                    </div>
+                )
+                : (
+                  <button
+                    className="next-button"
+                    style={handleStyleButton()}
+                    onClick={() => handleSignInPhoneNumber()}
+                  >
+                    Tiếp tục
+                  </button>
+                )
+                }
+          
           <div className="or">
             <span className="sosip">Hoặc</span>
           </div>

@@ -122,7 +122,13 @@ const Ve = (props) => {
               <ReactLoading type="spin" color="#2dc275" height="40px" width="40px" />
             </div>
           ) : (<div>
-                <button className="button-thanh-toan" onClick={() => handleOnclickPayment()} >Thanh Toán</button>
+                <button
+                  className="button-thanh-toan"
+                  onClick={() => handleOnclickPayment()}
+                  style={{backgroundColor: isChecked ? "#2dc275" : "#f0f0f0", pointerEvents: isChecked ? "" : "none"}}
+                >
+                  Thanh Toán
+                </button>
               </div>
               )
         }

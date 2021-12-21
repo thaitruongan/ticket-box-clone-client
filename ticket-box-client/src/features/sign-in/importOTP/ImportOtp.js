@@ -5,6 +5,7 @@ import UserAPI from "../../../api/userAPI";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { addCurrentUser } from "../../../app/userSlice";
+import ReactLoading from 'react-loading';
 
 const ImportOtp = () => {
     const navigate = useNavigate();
@@ -55,23 +56,24 @@ const ImportOtp = () => {
     },[]);
 
     useEffect( () => {
+        let controller = new AbortController();
         if (otp.length === 4) {
             const importOTP = async () => {
                 setCheck(true);
                 try {
                     const response = await UserAPI.ImportOTP(phoneNumber, otp);
-                    console.log(response);
-                    if (response.token) {
+                    if (response.message === "success!") {
                         localStorage.setItem("token", response.token);
                         dispatch(addCurrentUser(response));
-                        setCount(0);
                         setCheck(false);
+                        setCount(0);
                         document.getElementById("0").focus();
                         document.getElementById('0').value = '';
                         document.getElementById('1').value = '';
                         document.getElementById('2').value = '';
                         document.getElementById('3').value = '';
                         setOtp("");
+                        controller = null;
                         if (response.version === 0) {
                             navigate("/profile", {state: prevPath})
                         } else {                            
@@ -93,6 +95,8 @@ const ImportOtp = () => {
             }        
             importOTP();
         }
+
+        return () => controller?.abort();
     }, [phoneNumber, otp, dispatch, navigate, prevPath]);
 
     return (
@@ -108,10 +112,31 @@ const ImportOtp = () => {
             </div>
             <span className="space"></span>
             <span className="question">Không nhận được OTP??</span>
-            <div className="resend-otp" style={{pointerEvents: isCountDROtp ? "none" : ""}} onClick={() => {
+            <div
+                className="resend-otp"
+                style={{pointerEvents: isCountDROtp || check ? "none" : ""}}
+                onClick={ async () => {
                     setIsCountDROtp(true);
-                }} ><span style={{color: isCountDROtp ? "grey" : "#2dc275"}} >{isCountDROtp ? handleCountDROtp() : "Gửi lại OTP"}</span></div>
-            <button className="next-button" style={{backgroundColor: check ? "#2dc275" : "#e6ebf5", pointerEvents: check ? "none" : "" }} >Tiếp tục</button>
+                    await UserAPI.SignInByPhone(phoneNumber);
+                }}
+            >
+                <span style={{color: isCountDROtp || check ? "grey" : "#2dc275"}} >{isCountDROtp ? handleCountDROtp() : "Gửi lại OTP"}</span>
+            </div>
+            {check
+                ? (
+                    <div className="rcld">
+                        <ReactLoading className="rcld-ipotp" type="spin" color="#2dc275" height="40px" width="40px" />
+                    </div>
+                )
+                : (
+                    <button
+                        className="next-button-ipotp"
+                    >
+                        Tiếp tục
+                    </button>
+                )
+                }
+            
         </div>
     )
 }
