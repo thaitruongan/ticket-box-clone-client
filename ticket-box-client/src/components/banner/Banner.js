@@ -26,7 +26,7 @@ const AppBanner = () => {
 
   return (
     <div className="banner">
-      <Carousel breakPoints={breakPoints}>
+      <Carousel enableAutoPlay autoPlaySpeed={2500} breakPoints={breakPoints}>
         {banner.map((item) => {
           return (
             <Item key={item._id} className="item-banner-img">

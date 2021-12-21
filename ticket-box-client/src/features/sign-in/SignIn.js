@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GoogleLogin from "react-google-login";
+import { refreshTokenSetup } from "../../utils/refreshToken";
 import "./SignIn.css";
 import { CheckOutlined } from "@ant-design/icons";
 import { ReactComponent as CuteDog } from "../../assets/svg/dog.svg";
@@ -62,6 +63,7 @@ const SignIn = () => {
 
   const responseGoogle = (response) => {
     console.log(response);
+    refreshTokenSetup(response);
   };
 
   return (
