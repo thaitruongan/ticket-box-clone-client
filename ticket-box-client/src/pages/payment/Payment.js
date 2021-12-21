@@ -11,6 +11,7 @@ const ThanhToan = () => {
   const total = state.state.total;
   const ticketList = state.state.selectedList;
   const showtime = state.state.showtime;
+
   window.addEventListener("beforeunload", (ev) => 
   {  
     ev.preventDefault();

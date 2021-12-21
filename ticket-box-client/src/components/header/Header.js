@@ -4,18 +4,37 @@ import logo from "../../images/logo.png";
 import { ReactComponent as Ve } from "../../images/ve.svg";
 import { ReactComponent as Search } from "../../images/search.svg";
 import "./Header.css";
-import { useSelector } from "react-redux";
-import { selectCurrentUser, selectToken } from "../../app/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCurrentUser, selectCurrentUser, selectToken } from "../../app/userSlice";
 import { Popover } from 'antd';
 import { ReactComponent as Setting } from "../../assets/svg/setting.svg";
 import { ReactComponent as UserLogo } from "../../assets/svg/user.svg";
 import { ReactComponent as Signout } from "../../assets/svg/signout.svg";
 
 const AppHeader = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   const currentUser = useSelector(selectCurrentUser);
+
+  // const useScroll = () => {
+  //   const [y, setY] = useState(0);
+  
+  //   useEffect(() => {
+  //     const handleWindowScroll = () => setY(window.pageYOffset);
+  //     window.addEventListener("scroll", handleWindowScroll);
+  //     return () => window.removeEventListener("resize", handleWindowScroll);
+  //   }, []);
+  
+  //   return { y };
+  // };
+
+  const handleSignOut = () => {
+    dispatch(removeCurrentUser());
+    localStorage.setItem("token", "")
+    navigate("/");
+  };
 
   const handlePermission = () => {
     if (token) {
@@ -26,7 +45,6 @@ const AppHeader = () => {
       }
     }
   }
-  console.log(currentUser.avatar)
   const popContent = (
     <div className="popover-user-option">
       <div
@@ -48,7 +66,7 @@ const AppHeader = () => {
 
       <div
         className="header-option signout-header"
-        onClick={() => navigate("/")}
+        onClick={() => handleSignOut()}
       >
         <Signout/>  
         Thoát

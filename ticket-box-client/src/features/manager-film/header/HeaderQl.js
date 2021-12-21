@@ -6,14 +6,21 @@ import { ReactComponent as Setting } from "../../../assets/svg/setting.svg";
 import { ReactComponent as UserLogo } from "../../../assets/svg/user.svg";
 import { ReactComponent as Signout } from "../../../assets/svg/signout.svg";
 import { useLocation, useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-import { selectCurrentUser, selectToken } from "../../../app/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCurrentUser, selectCurrentUser, selectToken } from "../../../app/userSlice";
 
 const HeaderQl = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   const currentUser = useSelector(selectCurrentUser);
+
+  const handleSignOut = () => {
+    dispatch(removeCurrentUser());
+    localStorage.setItem("token", "");
+    navigate("/");
+  };
 
   const handlePermission = () => {
     if (token) {
@@ -48,7 +55,7 @@ const HeaderQl = () => {
 
       <div
         className="header-option signout-header"
-        onClick={() => navigate("/")}
+        onClick={() => handleSignOut()}
       >
         <Signout />
         Thoát

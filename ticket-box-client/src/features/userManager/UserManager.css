@@ -21,9 +21,14 @@
 
 .user-manager-container .user-info-manager .uiam {
   height: 200px;
-  width: 25%;
+  width: 200px;
   border: #000000 1px solid;
   margin-right: 10px;
+}
+
+.user-manager-container .user-info-manager .uiam .uiam-a {
+  height: 200px;
+  width: 200px;
 }
 
 .user-manager-container .user-info-manager .usfmf {
@@ -82,6 +87,7 @@
   background-color: #f0f0f0;
   margin-bottom: 2px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .user-list-manager .user-element-manager .usm-dt,
@@ -104,7 +110,7 @@
 
 .user-list-manager .user-element-manager .usm-dt {
   height: 50px;
-  width: auto;
+  width: 50px;
 }
 
 .user-list-manager .user-element-manager .usm-mdt {
@@ -130,50 +136,35 @@
 /* this is btn handle */
 .btn-handle-container {
   position: absolute;
-  top: 400px;
+  left: 220px;
+  top: 75px;
   height: 40px;
-  width: 200px;
+  width: 150px;
   display: flex;
 }
-.btn-handle-container .btnhca,
-.btnhcu,
-.btnhcr,
+.btn-handle-container .btnhcu,
 .btnhcs {
   display: flex;
   justify-content: center;
-  padding: 12px 0;
+  padding: 11px 0;
   height: 40px;
   box-sizing: border-box;
   cursor: pointer;
-  width: 50px;
+  width: 50%;
   font-family: "Courier New", Courier, monospace;
-  font-size: 12px;
   font-weight: bold;
   color: #ffffff;
-}
-
-.btn-handle-container .btnhca {
-  background-color: #2dc275;
-}
-
-.btn-handle-container .btnhca:hover {
-  background-color: #218f56;
+  text-align: center;
+  font-size: 1vw;
 }
 
 .btn-handle-container .btnhcu {
+  line-height: 15px;
   background-color: #7573fa;
 }
 
 .btn-handle-container .btnhcu:hover {
   background-color: #5d5bc7;
-}
-
-.btn-handle-container .btnhcr {
-  background-color: #fd6968;
-}
-
-.btn-handle-container .btnhcr:hover {
-  background-color: #c95553;
 }
 
 .btn-handle-container .btnhcs {

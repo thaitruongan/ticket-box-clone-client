@@ -13,28 +13,31 @@ const Manager = () => {
   const token = useSelector(selectToken);
   const [listRoom, setListRoom] = useState([]);
   const [listUSer, setListUser] = useState([]);
-  console.log(token);
 
   useEffect(() => {
+    let controller = new AbortController();
     const fetchListMovies = async () => {
       try {
         const response = await MovieAPI.getAll();
         setListMovies(response.data);
-        console.log(response.data);
+        controller = null;
       } catch (error) {
         console.log(error);
       }
     };
     fetchListMovies();
+
+    return () => controller?.abort();
   }, []);
 
   useEffect(() => {
+    let controller = new AbortController();
     const fetchAllRoom = async () => {
       try {
         const response = await RoomAPI.getAll(token);
         if (response.message === "successfully!") {
-          console.log(response.data);
           setListRoom(response.data);
+          controller = null;
         }
       } catch (error) {
         console.log(error);
@@ -42,15 +45,18 @@ const Manager = () => {
     };
 
     fetchAllRoom();
+
+    return () => controller?.abort();
   }, [token]);
 
   useEffect(() => {
+    let controller = new AbortController();
     const fetchAllUser = async () => {
       try {
         const response = await UserAPI.getAll(token);
         if (response.message === "successfully!") {
-          console.log(response.data);
           setListUser(response.data);
+          controller = null;
         }
       } catch (error) {
         console.log(error);
@@ -58,6 +64,8 @@ const Manager = () => {
     };
 
     fetchAllUser();
+
+    return () => controller?.abort();
   }, [token]);
 
   return (
@@ -67,7 +75,7 @@ const Manager = () => {
           <div className="film">
             {listMovies.map((item) => {
               return (
-                <div className="film-item">
+                <div key={item._id} className="film-item">
                   <picture>
                     <img
                       src={`https://ticket-box-clone.herokuapp.com/image/${item.image}`}
@@ -84,7 +92,7 @@ const Manager = () => {
           <div className="room">
             {listRoom.map((item) => {
               return (
-                <div className="room-item">
+                <div key={item._id} className="room-item">
                   <picture>
                     <img src={theater} alt="theater" />
                   </picture>
@@ -96,7 +104,7 @@ const Manager = () => {
           <div className="user">
             {listUSer.map((item) => {
               return (
-                <div className="user-item">
+                <div key={item.key} className="user-item">
                   <p>{item.name}</p>
                 </div>
               );

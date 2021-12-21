@@ -30,6 +30,8 @@ function App() {
           const currentUser = {token: checkToken, user: response.data}
           dispatch(addCurrentUser(currentUser))
         } catch (error) {
+          localStorage.setItem("token", "");
+          console.log(localStorage.getItem("token"))
           console.log(error)
         }
       }

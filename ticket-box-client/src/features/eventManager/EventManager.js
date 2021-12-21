@@ -31,6 +31,7 @@ const EventManager = () => {
 
     return `${getH}:${getM}:${getS}`;
   };
+
   const fetchListShowTime = async () => {
     try {
       const response = await ShowTimeAPI.getAll();
@@ -64,7 +65,7 @@ const EventManager = () => {
     fetchListShowTime();
     fetchMovie();
     fetchRoom();
-  }, []);
+  },[]);
 
   return (
     <div className="event-manager-container">

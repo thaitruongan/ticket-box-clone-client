@@ -3,20 +3,40 @@ import './UserManager.css';
 import { DatePicker, Radio } from 'antd';
 import moment from 'moment';
 import { useSelector } from "react-redux";
-import { selectCurrentUser, selectToken } from "../../app/userSlice";
+import { selectToken } from "../../app/userSlice";
 import UserAPI from "../../api/userAPI";
 
 const UserManager = () => {
     const token = useSelector(selectToken);
-    const currentUser = useSelector(selectCurrentUser);
     const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
-    const [userSelected, setUserSelected] = useState({});
+    const [isUpdate, setIsUpdate] = useState(false);
+    const [userSelected, setUserSelected] = useState({
+        avatar: "",
+        name: "",
+        phoneNumber: "",
+        email: "",
+        birth: "",
+        sex: ""
+    });
     const [activeId, setActiveId] = useState('');
     const [listUSer, setListUser] = useState([]);
-    console.log(currentUser);
+
+    const onSelectSexButton = e => {
+        setUserSelected((prevInfor) => ({
+            ...prevInfor,
+            sex: e.target.value
+        }))
+    };
 
     const handleSelectUser = (u) => {
-        setUserSelected(u)
+        setUserSelected({
+            avatar: u.avatar.search('https:') !== -1 ? u.avatar : `https://ticket-box-clone.herokuapp.com/image/${u.avatar}`,
+            name: !u.name ? "" : u.name,
+            phoneNumber: !u.phoneNumber ? "" : u.phoneNumber,
+            email: !u.email ? "" : u.email,
+            birth: !u.birth ? "" : u.birth,
+            sex: !u.sex ? "" : u.sex
+        })
         setActiveId(u._id)
     }
 
@@ -31,28 +51,25 @@ const UserManager = () => {
     }
 
     const handleDisableStyle = () => {
-        if (userSelected) {
+        if (!isUpdate) {
             return {pointerEvents: "none", opacity: "0.4"}
         } else {
             return {pointerEvents: "", opacity: "1"}
         }
     }
 
-    // const checkDisabled = (val) => {
-    //     if (val) {
-    //         return
-    //     } else {
-    //         return 'disabled'
-    //     }
+    // const handleIsUpdate = () => {
+    //     setIsUpdate(!isUpdate);
     // }
 
     useEffect(() => {
+      let controller = new AbortController();
       const fetchAllUser = async () => {
         try {
           const response = await UserAPI.getAll(token);
           if (response.message === "successfully!") {
-              console.log(response.data)
             setListUser(response.data);
+            controller = null;
           }
         } catch (error) {
           console.log(error)
@@ -60,20 +77,24 @@ const UserManager = () => {
       }
   
       fetchAllUser();
-    },[token])
 
+      return () => controller?.abort()
+    },[token])
     return (
         <div className="user-manager-container">
             <div className="user-info-manager" >
                 <div className="uiam" style={handleDisableStyle()}>
+                    <img className="uiam-a" src={userSelected.avatar} alt={userSelected.name} />
                 </div>
 
-                <div className="btn-handle-container">
-                    <div className="btnhca">Add</div>
-                    <div className="btnhcu">Update</div>
-                    <div className="btnhcr">Remove</div>
-                    <div className="btnhcs">Save</div>
-                </div>
+                {/* <div className="btn-handle-container">
+                    <div
+                        className="btnhcu"
+                        style={{padding: isUpdate ? "6px 0" : "11px 0"}}
+                        onClick={() => handleIsUpdate()}
+                    >{isUpdate ? "Hủy cập nhật" : "Cập nhật" }</div>
+                    <div className="btnhcs">Lưu lại</div>
+                </div> */}
 
                 <div className="usfmf" style={handleDisableStyle()}>
                     <div className="usfmfrow">
@@ -112,7 +133,7 @@ const UserManager = () => {
                         <div className="user-sex">
                             <span>Giới tính: </span>
                             <div className="wrap-radio">
-                                <Radio.Group className="radio-group" value={userSelected.sex} >
+                                <Radio.Group className="radio-group" onChange={onSelectSexButton} value={userSelected.sex} >
                                     <Radio value="male">Nam</Radio>
                                     <Radio value="female">Nữ</Radio>
                                 </Radio.Group>
@@ -125,8 +146,8 @@ const UserManager = () => {
             <div className="user-list-manager">
                 {listUSer.map((user) => {
                     return (                                
-                        <div className="user-element-manager" key={user.id} style={handleSelectStyle(user)} onClick={() => handleSelectUser(user)} >
-                            <img className="usm-dt" src={ user.google.id ? user.avatar : `https://ticket-box-clone.herokuapp.com/image/${user.avatar}`} alt={user.name} />
+                        <div key={user._id} className="user-element-manager" style={handleSelectStyle(user)} onClick={() => handleSelectUser(user)} >
+                            <img className="usm-dt" src={ user.avatar.search('https:') !== -1 ? user.avatar : `https://ticket-box-clone.herokuapp.com/image/${user.avatar}`} alt={user.name} />
                             <div className="usm-mdt">{user.name}</div>
                             <div className="usm-pndt">{user.phoneNumber}</div>
                             <div className="usm-gmdt">{user.email}</div>
