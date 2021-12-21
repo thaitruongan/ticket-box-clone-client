@@ -29,6 +29,7 @@ function Home() {
             position: "fixed",
             left: 0,
           }}
+          className="sider"
         >
           <AppNav />
         </Sider>
