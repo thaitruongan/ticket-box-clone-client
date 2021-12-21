@@ -1,4 +1,7 @@
-.add-room{
+.bnt-e_r {
+  display: flex;
+}
+.add-room {
   margin: 1rem;
   background: #fff;
   padding: 1rem;
@@ -6,27 +9,27 @@
   border-radius: 8px;
 }
 
-.fmr{
+.fmr {
   margin: 1rem 13rem 0;
   display: flex;
   justify-content: space-between;
 }
-.fmr h5{
+.fmr h5 {
   font-size: 18px;
 }
-.fmr input{
+.fmr input {
   width: 12rem;
   height: 2.5rem;
   border: 1px solid #64eea6;
   border-radius: 6px;
 }
-.bnt_mng_room{
+.bnt_mng_room {
   display: flex;
 }
-.button-add-room{
+.button-add-room {
   margin-right: 2rem;
 }
-.submit{
+.submit {
   margin-left: 50rem;
   margin-top: 1rem;
   width: 10rem;
@@ -37,10 +40,23 @@
   font-size: 17px;
   font-weight: bold;
 }
-.list-room-ql {
-  width: auto;
+.ctn-nlm {
+  width: 54.5rem;
+  height: 7rem;
   margin-left: 7rem;
   margin-top: 3rem;
+  padding: 1rem;
+  background: #fff;
+  position: fixed;
+}
+.list-room-ql {
+  width: 54.5rem;
+  margin-left: 7rem;
+  margin-top: 10rem;
+  height: 20rem;
+  overflow: scroll;
+  padding: 1rem;
+  background: #fff;
 }
 .nlm {
   display: grid;
@@ -63,11 +79,9 @@
   grid-template-rows: 50px;
   grid-gap: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
-.lr-item {
-  background: #aca7a7;
-}
 .lr-item p {
   margin-top: 1rem;
 }

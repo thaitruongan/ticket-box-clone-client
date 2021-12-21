@@ -27,14 +27,14 @@ const RoomAPI = {
   },
 
   editRoom: (token, id, name, rowAmount, columnAmount)=>{
-    const url="movie/"+id;
+    const url="room/"+id;
     return axiosClient.put(url, {
       'name':`${name}`,
       'rowAmount':`${rowAmount}`,
       'columnAmount':`${columnAmount}`,
     },
     { headers: {
-        'content-type': 'multipart/form-data',
+      "content-type": "application/json",
         'tbtoken': token,
       },
     })

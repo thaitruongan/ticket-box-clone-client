@@ -90,13 +90,11 @@ const Manager = () => {
         </Col>
         <Col>
           <div className="room">
-            {listRoom.map((item) => {
+            {listRoom.map((room) => {
               return (
-                <div key={item._id} className="room-item">
-                  <picture>
-                    <img src={theater} alt="theater" />
-                  </picture>
-                  <p>{item.name}</p>;
+                <div key={room._id} className="room-item">
+                  <img src={theater} alt="theater" />
+                  <p>{room.name}</p>
                 </div>
               );
             })}
@@ -104,7 +102,7 @@ const Manager = () => {
           <div className="user">
             {listUSer.map((item) => {
               return (
-                <div key={item.key} className="user-item">
+                <div key={item._id} className="user-item">
                   <p>{item.name}</p>
                 </div>
               );

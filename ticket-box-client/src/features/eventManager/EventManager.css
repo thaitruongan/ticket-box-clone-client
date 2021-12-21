@@ -47,7 +47,10 @@
   .ant-select-selection-placeholder {
   margin: auto 0;
 }
-
+.list-event{
+  overflow: scroll;
+  height: 25rem;
+}
 .table-event {
   width: 100%;
 }

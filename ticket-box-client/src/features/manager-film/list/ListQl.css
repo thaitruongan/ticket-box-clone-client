@@ -193,7 +193,13 @@
 .ngay-cong-chieu .date-picker-cong-chieu {
   margin-left: 1rem;
 }
-
+.list-film{
+  overflow: scroll;
+  height: 25rem;
+}
+.table-film{
+  width: 100%;
+}
 .table-film,
 .th_film,
 td {
