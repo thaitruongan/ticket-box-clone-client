@@ -4,11 +4,10 @@ import MovieAPI from "../../../api/movieAPI";
 import { selectToken } from "../../../app/userSlice";
 import { addCurrentMovie } from "../../../app/movieSlice";
 import { ReactComponent as Search } from "../../../images/search.svg";
-import { Input, Row, Col, Form, Upload } from "antd";
+import { Input, Row, Col } from "antd";
 import {
   VideoCameraAddOutlined,
   VideoCameraOutlined,
-  InboxOutlined,
 } from "@ant-design/icons";
 import "./ListQl.css";
 
@@ -81,21 +80,7 @@ const ListQl = () => {
     console.log(filmUpdate);
   };
 
-  const normFile = (e) => {
-    console.log("Upload event:", e);
 
-    if (Array.isArray(e)) {
-      setFilm((film) => ({
-        ...film,
-        file: e.file
-      }))
-      return e;
-    }
-
-    
-
-    return e && e.imageList;
-  };
 
   const fetchListMovies = async () => {
     try {
@@ -122,9 +107,9 @@ const ListQl = () => {
     }
   };
 
-  const updateUser = async () => {
+  const updateFilm = async () => {
     try {
-      const response = await MovieAPI.updateFilm(token, fimUpdate);
+      const response = await MovieAPI.updateFilm(token, movieSelected._id,  fimUpdate);
       console.log(response);
       if (response.message === "successfully!") {
         dispatch(addCurrentMovie({ token: token, movie: response.data }));
@@ -337,24 +322,7 @@ const ListQl = () => {
                       <h2>Hình ảnh bộ phim</h2>
                       <div className="gach-chan-ql-update-r2-c2"></div>
                       <div className="content-form-update-img">
-                        <Form.Item
-                          name="dragger"
-                          valuePropName="imageList"
-                          getValueFromEvent={normFile}
-                          noStyle
-                          onChange={(e) => handleUpdate(e)}
-                          id="image"
-                          value={fimUpdate.image}
-                        >
-                          <Upload.Dragger name="images" action="/upload.do">
-                            <p className="ant-upload-drag-icon">
-                              <InboxOutlined style={{ color: "#2dc275" }} />
-                            </p>
-                            <p className="ant-upload-text">
-                              Nhấn hoặc thả ảnh của bạn vào đây
-                            </p>
-                          </Upload.Dragger>
-                        </Form.Item>
+                      <input type="file" onChange={(e)=> {handleImage(e)}}/>
                       </div>
                     </div>
                   </div>
@@ -363,7 +331,7 @@ const ListQl = () => {
                       className="bnt-save"
                       onClick={() => {
                         setShowUpdate(false);
-                        updateUser();
+                        updateFilm();
                       }}
                     >
                       Save

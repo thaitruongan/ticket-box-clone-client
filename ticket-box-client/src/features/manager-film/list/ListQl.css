@@ -194,12 +194,12 @@
   margin-left: 1rem;
 }
 
-table,
-th,
+.table-film,
+.th_film,
 td {
   border: 1px solid gray;
 }
-th,
+.th_film,
 td {
   padding: 10px;
   text-align: center;

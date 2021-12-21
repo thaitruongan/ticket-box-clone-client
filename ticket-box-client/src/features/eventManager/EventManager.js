@@ -11,8 +11,9 @@ const EventManager = () => {
   const token = useSelector(selectToken);
   const [showCreate, setShowCreate] = useState(false);
   const [listShowTime, setListShowTime] = useState([]);
-  const [listMovie, setListMovie] = useState([])
-  const [listRoom,setListRoom] = useState([])
+  const [listMovie, setListMovie] = useState([]);
+  const [listRoom, setListRoom] = useState([]);
+
   const handleDate = (date) => {
     const d = new Date(date);
     const getD = d.getDate();
@@ -30,6 +31,7 @@ const EventManager = () => {
 
     return `${getH}:${getM}:${getS}`;
   };
+
   const fetchListShowTime = async () => {
     try {
       const response = await ShowTimeAPI.getAll();
@@ -39,32 +41,30 @@ const EventManager = () => {
       console.log(error);
     }
   };
-  
-  const fetchMovie = async()=>{
-    try{
-      const res = await MovieAPI.getAll();      
-      setListMovie(res.data)
-    }catch(err){
-      console.log(err)
-    }
-  }
 
-  useEffect(() => {
-    const fetchRoom = async()=>{
-      try{
-        const res = await RoomAPI.getAll(token);
-        console.log(res.data)
-        setListRoom(res.data)
-      }catch(err){
-        console.log(err)
-      }
+  const fetchMovie = async () => {
+    try {
+      const res = await MovieAPI.getAll();
+      setListMovie(res.data);
+    } catch (err) {
+      console.log(err);
     }
-    fetchRoom();
-  },[token])
+  };
+
+  const fetchRoom = async () => {
+    try {
+      const res = await RoomAPI.getAll(token);
+      console.log(res.data);
+      setListRoom(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     fetchListShowTime();
     fetchMovie();
+    fetchRoom();
   },[]);
 
   return (
@@ -115,7 +115,11 @@ const EventManager = () => {
       </div>
       {showCreate ? (
         <div className="create">
-          <AddEvent movie={listMovie} fetchListShowTime={fetchListShowTime} room={listRoom} />
+          <AddEvent
+            movie={listMovie}
+            fetchListShowTime={fetchListShowTime}
+            room={listRoom}
+          />
         </div>
       ) : null}
     </div>

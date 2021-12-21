@@ -52,9 +52,7 @@
   width: 100%;
 }
 
-.table-event,
-.th-event,
-.td-event {
+table{
   border: 3px solid #ffffff;
   background: #f0f0f0;
 }
@@ -71,7 +69,10 @@
 .price {
   text-align: left;
 }
-
+.button{
+  display: flex;
+  justify-content: space-between;
+}
 .btn-cst {
   text-transform: none;
   appearance: button;
@@ -92,7 +93,7 @@
   padding: 0px 24px;
   background: #2dc275;
   color: #fff;
-  margin: 1rem 3rem;
+  margin:1rem 3rem;
 }
 
 .btn-cst:hover {

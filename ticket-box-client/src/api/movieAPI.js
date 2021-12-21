@@ -26,8 +26,8 @@ const MovieAPI = {
     );
   },
 
-  updateFilm: (token, film)=>{
-    const url="movie";
+  updateFilm: (token, id, film)=>{
+    const url="movie/"+id;
     const formData=new FormData();
     formData.append('file', film.file);
     formData.append('name', film.name);
