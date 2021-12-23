@@ -239,6 +239,12 @@
   width: 45%;
 }
 
+.btn-fb-login {
+  height: 40px;
+  border-radius: 20px;
+  width: 45%;
+}
+
 .bottom .login-api .facebook,
 .gmail {
   margin: auto 0;

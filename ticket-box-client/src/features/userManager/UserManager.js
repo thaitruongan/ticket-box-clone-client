@@ -8,18 +8,18 @@ import UserAPI from "../../api/userAPI";
 
 const UserManager = () => {
     const token = useSelector(selectToken);
-    const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
-    const [isUpdate, setIsUpdate] = useState(false);
+    const dateFormatList = ['MM-DD-YYYY', 'MM-DD-YY'];
+    const [activeId, setActiveId] = useState('');
+    const [listUSer, setListUser] = useState([]);
     const [userSelected, setUserSelected] = useState({
         avatar: "",
         name: "",
         phoneNumber: "",
         email: "",
-        birth: "",
-        sex: ""
+        birth: new Date(),
+        sex: "",
+        isAlive: true
     });
-    const [activeId, setActiveId] = useState('');
-    const [listUSer, setListUser] = useState([]);
 
     const onSelectSexButton = e => {
         setUserSelected((prevInfor) => ({
@@ -34,8 +34,9 @@ const UserManager = () => {
             name: !u.name ? "" : u.name,
             phoneNumber: !u.phoneNumber ? "" : u.phoneNumber,
             email: !u.email ? "" : u.email,
-            birth: !u.birth ? "" : u.birth,
-            sex: !u.sex ? "" : u.sex
+            birth: !u.birth ? new Date() : new Date(u.birth),
+            sex: !u.sex ? "" : u.sex,
+            isAlive: u.isAlive
         })
         setActiveId(u._id)
     }
@@ -45,22 +46,18 @@ const UserManager = () => {
             if (activeId !== u._id) {
                 return {backgroundColor: '#f0f0f0', color: '#000000'}
             } else {
-                return {backgroundColor: '#2DC275', color: '#ffffff', fontWeight: 'bold'}
+                return {backgroundColor: '#2DC275', color: '#ffffff', fontWeight: 'bold', opacity: "1"}
             }
         }
     }
 
-    const handleDisableStyle = () => {
-        if (!isUpdate) {
-            return {pointerEvents: "none", opacity: "0.4"}
-        } else {
-            return {pointerEvents: "", opacity: "1"}
+    const handleIsAlive = (u) => {
+        if (u.isAlive === false) {
+            return "isDead"
+        }else{
+            return
         }
     }
-
-    // const handleIsUpdate = () => {
-    //     setIsUpdate(!isUpdate);
-    // }
 
     useEffect(() => {
       let controller = new AbortController();
@@ -83,32 +80,25 @@ const UserManager = () => {
     return (
         <div className="user-manager-container">
             <div className="user-info-manager" >
-                <div className="uiam" style={handleDisableStyle()}>
+                <div className="uiam">
                     <img className="uiam-a" src={userSelected.avatar} alt={userSelected.name} />
+                    <div className="dash-isdead didfs" style={{opacity: !userSelected.isAlive ? "1" : "0" }} ></div>
+                    <div className="dash-isdead didsc" style={{opacity: !userSelected.isAlive ? "1" : "0" }} ></div>
                 </div>
 
-                {/* <div className="btn-handle-container">
-                    <div
-                        className="btnhcu"
-                        style={{padding: isUpdate ? "6px 0" : "11px 0"}}
-                        onClick={() => handleIsUpdate()}
-                    >{isUpdate ? "Hủy cập nhật" : "Cập nhật" }</div>
-                    <div className="btnhcs">Lưu lại</div>
-                </div> */}
-
-                <div className="usfmf" style={handleDisableStyle()}>
+                <div className="usfmf">
                     <div className="usfmfrow">
                         <div className="uinm">
                             <span className="umsjw">Họ và tên: </span>
                             <div className="uinm-input">
-                                <input name="name" className="uinm ipom" value={userSelected.name} placeholder="Họ và tên" type="text" maxLength="100" />
+                                <input name="name" className="uinm ipom" defaultValue={userSelected.name} placeholder="Họ và tên" type="text" maxLength="100" />
                             </div>
                         </div>
 
                         <div className="uipnm">
                             <span className="umsjw">Số điện thoại: </span>
                             <div className="uipnm-input">
-                                <input name="phone" className="uipnm ipom" value={userSelected.phoneNumber}  placeholder="Vd: 0123456789" type="text" maxLength="100" />
+                                <input name="phone" className="uipnm ipom" defaultValue={userSelected.phoneNumber} placeholder="Vd: 0123456789" type="text" maxLength="100" />
                             </div>
                         </div>
                     </div>
@@ -117,14 +107,18 @@ const UserManager = () => {
                         <div className="uigmm">
                             <span className="umsjw">Email nhận vé: </span>
                             <div className="uigmm-input">
-                                <input name="mail" className="uigmm ipom" value={userSelected.email}  placeholder="Vd: nguyenvana@gmail.com" type="text" maxLength="100" />
+                                <input name="mail" className="uigmm ipom" defaultValue={userSelected.email} placeholder="Vd: nguyenvana@gmail.com" type="text" maxLength="100" />
                             </div>
                         </div>
 
                         <div className="usbm">
                             <span className="umsjw">Ngày tháng năm sinh: </span>
                             <div className="usbm-input">
-                                <DatePicker className="usbm ipom"  defaultValue={moment(userSelected.birth, dateFormatList[0])} format={dateFormatList} />
+                                <DatePicker
+                                    className="usbm ipom"
+                                    format={dateFormatList}
+                                    value={moment(`${userSelected.birth}`, dateFormatList[0])}
+                                />
                             </div>
                         </div>
                     </div>
@@ -146,7 +140,7 @@ const UserManager = () => {
             <div className="user-list-manager">
                 {listUSer.map((user) => {
                     return (                                
-                        <div key={user._id} className="user-element-manager" style={handleSelectStyle(user)} onClick={() => handleSelectUser(user)} >
+                        <div key={user._id} className={`user-element-manager ${handleIsAlive(user)}`} style={handleSelectStyle(user)} onClick={() => handleSelectUser(user)} >
                             <img className="usm-dt" src={ user.avatar.search('https:') !== -1 ? user.avatar : `https://ticket-box-clone.herokuapp.com/image/${user.avatar}`} alt={user.name} />
                             <div className="usm-mdt">{user.name}</div>
                             <div className="usm-pndt">{user.phoneNumber}</div>

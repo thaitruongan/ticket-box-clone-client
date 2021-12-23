@@ -147,7 +147,7 @@ const Profile = () => {
                         <DatePicker
                             className="input-profile birth"
                             format={dateFormatList}
-                            defaultValue={moment(`${inforUser.birth}`)}
+                            defaultValue={moment(`${inforUser.birth}`, dateFormatList[0])}
                             onChange={(dateString) => {
                                 setInforUser(() => ({
                                     ...inforUser,

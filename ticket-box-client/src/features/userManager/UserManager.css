@@ -16,6 +16,7 @@
 }
 
 .user-manager-container .user-info-manager {
+  pointer-events: none;
   height: 60%;
 }
 
@@ -24,11 +25,14 @@
   width: 200px;
   border: #000000 1px solid;
   margin-right: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .user-manager-container .user-info-manager .uiam .uiam-a {
-  height: 200px;
-  width: 200px;
+  margin: auto 0;
+  height: 150px;
+  width: 150px;
 }
 
 .user-manager-container .user-info-manager .usfmf {
@@ -65,6 +69,7 @@
 }
 
 .ipom {
+  padding-left: 10px;
   border: none;
   border-radius: 0px;
   background-color: #f0f0f0 !important;
@@ -173,4 +178,23 @@
 
 .btn-handle-container .btnhcs:hover {
   background-color: #4894b0;
+}
+
+.isDead {
+  opacity: 0.5;
+}
+
+.dash-isdead {
+  position: absolute;
+  width: 20px;
+  height: 200px;
+  background: red;
+}
+
+.didfs {
+  transform: skew(45deg);
+}
+
+.didsc {
+  transform: skew(135deg);
 }

@@ -10,6 +10,7 @@ import { ReactComponent as LogoWhite } from "../../assets/svg/logo-white.svg";
 import UserAPI from "../../api/userAPI";
 import { useLocation, useNavigate } from "react-router";
 import ReactLoading from 'react-loading';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -63,6 +64,9 @@ const SignIn = () => {
   const responseGoogle = (response) => {
     console.log(response);
   };
+  const responseFacebook = (response) => {
+    console.log(response);
+  }
 
   return (
     <div className="sign-in-page">
@@ -124,21 +128,29 @@ const SignIn = () => {
             <span className="sosip">Hoặc</span>
           </div>
           <div className="login-api">
-            <div>
-              <FacebookIcon className="facebook" />
-            </div>
-              <GoogleLogin
-                clientId="408075301782-j39rulkr2te17lttl2fp29pigqq1u3qt.apps.googleusercontent.com"
-                //buttonText="Login"
-                render={(renderProps) => (
-                  <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                    <GmailIcon className="gmail" />
-                  </div>
-                )}
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={"single_host_origin"}
-              />
+            <FacebookLogin
+              appId="943973219888998"
+              callback={responseFacebook}
+              onClick={() => {}}
+              render={renderProps => (
+                <div onClick={renderProps.onClick}>
+                  <FacebookIcon className="facebook" />
+                </div>
+              )}
+            />
+
+            <GoogleLogin
+              clientId="408075301782-j39rulkr2te17lttl2fp29pigqq1u3qt.apps.googleusercontent.com"
+              //buttonText="Login"
+              render={(renderProps) => (
+                <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                  <GmailIcon className="gmail" />
+                </div>
+              )}
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
           </div>
         </div>
       </div>
