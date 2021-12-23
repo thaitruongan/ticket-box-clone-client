@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./Ticket.css";
 import { Checkbox } from "antd";
-import ReactLoading from 'react-loading';
+import ReactLoading from "react-loading";
 
 const Ve = (props) => {
-  const {showtime, total, ticketList, handlePayment, isLoading} = props;
+  const { showtime, total, ticketList, handlePayment, isLoading } = props;
   const timeStart = new Date(showtime.timeStart);
   const timeEnd = new Date(timeStart);
   const vipPrice = showtime.vipPrice;
@@ -14,25 +14,25 @@ const Ve = (props) => {
   timeEnd.setMinutes(timeEnd.getMinutes() + showtime.movie[0].runningTime);
 
   const [isChecked, setIsChecked] = useState(true);
-//handle onclick payment
+  //handle onclick payment
   const handleOnclickPayment = () => {
     if (handlePayment && isChecked) {
       handlePayment();
     }
-  }
-//handle is checked
+  };
+  //handle is checked
   const onChange = (e) => {
     setIsChecked(e.target.checked);
   };
-//handle count type ticket
+  //handle count type ticket
   for (let i = 0; i < ticketList.length; i++) {
     if (ticketList[i].isVip) {
       vipCount++;
-    }else{
+    } else {
       standarCount++;
     }
   }
-//handle format total
+  //handle format total
   let format = new Intl.NumberFormat("vi-Vn", {
     style: "currency",
     currency: "VND",
@@ -42,11 +42,12 @@ const Ve = (props) => {
     const H = Math.floor(time / 60);
     const M = time % 60;
 
-    return `${H} giờ ${M} phút`
-  }
+    return `${H} giờ ${M} phút`;
+  };
 
   const handleTimeStartEnd = (h, m) => {
-    let mi = m, ho = h;
+    let mi = m,
+      ho = h;
 
     if (h < 10) {
       ho = `0${h}`;
@@ -54,14 +55,14 @@ const Ve = (props) => {
     if (m < 10) {
       mi = `0${m}`;
     }
-    return `${ho}:${mi}`
-  }
+    return `${ho}:${mi}`;
+  };
 
   return (
     <div className="ve">
       <div className="poster">
         <img
-          src={`https://ticket-box-clone.herokuapp.com/image/${showtime.movie[0].image}`}
+          src={`https://ticket-box-bs.herokuapp.com/image/${showtime.movie[0].image}`}
           alt="tenphim"
         />
         <div className="thong-tin-ve-phim">
@@ -80,28 +81,41 @@ const Ve = (props) => {
         </div>
         <div className="phong-ve">
           <p>{showtime.room[0].name}</p>
-          <p>{handleTimeStartEnd(timeStart.getHours(), timeStart.getMinutes())} - {handleTimeStartEnd(timeEnd.getHours(), timeEnd.getMinutes())}, {timeStart.toLocaleDateString('en-GB')}</p>
+          <p>
+            {handleTimeStartEnd(timeStart.getHours(), timeStart.getMinutes())} -{" "}
+            {handleTimeStartEnd(timeEnd.getHours(), timeEnd.getMinutes())},{" "}
+            {timeStart.toLocaleDateString("en-GB")}
+          </p>
           <div className="pv-list">
-            {ticketList.map(tick => (<p key={tick._id} className="pv-child">{`${tick.row}${tick.column}`}</p>))}
+            {ticketList.map((tick) => (
+              <p
+                key={tick._id}
+                className="pv-child"
+              >{`${tick.row}${tick.column}`}</p>
+            ))}
           </div>
           {/* <p className="pv-child">{ticketList.map(tick => `${tick.row}${tick.column} `)}</p> */}
         </div>
-        {(vipCount > 0) ? (<div className="loai-va-gia">
-                            <div className="loai-ve">
-                              <p>VIP (X{vipCount})</p>
-                            </div>
-                            <div className="gia-ve">
-                              <p>{format.format(vipPrice * vipCount)}</p>
-                            </div>
-                          </div>) : null}
-        {(standarCount > 0) ? (<div className="loai-va-gia">
-                                <div className="loai-ve">
-                                  <p>Standard (X{standarCount})</p>
-                                </div>
-                                <div className="gia-ve">
-                                  <p>{format.format(standarPrice * standarCount)}</p>
-                                </div>
-                              </div>) : null}
+        {vipCount > 0 ? (
+          <div className="loai-va-gia">
+            <div className="loai-ve">
+              <p>VIP (X{vipCount})</p>
+            </div>
+            <div className="gia-ve">
+              <p>{format.format(vipPrice * vipCount)}</p>
+            </div>
+          </div>
+        ) : null}
+        {standarCount > 0 ? (
+          <div className="loai-va-gia">
+            <div className="loai-ve">
+              <p>Standard (X{standarCount})</p>
+            </div>
+            <div className="gia-ve">
+              <p>{format.format(standarPrice * standarCount)}</p>
+            </div>
+          </div>
+        ) : null}
       </div>
       <div className="gach-ngang"></div>
       <div className="thanh-tien-ve">
@@ -116,22 +130,29 @@ const Ve = (props) => {
             </p>
           </Checkbox>
         </div>
-        {
-          isLoading ? (
-            <div className="rcld">
-              <ReactLoading type="spin" color="#2dc275" height="40px" width="40px" />
-            </div>
-          ) : (<div>
-                <button
-                  className="button-thanh-toan"
-                  onClick={() => handleOnclickPayment()}
-                  style={{backgroundColor: isChecked ? "#2dc275" : "#f0f0f0", pointerEvents: isChecked ? "" : "none"}}
-                >
-                  Thanh Toán
-                </button>
-              </div>
-              )
-        }
+        {isLoading ? (
+          <div className="rcld">
+            <ReactLoading
+              type="spin"
+              color="#2dc275"
+              height="40px"
+              width="40px"
+            />
+          </div>
+        ) : (
+          <div>
+            <button
+              className="button-thanh-toan"
+              onClick={() => handleOnclickPayment()}
+              style={{
+                backgroundColor: isChecked ? "#2dc275" : "#f0f0f0",
+                pointerEvents: isChecked ? "" : "none",
+              }}
+            >
+              Thanh Toán
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

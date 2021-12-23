@@ -47,7 +47,7 @@ const ListMovies = () => {
                   <div className="list-card-movies_cover">
                     <picture>
                       <img
-                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        src={`https://ticket-box-bs.herokuapp.com/image/${movie.image}`}
                         alt={movie.name}
                       />
                     </picture>
@@ -67,7 +67,8 @@ const ListMovies = () => {
 
                   <button
                     className="list-muave"
-                    onClick={e => {navigate("/buy", { state: movie });
+                    onClick={(e) => {
+                      navigate("/buy", { state: movie });
                       // if (e.target.className === "list-muave") {
                       //   navigate("/buy", { state: movie });
                       // } else {

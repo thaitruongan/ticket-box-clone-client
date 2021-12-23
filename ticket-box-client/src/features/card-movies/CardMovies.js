@@ -40,7 +40,7 @@ const CardMovies = () => {
                     <picture>
                       <img
                         alt={movie.name}
-                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        src={`https://ticket-box-bs.herokuapp.com/image/${movie.image}`}
                       />
                     </picture>
                     <div className="bnt-img">

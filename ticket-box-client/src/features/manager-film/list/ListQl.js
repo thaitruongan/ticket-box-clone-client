@@ -5,10 +5,7 @@ import { selectToken } from "../../../app/userSlice";
 import { addCurrentMovie } from "../../../app/movieSlice";
 import { ReactComponent as Search } from "../../../images/search.svg";
 import { Input, Row, Col } from "antd";
-import {
-  VideoCameraAddOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { VideoCameraAddOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import "./ListQl.css";
 
 const ListQl = () => {
@@ -58,11 +55,11 @@ const ListQl = () => {
   };
 
   const handleImage = (e) => {
-    console.log("target",e.target)
+    console.log("target", e.target);
     setFilm((film) => ({
       ...film,
-      file: e.target.files[0]
-    }))
+      file: e.target.files[0],
+    }));
   };
 
   const handle = (e) => {
@@ -70,7 +67,7 @@ const ListQl = () => {
     _film[e.target.id] = e.target.value;
     setFilm(_film);
     console.log(_film);
-  }
+  };
 
   const handleUpdate = (e) => {
     const filmUpdate = { ...fimUpdate };
@@ -105,7 +102,11 @@ const ListQl = () => {
 
   const updateFilm = async () => {
     try {
-      const response = await MovieAPI.updateFilm(token, movieSelected._id,  fimUpdate);
+      const response = await MovieAPI.updateFilm(
+        token,
+        movieSelected._id,
+        fimUpdate
+      );
       console.log(response);
       if (response.message === "successfully!") {
         dispatch(addCurrentMovie({ token: token, movie: response.data }));
@@ -114,7 +115,7 @@ const ListQl = () => {
       console.log(error);
     }
   };
-  
+
   return (
     <>
       {showAdd ? (
@@ -207,7 +208,12 @@ const ListQl = () => {
                       <h2>Hình ảnh bộ phim</h2>
                       <div className="gach-chan-ql-add-r2-c2"></div>
                       <div className="content-form-add-img">
-                        <input type="file" onChange={(e)=> {handleImage(e)}}/>
+                        <input
+                          type="file"
+                          onChange={(e) => {
+                            handleImage(e);
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -318,7 +324,12 @@ const ListQl = () => {
                       <h2>Hình ảnh bộ phim</h2>
                       <div className="gach-chan-ql-update-r2-c2"></div>
                       <div className="content-form-update-img">
-                      <input type="file" onChange={(e)=> {handleImage(e)}}/>
+                        <input
+                          type="file"
+                          onChange={(e) => {
+                            handleImage(e);
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -397,7 +408,7 @@ const ListQl = () => {
               {listMovies.map((item, index) => {
                 return (
                   <tbody key={item._id}>
-                    <tr                      
+                    <tr
                       style={handleSelectStyle(item)}
                       onClick={() => handleSelectMovie(item)}
                     >
@@ -412,7 +423,7 @@ const ListQl = () => {
                           <picture>
                             <img
                               alt={item.name}
-                              src={`https://ticket-box-clone.herokuapp.com/image/${item.image}`}
+                              src={`https://ticket-box-bs.herokuapp.com/image/${item.image}`}
                               className="img-list-manager"
                             />
                           </picture>

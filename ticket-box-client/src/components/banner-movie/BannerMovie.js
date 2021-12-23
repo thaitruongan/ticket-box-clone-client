@@ -41,23 +41,39 @@ const AppBannerMovie = () => {
 
   return (
     <div className="banner-movie">
-      <Carousel enableAutoPlay autoPlaySpeed={2500} breakPoints={breakPoints} className="carousel">
+      <Carousel
+        enableAutoPlay
+        autoPlaySpeed={2500}
+        breakPoints={breakPoints}
+        className="carousel"
+      >
         {bannerMovie.map((movie) => {
           return (
             <div key={movie._id} className="item-banner">
               <Item className="item-banner-movie-img">
                 <div className="banner-movies_cover">
-                  <div style={{cursor: "pointer"}} onClick={() => {navigate("/detail-movies", { state: movie })}}>
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      navigate("/detail-movies", { state: movie });
+                    }}
+                  >
                     <picture>
                       <img
-                        src={`https://ticket-box-clone.herokuapp.com/image/${movie.image}`}
+                        src={`https://ticket-box-bs.herokuapp.com/image/${movie.image}`}
                         alt={movie.name}
                       />
                     </picture>
                   </div>
                 </div>
                 <div className="banner-movies_info">
-                  <div className="banner-title" style={{cursor: "pointer"}} onClick={() => {navigate("/detail-movies", { state: movie })}}>
+                  <div
+                    className="banner-title"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      navigate("/detail-movies", { state: movie });
+                    }}
+                  >
                     <h2>{movie.name}</h2>
                   </div>
                   <div className="banner-time">
@@ -66,14 +82,21 @@ const AppBannerMovie = () => {
                   </div>
                   <div className="banner-description">
                     <h6>{movie.description}</h6>
-                    <div className="bnt-bnds" onClick={() => {navigate("/detail-movies", { state: movie })}}>
+                    <div
+                      className="bnt-bnds"
+                      onClick={() => {
+                        navigate("/detail-movies", { state: movie });
+                      }}
+                    >
                       Xem thêm
                     </div>
                   </div>
                   <div className="button-banner">
                     <button
                       className="button-muave-banner"
-                      onClick={() => {navigate("/buy", { state: movie })}}
+                      onClick={() => {
+                        navigate("/buy", { state: movie });
+                      }}
                     >
                       Mua vé
                     </button>

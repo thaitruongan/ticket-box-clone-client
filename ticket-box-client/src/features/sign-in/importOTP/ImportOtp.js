@@ -19,6 +19,7 @@ const ImportOtp = () => {
   const [countDROtp, setCountDROtp] = useState(30);
   const [isCountDROtp, setIsCountDROtp] = useState(false);
   const [google, setGoogle] = useState(null);
+  const [facebook, setFacebook] = useState(null);
   const autoTab = (e) => {
     setOtp(`${otp}${e.target.value}`);
     if (count < 3) {
@@ -55,6 +56,9 @@ const ImportOtp = () => {
     if (localStorage.getItem("google") !== null)
       setGoogle(JSON.parse(localStorage.getItem("google")));
 
+    if (localStorage.getItem("facebook") !== null)
+      setFacebook(JSON.parse(localStorage.getItem("facebook")));
+
     console.log(google);
     document.getElementById("0").focus();
   }, []);
@@ -66,14 +70,22 @@ const ImportOtp = () => {
         setCheck(true);
         try {
           let response;
-          if (google === null) {
+          if (google === null && facebook === null) {
             response = await UserAPI.ImportOTP(phoneNumber, otp);
-          } else
+          } else if (google !== null) {
             response = await UserAPI.ImportOTP(
               phoneNumber,
               otp,
               google.tokenId
             );
+            localStorage.removeItem("google");
+          } else {
+            response = await UserAPI.ImportOTP(phoneNumber, otp, null, {
+              id: facebook.id,
+              name: facebook.name,
+            });
+            localStorage.removeItem("facebook");
+          }
           if (response.message === "success!") {
             localStorage.setItem("token", response.token);
             dispatch(addCurrentUser(response));

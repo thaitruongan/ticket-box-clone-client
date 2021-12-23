@@ -33,7 +33,9 @@ const SeatMap = () => {
   const standarPrice = showtimeState.state.standardPrice;
   const timeStart = new Date(showtimeState.state.timeStart);
   const timeEnd = new Date(timeStart);
-  timeEnd.setMinutes(timeEnd.getMinutes() + showtimeState.state.movie[0].runningTime);
+  timeEnd.setMinutes(
+    timeEnd.getMinutes() + showtimeState.state.movie[0].runningTime
+  );
   let format = new Intl.NumberFormat("vi-Vn", {
     style: "currency",
     currency: "VND",
@@ -45,14 +47,17 @@ const SeatMap = () => {
     setIsCountdown(false);
     setCountdown(0);
     if (currentUser._id) {
-      navigate("/payment", {state: {selectedList, total, showtime: showtimeState.state}})
-    }else{
-      navigate("/login", {state: showtimeState.pathname})
+      navigate("/payment", {
+        state: { selectedList, total, showtime: showtimeState.state },
+      });
+    } else {
+      navigate("/login", { state: showtimeState.pathname });
     }
-  }
+  };
   //handle time start - end
   const handleTimeStartEnd = (h, m) => {
-    let mi = m, ho = h;
+    let mi = m,
+      ho = h;
 
     if (h < 10) {
       ho = `0${h}`;
@@ -60,8 +65,8 @@ const SeatMap = () => {
     if (m < 10) {
       mi = `0${m}`;
     }
-    return `${ho}:${mi}`
-  }
+    return `${ho}:${mi}`;
+  };
   //handle select seat
   const handleSelected = (tic) => {
     if (selectedList.find((tick) => tick._id === tic._id)) {
@@ -107,14 +112,14 @@ const SeatMap = () => {
     }
     return () => {
       clearTimeout(timeout);
-    }
-  },[isCountdown, countdown, socket, showtimeId])
+    };
+  }, [isCountdown, countdown, socket, showtimeId]);
   //connect socket
   useEffect(() => {
     // setSocket(io("ws://localhost:5000"));
-    setSocket(io("https://ticket-box-clone.herokuapp.com/"));
+    setSocket(io("https://ticket-box-bs.herokuapp.com/"));
   }, []);
-//fetch showtime by id
+  //fetch showtime by id
   // useEffect(() => {
   //   const fetchShowTimeById = async() => {
   //     try {
@@ -129,7 +134,7 @@ const SeatMap = () => {
 
   //   fetchShowTimeById();
   // },[showtimeId]);
-// set seat row
+  // set seat row
   for (let i = 0; i < data.length; i++) {
     if (!seatRows.find((element) => element === data[i].row)) {
       seatRows.push(data[i].row);
@@ -137,7 +142,7 @@ const SeatMap = () => {
   }
 
   seatRows.sort();
-//event socket
+  //event socket
   useEffect(() => {
     if (socket !== null) {
       socket.on("welcome", (message) => {
@@ -208,7 +213,7 @@ const SeatMap = () => {
                   <div className="movie-info-ticket">
                     <img
                       className="avatar-movie-on-ticket"
-                      src={`https://ticket-box-clone.herokuapp.com/image/${showtimeState.state.movie[0].image}`}
+                      src={`https://ticket-box-bs.herokuapp.com/image/${showtimeState.state.movie[0].image}`}
                       alt={`${showtimeState.state.movie[0].name}`}
                     />
 
@@ -225,16 +230,29 @@ const SeatMap = () => {
                     </div>
                   </div>
 
-                  <h4 className="showtime-name">{showtimeState.state.room[0].name}</h4>
+                  <h4 className="showtime-name">
+                    {showtimeState.state.room[0].name}
+                  </h4>
 
                   <div className="show-time-infor">
-                    {handleTimeStartEnd(timeStart.getHours(), timeStart.getMinutes())} - {handleTimeStartEnd(timeEnd.getHours(), timeEnd.getMinutes())} |{" "}
-                    {timeStart.toLocaleDateString('en-GB')}
+                    {handleTimeStartEnd(
+                      timeStart.getHours(),
+                      timeStart.getMinutes()
+                    )}{" "}
+                    -{" "}
+                    {handleTimeStartEnd(
+                      timeEnd.getHours(),
+                      timeEnd.getMinutes()
+                    )}{" "}
+                    | {timeStart.toLocaleDateString("en-GB")}
                   </div>
 
                   <div className="total-count">{format.format(total)}</div>
 
-                  <PaymentButton isSelected={selectedList.length > 0 ? true : false} onClick={handlePaymentButton} />
+                  <PaymentButton
+                    isSelected={selectedList.length > 0 ? true : false}
+                    onClick={handlePaymentButton}
+                  />
                 </div>
 
                 <div className="seat-information-container">
@@ -251,12 +269,16 @@ const SeatMap = () => {
 
                     <div className="istt">
                       <span className="istt-asdn"></span>
-                      <span className="istt-t">Standard - {format.format(standarPrice)}</span>
+                      <span className="istt-t">
+                        Standard - {format.format(standarPrice)}
+                      </span>
                     </div>
 
                     <div className="istt">
                       <span className="istt-arbn"></span>
-                      <span className="istt-t">VIP - {format.format(vipPrice)}</span>
+                      <span className="istt-t">
+                        VIP - {format.format(vipPrice)}
+                      </span>
                     </div>
                   </div>
                 </div>

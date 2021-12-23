@@ -15,11 +15,10 @@ const UserAPI = {
     });
   },
 
-  SignUpByGoogle: (tokenId, phoneNumber) => {
-    const url = "user";
+  SignInByFacebook: (fbId) => {
+    const url = "user/facebook";
     return axiosClient.post(url, {
-      phoneNumber: phoneNumber,
-      google: tokenId,
+      "facebook.id": fbId,
     });
   },
 
@@ -33,14 +32,21 @@ const UserAPI = {
     });
   },
 
-  ImportOTP: (phone, otp, google = null) => {
+  ImportOTP: (phone, otp, google = null, facebook = null) => {
     const url = "user/otp";
-    if (google === null)
+    if (google === null && facebook === null)
       return axiosClient.post(url, {
         phoneNumber: `${phone}`,
         otp: `${otp}`,
       });
-
+    else if (facebook !== null)
+      return axiosClient.post(url, {
+        phoneNumber: `${phone}`,
+        otp: `${otp}`,
+        facebook: "y",
+        "facebook.id": facebook.id,
+        "facebook.name": facebook.name,
+      });
     return axiosClient.post(url, {
       phoneNumber: `${phone}`,
       otp: `${otp}`,

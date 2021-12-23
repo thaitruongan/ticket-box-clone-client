@@ -7,7 +7,11 @@ import { ReactComponent as UserLogo } from "../../../assets/svg/user.svg";
 import { ReactComponent as Signout } from "../../../assets/svg/signout.svg";
 import { useLocation, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { removeCurrentUser, selectCurrentUser, selectToken } from "../../../app/userSlice";
+import {
+  removeCurrentUser,
+  selectCurrentUser,
+  selectToken,
+} from "../../../app/userSlice";
 
 const HeaderQl = () => {
   const dispatch = useDispatch();
@@ -38,7 +42,7 @@ const HeaderQl = () => {
     <div className="popover-user-option">
       <div
         className="header-option update-profile"
-        onClick={() => navigate("/profile", {state: location.pathname})}
+        onClick={() => navigate("/profile", { state: location.pathname })}
       >
         <UserLogo />
         Chỉnh sửa hồ sơ
@@ -78,9 +82,9 @@ const HeaderQl = () => {
             <img
               className="avatar-user-header"
               src={
-                currentUser.avatar.search('https:') !== -1
+                currentUser.avatar.search("https:") !== -1
                   ? currentUser.avatar
-                  : `https://ticket-box-clone.herokuapp.com/image/${currentUser.avatar}`
+                  : `https://ticket-box-bs.herokuapp.com/image/${currentUser.avatar}`
               }
               alt={currentUser.name}
             />

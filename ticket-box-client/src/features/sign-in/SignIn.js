@@ -79,7 +79,7 @@ const SignIn = () => {
       } else if (res.status === "success") {
         setIsLoading(false);
         localStorage.setItem("token", res.token);
-        dispatch(addCurrentUser({token: res.token, user: res.data}));
+        dispatch(addCurrentUser({ token: res.token, user: res.data }));
         if (res.version === 0) {
           navigate("/profile", { state: prevPath });
         } else {
@@ -92,8 +92,32 @@ const SignIn = () => {
     }
   };
 
-  const responseFacebook = (response) => {
+  const responseFacebook = async (response) => {
     console.log(response);
+    refreshTokenSetup(response);
+    try {
+      setIsLoading(true);
+      const res = await UserAPI.SignInByFacebook(response.id);
+      if (res.status === "fail") {
+        alert(
+          "Oh! Có vẻ như đây là lần đầu bạn đến với Ticket box, vui lòng đăng ký bằng số điện thoại, bạn có thể đăng nhập bằng facebook vào lần sau!"
+        );
+        localStorage.setItem("facebook", JSON.stringify(response));
+        setIsLoading(false);
+      } else if (res.status === "success") {
+        setIsLoading(false);
+        localStorage.setItem("token", res.token);
+        dispatch(addCurrentUser({ token: res.token, user: res.data }));
+        if (res.version === 0) {
+          navigate("/profile", { state: prevPath });
+        } else {
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
   };
 
   return (
@@ -168,9 +192,8 @@ const SignIn = () => {
           </div>
           <div className="login-api">
             <FacebookLogin
-              appId="943973219888998"
+              appId="888287228516801"
               callback={responseFacebook}
-              onClick={() => {}}
               render={(renderProps) => (
                 <div onClick={renderProps.onClick}>
                   <FacebookIcon className="facebook" />

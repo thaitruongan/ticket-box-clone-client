@@ -37,7 +37,7 @@ const AppBanner = () => {
               >
                 <picture className="image-banner">
                   <img
-                    src={`https://ticket-box-clone.herokuapp.com/image/${item.image}`}
+                    src={`https://ticket-box-bs.herokuapp.com/image/${item.image}`}
                     alt={item.name}
                   />
                 </picture>
