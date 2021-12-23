@@ -67,7 +67,6 @@ const SignIn = () => {
 
   const responseGoogle = async (response) => {
     console.log(response);
-    console.log("ahihi");
     refreshTokenSetup(response);
     try {
       setIsLoading(true);
@@ -77,14 +76,14 @@ const SignIn = () => {
           "Oh! Có vẻ như đây là lần đầu bạn đến với Ticket box, vui lòng đăng ký bằng số điện thoại, bạn có thể đăng nhập bằng google vào lần sau!"
         );
         localStorage.setItem("google", JSON.stringify(response));
-        setIsLoading(false);
       } else if (res.status === "success") {
+        setIsLoading(false);
         localStorage.setItem("token", res.token);
-        dispatch(addCurrentUser(res));
+        dispatch(addCurrentUser({token: res.token, user: res.data}));
         if (res.version === 0) {
           navigate("/profile", { state: prevPath });
         } else {
-          navigate("/movies");
+          navigate("/");
         }
       }
     } catch (error) {
@@ -92,6 +91,7 @@ const SignIn = () => {
       console.log(error);
     }
   };
+
   const responseFacebook = (response) => {
     console.log(response);
   };
@@ -190,7 +190,7 @@ const SignIn = () => {
                 </div>
               )}
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
+              onFailure={() => {}}
               cookiePolicy={"single_host_origin"}
             />
           </div>
