@@ -96,6 +96,10 @@ const AppHeader = () => {
   const homepage = () => {
     navigate("/");
   };
+
+  const myTicket = () => {
+    navigate("/my-tickets")
+  }
   return (
     <div className="header">
       <div className="left">
@@ -116,7 +120,7 @@ const AppHeader = () => {
           <button>Tạo sự kiện</button>
         </div>
         <div className="src-img">
-          <div onClick={homepage}>
+          <div onClick={myTicket}>
             <Ve />
           </div>
         </div>

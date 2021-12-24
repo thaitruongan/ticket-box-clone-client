@@ -6,6 +6,7 @@ import Movies from "./pages/movies/Movies";
 import BuyPage from "./pages/buy/Buy";
 import Payment from "./pages/payment/Payment";
 import ManagerFilm from "./pages/manager-film/ManagerFilm";
+import MyTicket from "./pages/MyTicket/myTicket"
 
 import ListQl from "./features/manager-film/list/ListQl";
 
@@ -51,6 +52,7 @@ function App() {
         <Route path="/detail-movies" element={<FilmDetail />} />
         <Route path="/buy" element={<BuyPage />} />
         <Route path="/select-seat" element={<SeatMap />} />
+        <Route path="/my-tickets" element={<MyTicket/>}/>
         {/* authentication for log */}
         <Route path="/payment" element={<Payment />} />
         <Route path="/admin" element={<ManagerFilm />} />

@@ -1,0 +1,191 @@
+@import "~antd/dist/antd.css";
+.main-home {
+  margin-top: 92px;
+  margin-left: 254px;
+  margin-bottom: 24px;
+}
+
+.container-home {
+  max-width: 936px;
+  box-sizing: border-box;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-home {
+  margin: 0px auto;
+  display: flex;
+  min-height: 100%;
+  padding: 16px;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+}
+.bnt-them-home {
+  width: 100%;
+  text-align: center;
+  margin: 24px 0px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+}
+.bnt-them-home::before {
+  left: 0px;
+  margin-right: 50px;
+}
+.bnt-them-home::after {
+  right: 0px;
+  margin-left: 50px;
+}
+.bnt-them-home::before,
+.bnt-them-home::after {
+  content: "";
+  display: block;
+  background: rgb(230, 235, 245);
+  height: 2px;
+  width: 100%;
+}
+.bnt-them-home button {
+  max-width: 178px;
+  margin: auto;
+  text-transform: capitalize;
+}
+.xem-them.primary {
+  background: rgb(45, 194, 117);
+  color: rgb(255, 255, 255);
+}
+.xem-them.large {
+  border-radius: 20px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  min-width: 88px;
+  padding: 0px 24px;
+}
+.xem-them {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ticketEmpty{
+    margin: auto;    
+    width: 300px;
+    height: auto;
+}
+
+.main-list-movies {
+    padding: 16px;
+    background-color: rgb(255, 255, 255);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+  }
+  .list-movies {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-bottom: 10px;
+  }
+  .list-style-card {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .list-card-movies .lsmec {
+    padding: 16px;
+    display: flex;
+    position: relative;
+    width: 25rem;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  
+  .list-card-movies .lsmec:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .list-card-movies_cover img {
+    width: 64px;
+    min-width: 64px;
+    height: 96px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  
+  .list-card-movies_body1 {
+    padding-left: 0rem;
+    max-width: calc((100% - 64px) - 64px);
+  }
+  h4 {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(42, 45, 52);
+    margin-bottom: 4px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  h6 {
+    padding-top: 4px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(96, 103, 120);
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .list-info {
+    padding-top: 4px;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: rgb(96, 103, 120);
+  }
+  .list-info span:not(:last-child)::after {
+    content: "|";
+    padding: 0px 8px;
+  }
+  .list-muave:hover {
+    background-color: rgb(12, 148, 77);
+  }
+  
+  .list-muave {
+    width: 64px;
+    background: rgb(45, 194, 117);
+    color: rgb(255, 255, 255);
+    border-radius: 12px;
+    height: 24px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    min-width: 52px;
+    padding: 0px 12px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    white-space: nowrap;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+  }
+  
